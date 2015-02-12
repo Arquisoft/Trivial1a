@@ -12,7 +12,7 @@ Autores:
 * labra
 * Nacho
 * andresvelascofdez
-*yenniRamos
->>>>>>> 6875b771362df16a6067010f8f25cc42e9a24a29
+* yenniRamos
+
 
 
