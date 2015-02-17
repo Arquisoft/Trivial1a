@@ -1,0 +1,18 @@
+Pasos para hacer el entregable 1:
+
+Previos a la herramienta CASE
+  1)Mirar requisitos funcionales y no funcionales
+  2)Atributos de calidad
+  3)Stakeholders-Interesados,ver los intereses de las personas
+  4)Escenarios de calidad
+
+  5)CASE->Diseñar la arquitectura
+
+¿Como identificar los stakeholders?Hay una metodología ->interaction design.Cuando no 
+tengo usuarios en mi sistema.
+
+   6)Definicion de vistas
+
+Cada vez que hago una vista miro que los escenarios de calidad los cumplan.
+   7)Implementación   
+   
