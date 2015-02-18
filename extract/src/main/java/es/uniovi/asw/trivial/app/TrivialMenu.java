@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import es.uniovi.asw.trivial.model.Answer;
 import es.uniovi.asw.trivial.model.Question;
 import es.uniovi.asw.trivial.model.Trivial;
+import es.uniovi.asw.trivial.persistence.TrivialGateway;
 
 public class TrivialMenu {
 
@@ -45,9 +46,25 @@ public class TrivialMenu {
 				} else {
 					System.out.println("No hay ningún fichero cargado!");
 				}
-			} else {
+			} else if (line[0].equals("3")) {
+				if(app != null)
+					TrivialGateway.addQuestions(app.getTrivial());
+				else 
+					System.out.println("No hay ningún fichero cargado!");
+			}else if(line[0].equals("4")) {
+				if(TrivialGateway.isEmpty())
+					System.out.println("la base de datos no contiene ninguna pregunta");
+				else
+				{
+					app = new TrivialApp(new MongoParser());
+				}
+			}else if(line[0].equals("5")) {
+				TrivialGateway.deleteAllQuestions();
+				System.out.println("Base de datos borrada");
+			}else {
 				System.out.println("Opción desconocida!");
 			}
+			showMenu();
 
 		} while (true);
 	}
@@ -71,5 +88,8 @@ public class TrivialMenu {
 		System.out.println("0 - Salir");
 		System.out.println("1 - Leer fichero");
 		System.out.println("2 - Mostrar contenido del fichero");
+		System.out.println("3 - Guardar preguntas en la base de datos");
+		System.out.println("4 - leer de base de datos");
+		System.out.println("5 - borrar base de datos");
 	}
 }
