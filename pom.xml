@@ -37,11 +37,6 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
-		<dependency>
-			<groupId>javax.json</groupId>
-			<artifactId>javax.json-api</artifactId>
-			<version>1.0</version>
-		</dependency>
     </dependencies>
 		<reporting>
 		<plugins>

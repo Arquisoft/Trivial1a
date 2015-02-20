@@ -1,6 +1,7 @@
 package es.uniovi.asw.trivial.persistence;
 
 import java.net.UnknownHostException;
+
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
 
@@ -14,7 +15,12 @@ public class DBHelpper
 	
 	private static void crearConexion() 
 	{
-		mongo = new MongoClient("localhost", 27017);
+		try {
+			mongo = new MongoClient("localhost", 27017);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 	
 	public MongoClient getConnection()
@@ -31,7 +37,6 @@ public class DBHelpper
 		return instance;
 	}
 	
-	@SuppressWarnings("deprecation")
 	public DB getDatabase(String name)
 	{
 		if(mongo == null)
