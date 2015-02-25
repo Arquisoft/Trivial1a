@@ -27,9 +27,11 @@ public class GIFTParser implements TrivialParser {
 		Answer answer = null;
 
 		for (String line : lines) {
-			if (line.startsWith("::") && (line.endsWith("{"))) {
-				String[] tokens = deleteEmpty(line.split("[::{]"));
+			if (line.startsWith("$")) {
 				question = new Question();
+				question.setCategory(deleteEmpty(line.split("$CATEGORY:"))[0]);
+			} else if (line.startsWith("::") && (line.endsWith("{"))) {
+				String[] tokens = deleteEmpty(line.split("[::{]"));
 				question.setName(tokens[0]);
 				question.setQuestion(tokens[1]);
 			} else if (line.startsWith("=")) {
@@ -39,6 +41,8 @@ public class GIFTParser implements TrivialParser {
 			} else if (line.startsWith("~")) {
 				answer = new Answer(deleteEmpty(line.split("~"))[0]);
 				question.addAnswer(answer);
+			} else if (line.startsWith("####") || line.startsWith("//")) {
+				question.addComment(deleteEmpty(line.split("[####//]"))[0]);
 			} else if (line.startsWith("}")) {
 				trivial.addQuestion(question);
 			}

@@ -5,12 +5,23 @@ import java.util.List;
 
 public class Question {
 	
+	private String category;
 	private String name;
 	private String question;
 	private List<Answer> answers;
+	private List<String> comments;
 
 	public Question() {
 		answers = new ArrayList<Answer>();
+		comments = new ArrayList<String>();
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public String getName() {
@@ -39,5 +50,13 @@ public class Question {
 
 	public void removeAnswer(Answer answer) {
 		this.answers.remove(answer);
+	}
+
+	public List<String> getComments() {
+		return comments;
+	}
+
+	public void addComment(String comment) {
+		this.comments.add(comment);
 	}
 }
