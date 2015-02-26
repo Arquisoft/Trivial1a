@@ -65,7 +65,8 @@ public class TrivialMenu {
 				TrivialGateway.deleteAllQuestions();
 				System.out.println("Base de datos borrada!");
 			} else if(line[0].equals("6")) {
-				play(app.getTrivial());
+				if (app != null)
+					play(app.getTrivial());
 			}
 			else {
 				System.out.println("Opción desconocida!");
