@@ -19,4 +19,3 @@ para iniciar la base de datos (desde una terminal con permisos de administrador)
 mongod -config mongo.config  o  mongod -config /C:\Program Files\MongoDB_2.6\mongo.config
 
 uso el driver 3.0.0 por ser el más reciente.
- 
