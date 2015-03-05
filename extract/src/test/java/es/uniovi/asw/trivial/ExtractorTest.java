@@ -120,14 +120,11 @@ public class ExtractorTest {
 			Assert.assertTrue(false);
 		}
 		
-		
-		
 		Assert.assertFalse(trivialDAO.findAllQuestions().isEmpty());
 		
 		trivialDAO.deleteAllQuestions();
 		
 		Assert.assertTrue(trivialDAO.findAllQuestions().isEmpty());
-		
 	}
 	
 	
