@@ -1,6 +1,5 @@
 package es.uniovi.asw.trivial;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.junit.Assert;
@@ -9,6 +8,7 @@ import org.junit.Test;
 import es.uniovi.asw.trivial.app.GIFTParser;
 import es.uniovi.asw.trivial.app.TrivialApp;
 import es.uniovi.asw.trivial.app.TrivialParser;
+import es.uniovi.asw.trivial.excepcion.BusinessException;
 import es.uniovi.asw.trivial.infrastructure.Factory;
 import es.uniovi.asw.trivial.model.Answer;
 import es.uniovi.asw.trivial.model.Question;
@@ -17,28 +17,25 @@ import es.uniovi.asw.trivial.persistence.TrivialDAO;
 
 public class ExtractorTest {
 
-	final String[] realQuestions = { "¿Quién 'sabía que no sabía nada'?",
+	private String[] realQuestions = { "¿Quién 'sabía que no sabía nada'?",
 			"¿En qué lugar del cuerpo se produce la insulina?",
 			"¿En que ciudad nacio Fernando alonso?",
 			"¿Con qué se fabricaba el pergamino?",
 			"¿Qué atleta se hizo famoso por utilizar una nueva técnica en atletismo?" };
 
-	final String[] realAnswers = { "Aristóteles", "Ortega y Gasset",
+	private String[] realAnswers = { "Aristóteles", "Ortega y Gasset",
 			"Sócrates", "En la hipófisis", "En el páncreas", "En el duodeno",
 			"Oviedo", "Londres", "Gijon", "Con piel de animales",
 			"Con tiras de madera", "Con hojas de arbusto", "Dick Fosbury",
 			"Carl Lewis", "Emil Zátopek" };
 
-	final String[] realCorrectAnswers = { "Sócrates", "En el páncreas",
+	private String[] realCorrectAnswers = { "Sócrates", "En el páncreas",
 			"Oviedo", "Con hojas de arbusto", "Dick Fosbury" };
-	final String[] realCategories = { "", "", "", "", "" };
-	final String[] realComments = { "", "", "", "", "" };
-
+	
 	@Test
 	public void testParserGift() {
 
 		try {
-
 			TrivialApp app = new TrivialApp(new GIFTParser("test1.gift"));
 			Trivial trivial = app.getTrivial();
 			Assert.assertNotNull(trivial);
@@ -51,7 +48,6 @@ public class ExtractorTest {
 				Assert.assertTrue(preg.getQuestion().equals(realQuestions[i]));
 
 				for (Answer answer : preg.getAnswers()) {
-
 					Assert.assertTrue(answer.getAnswer().equals(realAnswers[j]));
 
 					if (answer.getAnswer().equals(realCorrectAnswers[i])) {
@@ -60,24 +56,65 @@ public class ExtractorTest {
 
 					j++;
 				}
-
-				// Assert.assertTrue(preg.getCategory().equals(realCategories[i]));
-				// Assert.assertTrue(preg.getComments().equals(realComments[i]));
-
 			}
 
-		} catch (IOException e) {
-			e.printStackTrace();
+		} catch (BusinessException e) {
+			
 		}
-
 	}
 
 	@Test
-	public void testLeerDB() {
+	public void dataBaseTest() {
 
-		// TrivialDAO trivialDAO = Factory.persistence.createTrivialDAO();
-		final TrivialDAO trivialDAO = Factory.persistence
-				.createTrivialSimulator();
+		// ESTE TEST REQUIERE LA BASE DE DATOS ARRANCADA
+		
+//		TrivialDAO trivialDAO = Factory.persistence.createTrivialDAO();
+//
+//		try {
+//			trivialDAO.deleteAllQuestions();
+//
+//			TrivialApp app = new TrivialApp(new GIFTParser("test1.gift"));
+//			Assert.assertNotNull(app);
+//
+//			trivialDAO.saveQuestions(app.getTrivial());
+//
+//			app = new TrivialApp(new GIFTParser("test1.gift"));
+//			Trivial trivial = app.getTrivial();
+//			
+//			Assert.assertNotNull(trivial);
+//			List<Question> questions = trivial.getQuestions();
+//
+//			for (int i = 0, j = 0; i < questions.size(); i++) {
+//				Question preg = questions.get(i);
+//
+//				Assert.assertTrue(preg.getName().equals("Pregunta " + (i + 1)));
+//				Assert.assertTrue(preg.getQuestion().equals(realQuestions[i]));
+//
+//				for (Answer answer : preg.getAnswers()) {
+//
+//					Assert.assertTrue(answer.getAnswer().equals(realAnswers[j]));
+//
+//					if (answer.getAnswer().equals(realCorrectAnswers[i])) {
+//						Assert.assertTrue(answer.getIsCorrect());
+//					}
+//
+//					j++;
+//				}
+//			}
+//		} catch (BusinessException e) {
+//			Assert.assertTrue(false);
+//		}
+//
+//		Assert.assertFalse(trivialDAO.findAllQuestions().isEmpty());
+//		trivialDAO.deleteAllQuestions();
+//		Assert.assertTrue(trivialDAO.findAllQuestions().isEmpty());
+	}
+	
+	
+	@Test
+	public void dataBaseSimulatorTest() {
+
+		final TrivialDAO trivialDAO = Factory.persistence.createTrivialSimulator();
 
 		try {
 
@@ -91,7 +128,7 @@ public class ExtractorTest {
 			app = new TrivialApp(new TrivialParser() {
 
 				@Override
-				public Trivial parse() throws IOException {
+				public Trivial parse() throws BusinessException {
 					Trivial trivial = new Trivial();
 
 					for (Question q : trivialDAO.findAllQuestions())
@@ -112,7 +149,6 @@ public class ExtractorTest {
 				Assert.assertTrue(preg.getQuestion().equals(realQuestions[i]));
 
 				for (Answer answer : preg.getAnswers()) {
-
 					Assert.assertTrue(answer.getAnswer().equals(realAnswers[j]));
 
 					if (answer.getAnswer().equals(realCorrectAnswers[i])) {
@@ -121,43 +157,27 @@ public class ExtractorTest {
 
 					j++;
 				}
-				// Assert.assertTrue(preg.getCategory().equals(realCategories[i]));
-				// Assert.assertTrue(preg.getComments().equals(realComments[i]));
-
 			}
-
-		} catch (IOException e) {
-			Assert.assertTrue(false);
+		} catch (BusinessException e) {
+			
 		}
 
 		Assert.assertFalse(trivialDAO.findAllQuestions().isEmpty());
-
 		trivialDAO.deleteAllQuestions();
-
 		Assert.assertTrue(trivialDAO.findAllQuestions().isEmpty());
 	}
-
+	
 	@Test
 	public void testArchivoDesconocido() {
 
 		try {
-
 			TrivialApp app = new TrivialApp(new GIFTParser("asf.gift"));
 			Trivial trivial = app.getTrivial();
 			Assert.assertNull(trivial);
 
 			Assert.assertTrue(false);
-		} catch (IOException e) {
+		} catch (BusinessException e) {
 			Assert.assertTrue(true);
 		}
-
 	}
-
-	@Test
-	public void testFormatoDesconocido() {
-
-		// TrivialApp app = new TrivialApp(new GIFTParser("test2.gift"));
-
-	}
-
 }

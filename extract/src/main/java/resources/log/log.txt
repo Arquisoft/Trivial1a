@@ -1,0 +1,28 @@
+**********************************************************************************************************************************
+*		                                       Sistema de Logging de la Aplicación                                               *
+*                                                                                                                                *
+*                                                                                                                                *
+*                        Este fichero contiene la información de los procesos de análisis y serialización                        *
+*                        de los ficheros de preguntas en formato GIFT a formato intermedio y formato JSON.                       *
+*                                                                                                                                *
+**********************************************************************************************************************************
+
+Fichero						Proceso						Fecha/Hora									Problema
+**********************************************************************************************************************************
+test3.gift						Parser					05-03-2015 20:50:32					Carácter desconocido en la línea 11!
+test3.gift						Parser					05-03-2015 20:58:05					Carácter desconocido en la línea 11!
+test3.gift						Parser					05-03-2015 20:59:26					Carácter desconocido en la línea 11! ¡Respete el formato GIFT del Manual del Sistema!
+test1.gift						Parser					05-03-2015 22:16:36					El fichero src/test/java/resources/test1.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:41:09					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:41:17					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:41:41					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:42:00					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:42:07					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:42:56					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:43:03					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:43:22					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:44:13					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:44:25					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 22:45:49					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 23:05:30					El fichero asf.gift no ha sido encontrado!
+asf.gift						Parser					05-03-2015 23:05:42					El fichero asf.gift no ha sido encontrado!

@@ -1,7 +1,5 @@
 package es.uniovi.asw.trivial.app;
 
-import java.io.IOException;
-
 import es.uniovi.asw.trivial.excepcion.BusinessException;
 import es.uniovi.asw.trivial.infrastructure.Factory;
 import es.uniovi.asw.trivial.model.Trivial;
@@ -11,7 +9,8 @@ public class TrivialApp {
 	private Trivial trivial;
 	private TrivialSerializer serializer;
 
-	public TrivialApp(TrivialParser parser) throws IOException {
+	public TrivialApp(TrivialParser parser) throws BusinessException {
+		
 		this.trivial = parser.parse();
 	}
 	
@@ -25,6 +24,7 @@ public class TrivialApp {
 	
 	
 	public void toJSon(String file) throws BusinessException {
+		
 		serializer.serialize(trivial, file);
 	}
 

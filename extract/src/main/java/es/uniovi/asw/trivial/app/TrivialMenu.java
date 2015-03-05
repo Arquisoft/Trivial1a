@@ -21,28 +21,25 @@ public class TrivialMenu {
 	}
 	
 	public void run() throws IOException {
-
+		
 		showMenu();
 
 		do {
 			try {
+				System.out.print("\nOpción: ");
 				String[] line = input.readLine().split(" ");
 	
 				if (line[0].equals("0"))
 					return;
 	
 				if (line[0].equals("1")) {
-					System.out.println("Introduce el nombre del fichero:");
+					System.out.print("\nIntroduzca el nombre del fichero: ");
 					line = input.readLine().split(" ");
 					sourceFile = line[0];
 	
 					if (sourceFile.endsWith(".gift") || sourceFile.endsWith(".txt")) {
-						try {
-							app = new TrivialApp(new GIFTParser(sourceFile));
-							System.out.println("\nFichero cargado correctamente!\n");
-						} catch (IOException e) {
-							System.out.println(e.getMessage());
-						}
+						app = new TrivialApp(new GIFTParser(sourceFile));
+						System.out.println("\nFichero cargado correctamente!\n");
 					} else {
 						System.out.println("\nEl fichero tiene un formato desconocido! "
 								+ "Los formatos aceptados son: .gift, .txt!\n");
@@ -52,14 +49,18 @@ public class TrivialMenu {
 				} else if (line[0].equals("3")) {
 					app.setSerializer(new JSonSerializer());
 					app.toJSon(sourceFile);
+					System.out.println("\nEl fichero JSon ha sido generado "
+							+ "correctamente en el directorio \"src/main/java/resources/json\"");
 				} else if(line[0].equals("4")) {
 					app.saveToDataBase();
 				} else if(line[0].equals("5")) {
 					app.setSerializer(new JSonSerializer());
 					app.toJSon(sourceFile);
 					app.saveToDataBase();
+					System.out.println("\nEl Fichero JSon ha sido generado, y las preguntas "
+							+ "han sido gaurdadas en la Base de Datos!");
 				} else {
-					System.out.println("Opción desconocida!");
+					System.out.println("\nOpción desconocida!");
 				}
 			} catch (NullPointerException e) {
 				System.out.println("\nNo hay ningún fichero cargado!\n");
@@ -74,10 +75,12 @@ public class TrivialMenu {
 	
 
 	private void showTrivial(Trivial trivial) {
+		
 		System.out.println("\tPreguntas del Trivial:\n");
 		
 		for (Question question : trivial.getQuestions()) {
-			System.out.println(question.getQuestion());
+			System.out.println((question.getCategory() != null 
+					? question.getCategory()  + ": " : "") + question.getQuestion());
 			
 			for (Answer answer : question.getAnswers()) {
 				System.out.println("  " + answer.getAnswer());
@@ -88,7 +91,8 @@ public class TrivialMenu {
 	}
 
 	private void showMenu() {
-		System.out.println("\t\tWelcome to Trivial\n");
+		
+		System.out.println("\n\t\tWelcome to Trivial\n");
 		System.out.println("1 - Leer Fichero");
 		System.out.println("2 - Mostrar Contenido del Fichero");
 		System.out.println("3 - Guardar Preguntas en JSon");

@@ -7,14 +7,18 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 import es.uniovi.asw.trivial.excepcion.BusinessException;
+import es.uniovi.asw.trivial.infrastructure.Logger;
 import es.uniovi.asw.trivial.model.Trivial;
 
 public class JSonSerializer implements TrivialSerializer {
 
 	private Gson jSon;
+	private String jSonFile;
+	private Logger logger;
 	
 	public JSonSerializer() {
-		jSon = new Gson();
+		this.jSon = new Gson();
+		this.logger = new Logger();
 	}
 
 	@Override
@@ -25,21 +29,26 @@ public class JSonSerializer implements TrivialSerializer {
 		BufferedWriter writer = null;
 	
 		try {
-			writer = new BufferedWriter(new FileWriter(removeFileExtension(file).concat(".json")));
+			jSonFile = prepareJSonFile(file);
+			writer = new BufferedWriter(new FileWriter(jSonFile));
 			writer.write(jSonString);
 		} catch (IOException e) {
-			throw new BusinessException("No ha sido posible generar el fichero JSon. Error: " + e.getMessage());
+			String msg = "No ha sido posible generar el fichero JSon. Error: " + e.getMessage();
+			logger.log(jSonFile, "Serializer", msg);
+			throw new BusinessException(msg);
 		} finally {
 			try {
 				if (writer != null)
 					writer.close();
 			} catch (IOException e) {
-				throw new BusinessException("No ha sido posible cerrar el flujo de datos. Error: " + e.getMessage());
+				String msg = "No ha sido posible cerrar el flujo de datos. Error: " + e.getMessage();
+				logger.log(jSonFile, "Serializer", msg);
+				throw new BusinessException(msg);
 			}
 		}
 	}
 
-	private String removeFileExtension(String file) {
+	private String prepareJSonFile(String file) {
 		
 		int dot = file.lastIndexOf('.');
 		String noExtFile = null;
@@ -47,6 +56,6 @@ public class JSonSerializer implements TrivialSerializer {
 		if (dot > 0)
 			noExtFile = file.substring(0, dot);
 		
-		return noExtFile;
+		return "src/main/java/resources/json/".concat(noExtFile).concat(".json");
 	}	
 }

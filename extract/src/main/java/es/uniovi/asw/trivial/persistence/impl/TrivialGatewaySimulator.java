@@ -1,5 +1,6 @@
 package es.uniovi.asw.trivial.persistence.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import es.uniovi.asw.trivial.model.Question;
@@ -17,7 +18,10 @@ public class TrivialGatewaySimulator implements TrivialDAO {
 
 	@Override
 	public List<Question> findAllQuestions() {
-		return dataBase.getQuestions();
+		if (dataBase != null)
+			return dataBase.getQuestions();
+		
+		return new ArrayList<Question>();
 	}
 
 	@Override
