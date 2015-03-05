@@ -28,7 +28,6 @@ public class GIFTParser implements TrivialParser {
 
 		for (String line : lines) {
 			if (line.startsWith("$")) {
-				//question = new Question();
 				question.setCategory(deleteEmpty(line.split("$CATEGORY:"))[0]);
 			} else if (line.startsWith("::") && (line.endsWith("{"))) {
 				question = new Question();

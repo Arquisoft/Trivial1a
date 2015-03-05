@@ -4,7 +4,8 @@ import java.io.IOException;
 
 import es.uniovi.asw.trivial.model.Question;
 import es.uniovi.asw.trivial.model.Trivial;
-import es.uniovi.asw.trivial.persistence.TrivialGateway;
+import es.uniovi.asw.trivial.persistence.Factory;
+import es.uniovi.asw.trivial.persistence.TrivialDAO;
 
 public class MongoParser implements TrivialParser
 {
@@ -12,10 +13,12 @@ public class MongoParser implements TrivialParser
 	@Override
 	public Trivial parse() throws IOException 
 	{
+		TrivialDAO dao = Factory.persistence.createTrivialDAO();
 		Trivial trivial = new Trivial();
-		for(Question q : TrivialGateway.loadQuestions())
+		
+		for(Question q : dao.findAllQuestions())
 			trivial.addQuestion(q);
+		
 		return trivial;
 	}
-
 }
