@@ -8,6 +8,7 @@ import org.junit.*;
 import es.uniovi.asw.trivial.app.GIFTParser;
 import es.uniovi.asw.trivial.app.MongoParser;
 import es.uniovi.asw.trivial.app.TrivialApp;
+import es.uniovi.asw.trivial.model.Answer;
 import es.uniovi.asw.trivial.model.Question;
 import es.uniovi.asw.trivial.model.Trivial;
 import es.uniovi.asw.trivial.persistence.TrivialGateway;
@@ -19,9 +20,15 @@ public class ExtractorTest {
 										"¿En que ciudad nacio Fernando alonso?",
 										"¿Con qué se fabricaba el pergamino?",
 										"¿Qué atleta se hizo famoso por utilizar una nueva técnica en atletismo?" };
+	
+	final String[] realAnswers = { 	"Aristóteles", "Ortega y Gasset", "Sócrates",
+									"En la hipófisis", "En el páncreas", "En el duodeno",
+									"Oviedo", "Londres", "Gijon",
+									"Con piel de animales", "Con tiras de madera", "Con hojas de arbusto",
+									"Dick Fosbury", "Carl Lewis","Emil Zátopek" };
+	
+	final String[] realCorrectAnswers = { 	"Sócrates", "En el páncreas","Oviedo","Con hojas de arbusto","Dick Fosbury" };
 	final String[] realCategories = { "", "", "", "", "" };
-	final String[] realAnswers = { 	"Sócrates", "En el páncreas", "Oviedo",
-									"Con hojas de arbusto", "Dick Fosbury" };
 	final String[] realComments = { "", "", "", "", "" };
 	
 	
@@ -35,16 +42,27 @@ public class ExtractorTest {
 			Assert.assertNotNull(trivial);
 			List<Question> questions = trivial.getQuestions();
 			
-			for (int i = 0; i< questions.size(); i++){
+			for (int i=0, j = 0; i< questions.size(); i++){
 				Question preg = questions.get(i);
 				
 				Assert.assertTrue(preg.getName().equals("Pregunta " + (i + 1)));
 				Assert.assertTrue(preg.getQuestion().equals(realQuestions[i]));
-			//	Assert.assertTrue(preg.getAnswers().equals(realAnswers[i]));
+				
+				for (Answer answer : preg.getAnswers()) {
+					
+					Assert.assertTrue(answer.getAnswer().equals(realAnswers[j]));
+					
+					if( answer.getAnswer().equals(realCorrectAnswers[i]) ){
+						Assert.assertTrue(answer.getIsCorrect());
+					}
+					
+					j++;
+				}
+				
+				
 			//	Assert.assertTrue(preg.getCategory().equals(realCategories[i]));
 			//	Assert.assertTrue(preg.getComments().equals(realComments[i]));
 				
-
 			}
 
 			
@@ -59,6 +77,7 @@ public class ExtractorTest {
 	public void testLeerDB() {
 		
 		try {
+			
 			TrivialGateway.deleteAllQuestions();
 			
 			TrivialApp app = new TrivialApp(new GIFTParser("test1.gift"));
@@ -72,12 +91,22 @@ public class ExtractorTest {
 			Assert.assertNotNull(trivial);
 			List<Question> questions = trivial.getQuestions();
 			
-			for (int i = 0; i < questions.size(); i++) {
+			for (int i = 0, j=0; i < questions.size(); i++) {
 				Question preg = questions.get(i);
 
 				Assert.assertTrue(preg.getName().equals("Pregunta " + (i + 1)));
 				Assert.assertTrue(preg.getQuestion().equals(realQuestions[i]));
-			//	Assert.assertTrue(preg.getAnswers().equals(realAnswers[i]));
+				
+				for (Answer answer : preg.getAnswers()) {
+					
+					Assert.assertTrue(answer.getAnswer().equals(realAnswers[j]));
+					
+					if( answer.getAnswer().equals(realCorrectAnswers[i]) ){
+						Assert.assertTrue(answer.getIsCorrect());
+					}
+					
+					j++;
+				}
 			//	Assert.assertTrue(preg.getCategory().equals(realCategories[i]));
 			//	Assert.assertTrue(preg.getComments().equals(realComments[i]));
 				
@@ -119,7 +148,6 @@ public class ExtractorTest {
 		try {
 			TrivialApp app = new TrivialApp(new GIFTParser("test2.gift"));
 			
-		//	Assert.assertTrue(false);
 		} catch (IOException e) {
 			Assert.assertTrue(false);
 		}
