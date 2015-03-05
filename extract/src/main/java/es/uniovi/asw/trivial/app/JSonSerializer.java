@@ -17,7 +17,6 @@ public class JSonSerializer implements TrivialSerializer {
 		jSon = new Gson();
 	}
 
-
 	@Override
 	public void serialize(Trivial trivial, String file) throws BusinessException {
 		

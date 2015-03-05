@@ -3,8 +3,8 @@ package es.uniovi.asw.trivial.app;
 import java.io.IOException;
 
 import es.uniovi.asw.trivial.excepcion.BusinessException;
+import es.uniovi.asw.trivial.infrastructure.Factory;
 import es.uniovi.asw.trivial.model.Trivial;
-import es.uniovi.asw.trivial.persistence.Factory;
 
 public class TrivialApp {
 

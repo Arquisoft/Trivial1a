@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial.persistence;
+package es.uniovi.asw.trivial.persistence.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,11 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 
+import es.uniovi.asw.trivial.infrastructure.DBHelper;
 import es.uniovi.asw.trivial.model.Answer;
 import es.uniovi.asw.trivial.model.Question;
 import es.uniovi.asw.trivial.model.Trivial;
+import es.uniovi.asw.trivial.persistence.TrivialDAO;
 
 
 public class TrivialGatewayImpl implements TrivialDAO
@@ -21,7 +23,7 @@ public class TrivialGatewayImpl implements TrivialDAO
 	
 	public TrivialGatewayImpl() {
 		if (dataBase == null)
-			dataBase = DBHelpper.getInstance().getDatabase(DB_NAME);
+			dataBase = DBHelper.getInstance().getDatabase(DB_NAME);
 	}
 	
 	
