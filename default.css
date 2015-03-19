@@ -15,7 +15,7 @@ body {
 
 h1, h2, h3 {
 	margin: 0;
-	text-transform: lowercase;
+	
 	font-weight: normal;
 	color: #48ACDE;
 }
@@ -25,7 +25,8 @@ h1 {
 	font-size: 32px;
 }
 
-h2 {
+h3 {
+letter-spacing: -1px;
 	font-size: 23px;
 }
 
