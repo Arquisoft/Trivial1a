@@ -38,4 +38,9 @@ public class User {
 	public boolean isAdmin(){
 		return admin;
 	}
+	@Override
+	public String toString()
+	{
+		return name;
+	}
 }

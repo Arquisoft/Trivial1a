@@ -1,10 +1,10 @@
 package es.uniovi.asw;
 
-import es.uniovi.asw.game.aplication.Game;
+import es.uniovi.asw.game.aplication.ConcretGame;
 
 public class App {
 	public static void main(String[] args) {
-		Game game = new Game();
+		ConcretGame game = new ConcretGame();
 		game.run();
 	}
 
