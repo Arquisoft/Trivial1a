@@ -1,15 +1,18 @@
 package es.uniovi.asw.game.aplication;
 
 import java.awt.Frame;
-import java.awt.event.WindowEvent;
-
-import javax.swing.JFrame;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.view.View;
 import es.uniovi.asw.game.view.ViewFactory;
 
+/**
+ * Clase que implementa la interfaz Game
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ *
+ */
 public class ConcretGame implements Game
 {
 	View currentView;

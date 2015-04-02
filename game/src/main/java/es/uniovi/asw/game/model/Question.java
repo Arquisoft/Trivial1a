@@ -3,6 +3,11 @@ package es.uniovi.asw.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class Question {
 	private String category;
 	private String name;

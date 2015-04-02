@@ -15,6 +15,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class TestView2 extends View {
 
 	private JPanel contentPane;

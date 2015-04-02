@@ -6,6 +6,11 @@ import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.TrivialDAO;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class TrivialGatewaySimulator implements TrivialDAO {
 
 	@Override

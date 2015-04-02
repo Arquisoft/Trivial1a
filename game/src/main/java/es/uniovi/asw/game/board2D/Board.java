@@ -11,6 +11,8 @@ import javax.imageio.ImageIO;
 /**
  * Manages the board of your game.
  * For now, there is no needs to use this class directly.
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public class Board {
 

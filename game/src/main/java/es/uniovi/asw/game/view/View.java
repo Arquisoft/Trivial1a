@@ -18,6 +18,11 @@ import org.openqa.selenium.internal.seleniumemulation.Close;
 import es.uniovi.asw.game.aplication.Game;
 import es.uniovi.asw.game.model.User;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public abstract class View extends JFrame {
 
 	private static Game controler;

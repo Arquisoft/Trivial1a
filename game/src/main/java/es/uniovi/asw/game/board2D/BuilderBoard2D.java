@@ -9,6 +9,11 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class BuilderBoard2D {
 
 	private static final boolean CUNIA_AMARILLA = false;

@@ -5,6 +5,8 @@ import es.uniovi.asw.game.persistence.TrivialDAO;
 
 /**
  * A factory for creating SimplePersistence objects.
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a> 
  */
 public class SimplePersistenceFactory implements PersistenceFactory {
 

@@ -20,6 +20,11 @@ import es.uniovi.asw.game.view.models.UserListModel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class UserLogin extends JFrame {
 	//la vista que se está usando en este momento. se accede al controlador(Game) a traves de ella
 	private View parentView;

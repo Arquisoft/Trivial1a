@@ -7,6 +7,8 @@ import com.mongodb.MongoClient;
 
 /**
  * The Class DBHelper.
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a> 
  */
 public class DBHelper {
 

@@ -9,6 +9,8 @@ import javax.imageio.ImageIO;
 /**
  * Represents a piece of the game.
  * @see TrivialBoard#addPiece
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public class Piece {
 

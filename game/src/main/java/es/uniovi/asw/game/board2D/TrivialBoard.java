@@ -6,7 +6,11 @@ import java.io.*;
 import java.util.HashMap;
 import javax.swing.JPanel;
 
-
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class TrivialBoard extends JPanel {
 
     /**
