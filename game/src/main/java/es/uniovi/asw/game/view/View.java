@@ -32,7 +32,6 @@ public abstract class View extends JFrame {
 	private static JMenuItem mItemReset;
 	private static JMenu mnInformacin;
 	private static JMenuItem mItemAcercaDe;
-	private static JMenuItem mItemEstadisticas;
 
 	/* constructores de la super clase Jframe */
 	public View() throws HeadlessException {
@@ -83,12 +82,6 @@ public abstract class View extends JFrame {
 
 	public void updateUsers() {
 
-	}
-	
-	public void showStatistics()
-	{
-		StatisticsView estadisticas = new StatisticsView(this);
-		estadisticas.setVisible(true);
 	}
 
 	protected JMenuBar getViewMenuBar() {
@@ -171,7 +164,6 @@ public abstract class View extends JFrame {
 		if (mnInformacin == null) {
 			mnInformacin = new JMenu("Informaci\u00F3n");
 			mnInformacin.add(getMItemAcercaDe());
-			mnInformacin.add(getMItemEstadisticas());
 		}
 		return mnInformacin;
 	}
@@ -181,36 +173,11 @@ public abstract class View extends JFrame {
 			mItemAcercaDe = new JMenuItem("Acerca de");
 			mItemAcercaDe.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					JOptionPane.showMessageDialog(null, "Desarrollado por: Trivial1a\n"
-							+ "Componentes:\nSergio Cueto Lopez de Bustamante\n"
-							+ "Robert Stefanita Ene\n"
-							+ "Alejandro Garcia Toriello\n"
-							+ "Francisco Javier Gil Gala\n"
-							+ "Diego Jaular Orgueira\n"
-							+ "Ignacio Rodríguez Vázquez\n"
-							+ "Andrés Velasco Fernández\n"
-							+ "Jenifer Ramos Martínez\n"
-							+ "Isabel del Álamo Rancaño\n"
-							+ "Ingenieria Informática del Software - Escuela Ingerniería Informática\n"
-							+ "Universidad de Oviedo");
+					// mostrar acerca de
 				}
 			});
 		}
 		return mItemAcercaDe;
-	}
-	
-	private JMenuItem getMItemEstadisticas(){
-		if(mItemEstadisticas == null){
-			mItemEstadisticas = new JMenuItem("Estadisticas");
-			mItemEstadisticas.addActionListener(new ActionListener() {
-				
-				@Override
-				public void actionPerformed(ActionEvent arg0) {
-					showStatistics();
-				}
-			});
-		}
-		return mItemEstadisticas;
 	}
 
 	public Game getControler() {

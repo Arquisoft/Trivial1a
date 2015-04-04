@@ -2,7 +2,6 @@ package es.uniovi.asw.game.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -22,8 +21,7 @@ public class TestView2 extends View {
 	 * Create the frame.
 	 */
 	public TestView2() {
-		setTitle("Trivial.Vista 2");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
+		setTitle("TestView2");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		// añade a la vista el menú por defecto de la interfáz view

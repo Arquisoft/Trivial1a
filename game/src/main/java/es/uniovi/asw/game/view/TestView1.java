@@ -1,7 +1,6 @@
 package es.uniovi.asw.game.view;
 
 import java.awt.EventQueue;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -35,8 +34,7 @@ public class TestView1 extends View {
 	 * Create the frame.
 	 */
 	public TestView1() {
-		setTitle("Juego Trivial. Menu principal");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
+		setTitle("TestView1");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 693, 469);
 		// añade a la vista el menú por defecto de la interfáz view
