@@ -2,7 +2,9 @@ package es.uniovi.asw.game.view;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Toolkit;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -21,8 +23,10 @@ public class DefaultView extends View {
 	 * Create the frame.
 	 */
 	public DefaultView() {
-		setTitle("DefaultView");
+		setTitle("Trivial.Menú principal");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 450, 300);
 		setJMenuBar(getViewMenuBar());
 		contentPane = new JPanel();
