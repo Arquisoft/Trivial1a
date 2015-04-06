@@ -56,9 +56,11 @@ public class StatisticsView extends JFrame {
 		setTitle("Estad\u00EDsticas sobre Trivial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
 		this.parentView = parentView;
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setBounds(100, 100, 557, 400);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setLocationRelativeTo(null);
+//		setBounds(100, 100, 557, 400);
+		setSize(557, 400);
+		setLocationRelativeTo(null); 								//centrar en la pantalla	
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.ORANGE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

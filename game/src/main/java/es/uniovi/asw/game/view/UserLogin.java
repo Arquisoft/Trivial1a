@@ -56,7 +56,9 @@ public class UserLogin extends JFrame {
 	public UserLogin(View parentView) {
 		this.parentView = parentView;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 412, 469);
+//		setBounds(100, 100, 412, 469);
+		setSize(412, 469);
+		setLocationRelativeTo(null); 								//centrar en la pantalla	
 		UserLogcontentPane = new JPanel();
 		UserLogcontentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(UserLogcontentPane);

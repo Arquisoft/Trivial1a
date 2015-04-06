@@ -31,8 +31,10 @@ public class DefaultView extends View {
 		setTitle("Trivial.Menú principal");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setLocationRelativeTo(null);
-		setBounds(100, 100, 450, 300);
+//		setBounds(100, 100, 450, 300);
+//		setLocationRelativeTo(null);
+		setSize(450, 300);
+		setLocationRelativeTo(null); 								//centrar en la pantalla	
 		setJMenuBar(getViewMenuBar());
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

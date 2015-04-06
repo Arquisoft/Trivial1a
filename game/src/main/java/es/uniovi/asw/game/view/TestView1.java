@@ -43,7 +43,10 @@ public class TestView1 extends View {
 		setTitle("Juego Trivial. Menu principal");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 693, 469);
+//		setBounds(100, 100, 693, 469);
+		setSize(693, 469);
+		setLocationRelativeTo(null); 								//centrar en la pantalla	
+		
 		// añade a la vista el menú por defecto de la interfáz view
 		setJMenuBar(getViewMenuBar());
 		contentPane = new JPanel();
