@@ -17,6 +17,12 @@ import es.uniovi.asw.game.view.models.UserListModel;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.ListSelectionEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class UserLogin extends JFrame {
 	//la vista que se está usando en este momento. se accede al controlador(Game) a traves de ella
@@ -59,6 +65,11 @@ public class UserLogin extends JFrame {
 	private JList getListUsers() {
 		if (ListUsers == null) {
 			ListUsers = new JList();
+			ListUsers.addListSelectionListener(new ListSelectionListener() {
+				public void valueChanged(ListSelectionEvent arg0) {
+					btEliminar.setEnabled(true);
+				}
+			});
 			ListUsers.setBounds(10, 80, 188, 339);
 		}
 		return ListUsers;
@@ -95,6 +106,17 @@ public class UserLogin extends JFrame {
 	private JTextField getTxName() {
 		if (txName == null) {
 			txName = new JTextField();
+			txName.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent arg0) {
+					if(!txName.getText().equals("") && !txPasswd.getText().equals(""))
+					{
+						btAniadir.setEnabled(true);
+						btSignIn.setEnabled(true);
+					}
+					
+				}
+			});
 			txName.setBounds(10, 36, 158, 20);
 			txName.setColumns(10);
 		}
@@ -121,6 +143,16 @@ public class UserLogin extends JFrame {
 	private JPasswordField getTxPasswd() {
 		if (txPasswd == null) {
 			txPasswd = new JPasswordField();
+			txPasswd.addKeyListener(new KeyAdapter() {
+				@Override
+				public void keyReleased(KeyEvent e) {
+					if(!txName.getText().equals("") && !txPasswd.getText().equals(""))
+					{
+						btAniadir.setEnabled(true);
+						btSignIn.setEnabled(true);
+					}
+				}
+			});
 			txPasswd.setBounds(10, 92, 158, 20);
 		}
 		return txPasswd;
@@ -134,9 +166,10 @@ public class UserLogin extends JFrame {
 				public void actionPerformed(ActionEvent arg0) 
 				{
 					if(parentView.getControler().addUserToGame(txName.getText(), txPasswd.getText()))
-						JOptionPane.showMessageDialog(UserLogin.this,"No se pueden añadir más usuaros a la partida");
-					else
 						JOptionPane.showMessageDialog(UserLogin.this,"Usuario añadido correctamente");
+					else
+						JOptionPane.showMessageDialog(UserLogin.this,"Error de login o numero máximo de jugadores alcanzado");
+					
 					loadUsers();
 					
 				}
@@ -158,8 +191,14 @@ public class UserLogin extends JFrame {
 	private JButton getBtSignIn() {
 		if (btSignIn == null) {
 			btSignIn = new JButton("Reg\u00EDstrate ahora");
+			btSignIn.setEnabled(false);
 			btSignIn.addActionListener(new ActionListener() {
+				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent arg0) {
+					if(parentView.getControler().registerNewUser(txName.getText(), txPasswd.getText()))
+						JOptionPane.showMessageDialog(UserLogin.this,"Usuario registrado correctamente");
+					else
+						JOptionPane.showMessageDialog(UserLogin.this,"Ya existe un usuario con el mísmo nombre :S");
 				}
 			});
 			btSignIn.setBounds(33, 228, 135, 23);
@@ -196,6 +235,7 @@ public class UserLogin extends JFrame {
 				{
 					parentView.getControler().deleteUserToGame(listModel.getUserAt(ListUsers.getSelectedIndex()));
 					loadUsers();
+					btEliminar.setEnabled(false);
 				}
 			});
 			btEliminar.setBounds(33, 169, 135, 23);
@@ -216,9 +256,6 @@ public class UserLogin extends JFrame {
 		listModel = new UserListModel();
 		for (User u : parentView.getControler().getUsers())
 			listModel.addUser(u);
-		// usuario de ejemplo
-		listModel.addUser(new User("user ejemplo 1", "1", false));
-		listModel.addUser(new User("user ejemplo 2", "1", false));
 		ListUsers.setModel(listModel);
 	}
 }

@@ -92,7 +92,15 @@ public class TrivialGatewayImpl implements TrivialDAO {
 	
 	private boolean existUser(User user)
 	{
-		return true;
+		DBCollection usersTable = dataBase.getCollection("users");
+		BasicDBObject query = new BasicDBObject();
+		query.put("name", user.getName());
+		query.put("password", user.getPasswd());
+		DBCursor cursorQ = usersTable.find(query);
+		
+		if(cursorQ.hasNext())
+			return true;
+		return false;
 	}
 
 }

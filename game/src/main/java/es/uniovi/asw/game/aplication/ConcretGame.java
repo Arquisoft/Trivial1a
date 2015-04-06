@@ -72,6 +72,8 @@ public class ConcretGame implements Game
 				for(int j=0; j< aux.length; j++)
 					if (aux[j]==null)
 						aux[j] = users[i];
+			if(users[i]==user)
+				numUsers--;
 		}
 		users = aux;
 		
