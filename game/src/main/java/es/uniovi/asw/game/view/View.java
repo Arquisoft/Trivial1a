@@ -117,7 +117,7 @@ public abstract class View extends JFrame {
 
 					View[] possibilities = {
 							ViewFactory.getTestView1(controler),
-							ViewFactory.getTeView2(controler),
+							ViewFactory.getTestView2(controler),
 							ViewFactory.getDeffaultView(controler) };
 					View v = (View) JOptionPane.showInputDialog(View.this,
 							"Seleccione la vista deseada", "Cambiar vista",

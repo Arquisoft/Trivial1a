@@ -47,7 +47,7 @@ public class BuilderBoard2D {
 	////////////////
     private final int MITAD_FICHA = 13;
     private final int CASILLA_CENTRAL = 72;
-    private static final int ZONA_BLANCA = 73;
+    private final int ZONA_BLANCA = 73;
     private final int TRANSPARENTE = 16777215;
     ///////////////
 	private TrivialBoard gb2d;

@@ -18,7 +18,7 @@ public class ViewFactory {
 		return new TestView1(game, "test view1");
 	}
 
-	public static View getTeView2(Game game) {
+	public static View getTestView2(Game game) {
 		return new TestView2(game, "test view2");
 	}
 }

@@ -4,7 +4,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.HashMap;
+
 import javax.swing.JPanel;
+
 
 /**
  * 
@@ -83,71 +85,6 @@ public class TrivialBoard extends JPanel {
         g.drawImage(board.getImage(), 0, 0, null);
         repaint();
     }
-
-//    /**
-//     * Draw a piece on the board, deleting the background first.
-//     * @param name the name of the piece to display
-//     * @param boxId the box id in wich to display the piece
-//     */
-//    public void drawPiece(String name, int boxId) {
-//        drawPiece(name, boxId, true);
-//    }
-//
-//    /**
-//     * Draw a piece on the board, without deleting the background first.
-//     * @param name the name of the piece to display
-//     * @param boxId the box id in wich to display the piece
-//     */
-//    public void drawPieceOnTop(String name, int boxId) {
-//        drawPiece(name, boxId, false);
-//    }
-//
-//    
-//    private void drawPiece(String name, int boxId, boolean deleteBackgroundFirst) {
-//        Graphics2D g = offscreenImage.createGraphics();
-//    	
-//        Box box = board.getBox(boxId);
-//        Piece piece = pieces.get(name);
-//
-////        try {
-////			ImageIO.write(offscreenImage , "png", new File("prueba.png"));
-////		} catch (IOException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		} 
-//        
-//        if(deleteBackgroundFirst) {
-//            clearBackground(g, box.getPoint(), piece.getDimension());
-//        }
-//        
-////        try {
-////			ImageIO.write(offscreenImage , "png", new File("prueba1.png"));  //es el anterior
-////		} catch (IOException e) {
-////			// TODO Auto-generated catch block
-////			e.printStackTrace();
-////		} 
-//        
-//        
-//        g.drawImage(piece.getImage(), box.getPoint().x, box.getPoint().y, null);
-//        repaint();
-//        
-//    }
-//
-//    private void clearBackground(Graphics2D g, Point p, Dimension d) {//FIXME
-//        BufferedImage background = board.getImage() ;
-//        int x2 = p.x + d.width;
-//        int y2 = p.y + d.height;
-//
-//        g.drawImage(background, p.x , p.y , x2, y2, p.x , p.y , x2, y2, null) ;
-//        
-//
-//    }
-    
-//    Graphics2D g = offscreenImage.createGraphics();
-//    g.drawImage(board.getImage(), 0, 0, null);
-//    repaint();
-
-    
     
     //primer elemento es el k cambia 
     public void repintarTablero(String piezas[], int boxId){
@@ -184,6 +121,35 @@ public class TrivialBoard extends JPanel {
 	    g.drawImage(piece.getImage(), box.getPoint().x, box.getPoint().y, null);
 	    repaint();
 	}
+    
+    public BufferedImage getIconActualPlayer(String nombreFicha, int tam){
+    	
+    	return resize( pieces.get(nombreFicha).getImage(), tam, tam);
+    
+    }
+    
+    private BufferedImage resize(BufferedImage img, int newW, int newH) { 
+	    Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+	    BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+
+	    Graphics2D g2d = dimg.createGraphics();
+	    g2d.drawImage(tmp, 0, 0, null);
+	    g2d.dispose();
+
+	    return dimg;
+    	
+//    	BufferedImage resizedImage = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+//    	Graphics2D g = resizedImage.createGraphics();
+//    	g.drawImage(img, 0, 0, newW, newH, null);
+//    	g.dispose();
+//    	g.setComposite(AlphaComposite.Src);
+//    	g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+//    	g.setRenderingHint(RenderingHints.KEY_RENDERING,RenderingHints.VALUE_RENDER_QUALITY);
+//    	g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+//    	
+//    	return resizedImage;
+	}
+    
 
 	/**
      * Convenience method.
