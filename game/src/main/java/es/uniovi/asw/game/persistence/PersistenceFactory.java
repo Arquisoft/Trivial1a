@@ -2,8 +2,8 @@ package es.uniovi.asw.game.persistence;
 
 /**
  * Interfaz-factoria que proporciona los servicios de persistencia
- * @author Trivial1a
- *
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public interface PersistenceFactory {
 	

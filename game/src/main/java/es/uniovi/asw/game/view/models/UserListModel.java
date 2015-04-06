@@ -6,6 +6,11 @@ import javax.swing.AbstractListModel;
 
 import es.uniovi.asw.game.model.User;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 @SuppressWarnings({ "rawtypes", "serial" })
 public class UserListModel extends AbstractListModel {
 	ArrayList<User> users = new ArrayList<User>();

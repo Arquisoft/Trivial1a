@@ -24,6 +24,11 @@ import javax.swing.event.ListSelectionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class UserLogin extends JFrame {
 	//la vista que se está usando en este momento. se accede al controlador(Game) a traves de ella
 	private View parentView;

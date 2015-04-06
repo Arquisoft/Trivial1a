@@ -11,6 +11,11 @@ import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.game.aplication.Game;
 
+/**
+ * 
+ * @author Grupo 1a
+ * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
+ */
 public class DefaultView extends View {
 
 	private JPanel contentPane;
