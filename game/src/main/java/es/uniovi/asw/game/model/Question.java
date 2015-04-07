@@ -3,21 +3,20 @@ package es.uniovi.asw.game.model;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 
- * @author Grupo 1a
- * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
- */
 public class Question {
 	private String category;
 	private String name;
 	private String question;
 	private List<Answer> answers;
 	private List<String> comments;
-
+	private int successes;
+	private int failures;
+	
 	public Question() {
 		answers = new ArrayList<Answer>();
 		comments = new ArrayList<String>();
+		this.successes = 0;
+		this.failures = 0;
 	}
 
 	/**
@@ -76,6 +75,24 @@ public class Question {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
+	
+	
+
+	public int getSuccesses() {
+		return successes;
+	}
+
+	public void setSuccesses(int successes) {
+		this.successes = successes;
+	}
+
+	public int getFailures() {
+		return failures;
+	}
+
+	public void setFailures(int failures) {
+		this.failures = failures;
+	}
 
 	/**
 	 * GetAnswers
@@ -123,5 +140,15 @@ public class Question {
 	 */
 	public void addComment(String comment) {
 		this.comments.add(comment);
+	}
+	
+	public void incSuccesses()
+	{
+		successes++;
+	}
+	
+	public void incFailures()
+	{
+		failures++;
 	}
 }

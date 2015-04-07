@@ -14,11 +14,6 @@ import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.DBHelper;
 import es.uniovi.asw.game.persistence.TrivialDAO;
 
-/**
- * 
- * @author Grupo 1a
- * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
- */
 public class TrivialGatewayImpl implements TrivialDAO {
 	private static final String DB_NAME = "trivialDataBase";
 	private DB dataBase;
@@ -37,6 +32,8 @@ public class TrivialGatewayImpl implements TrivialDAO {
 			the_user.put("name", user.getName());
 			the_user.put("password", user.getPasswd());
 			the_user.put("admin", user.isAdmin());
+			the_user.put("rightQuestions", user.getRightQuestions());
+			the_user.put("failedQuestions", user.getFailedQuestions());
 			usersTable.insert(the_user);
 			return true;
 		}
@@ -54,15 +51,25 @@ public class TrivialGatewayImpl implements TrivialDAO {
 		DBCursor cursorQ = usersTable.find(query);
 		if(cursorQ.hasNext()){
 			cursorQ.next();
-			return new User((String)cursorQ.curr().get("name"), (String)cursorQ.curr().get("password"), (Boolean)cursorQ.curr().get("admin"));
+			return new User((String)cursorQ.curr().get("name"),
+					(String)cursorQ.curr().get("password"), 
+					(Boolean)cursorQ.curr().get("admin"),
+					(Integer)cursorQ.curr().get("rightQuestions"),
+					(Integer)cursorQ.curr().get("failedQuestions"));
 		}
 		return null;
 	}
 
 	@Override
-	public boolean updateUser(User user, User Data) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		return true;
+		
+	}
+	
+	@Override
+	public void updateQuestion(Question question) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
@@ -77,6 +84,9 @@ public class TrivialGatewayImpl implements TrivialDAO {
 			Question question = new Question();
 			question.setName((String) cursorQ.curr().get("name"));
 			question.setQuestion((String) cursorQ.curr().get("question"));
+			question.setSuccesses((Integer)cursorQ.curr().get("successes"));
+			question.setFailures((Integer)cursorQ.curr().get("failures"));
+			question.setCategory((String) cursorQ.curr().get("category"));
 			
 			BasicDBObject query = new BasicDBObject();
             query.put("questionName", question.getName());
@@ -95,6 +105,24 @@ public class TrivialGatewayImpl implements TrivialDAO {
 		return questions;
 	}
 	
+	@Override
+	public List<User> findAllUsers() {
+		// TODO Auto-generated method stub
+		DBCollection usersTable = dataBase.getCollection("users");
+		DBCursor cursor = usersTable.find();
+		ArrayList<User> users = new ArrayList<User>();
+		while(cursor.hasNext()){
+			cursor.next();
+			User user = new User((String)cursor.curr().get("name"), 
+					(String)cursor.curr().get("password"), 
+					(Boolean)cursor.curr().get("admin"),
+					(Integer)cursor.curr().get("rightQuestions"),
+					(Integer)cursor.curr().get("failedQuestions"));
+			users.add(user);
+		}
+		return users;
+	}
+	
 	private boolean existUser(User user)
 	{
 		DBCollection usersTable = dataBase.getCollection("users");
@@ -106,6 +134,12 @@ public class TrivialGatewayImpl implements TrivialDAO {
 		if(cursorQ.hasNext())
 			return true;
 		return false;
+	}
+
+	@Override
+	public void dropDatabase() {
+		dataBase.dropDatabase();
+		
 	}
 
 }

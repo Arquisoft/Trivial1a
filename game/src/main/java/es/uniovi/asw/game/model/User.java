@@ -2,8 +2,6 @@ package es.uniovi.asw.game.model;
 
 /**
  * The Class User.
- * @author Grupo 1a
- * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public class User {
 
@@ -13,6 +11,8 @@ public class User {
 	/** The passwd. */
 	private String passwd;
 	private boolean admin;
+	private int rightQuestions;
+	private int failedQuestions;
 
 	/**
 	 * Instantiates a new user.
@@ -22,24 +22,70 @@ public class User {
 	 * @param passwd
 	 *            the passwd
 	 */
-	public User(String name, String passwd, boolean admin) {
+	public User(String name, String passwd, boolean admin, int rightQuestions, int failedQuestions) {
 		this.name = name;
 		this.passwd = passwd;
 		//default false solo de debe modificar desde la aplicación de los administradores(en la bd)
 		this.admin= admin;
+		this.rightQuestions=rightQuestions;
+		this.failedQuestions = failedQuestions;
 	}
+
+	
+	
 
 	public String getName() {
 		return name;
 	}
 
+
+
 	public String getPasswd() {
 		return passwd;
 	}
 
+
+
+
+	public void setPasswd(String passwd) {
+		this.passwd = passwd;
+	}
+
+
+
+
+	public int getRightQuestions() {
+		return rightQuestions;
+	}
+
+
+
+
+	public void incRightQuestions() {
+		rightQuestions++;
+	}
+
+
+
+
+	public int getFailedQuestions() {
+		return failedQuestions;
+	}
+
+
+
+
+	public void incFailedQuestions() {
+		failedQuestions++;
+	}
+
+
+
+
 	public boolean isAdmin(){
 		return admin;
 	}
+	
 	@Override
 	public String toString()
 	{

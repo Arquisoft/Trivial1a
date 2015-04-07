@@ -6,11 +6,6 @@ import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.TrivialDAO;
 
-/**
- * 
- * @author Grupo 1a
- * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
- */
 public class TrivialGatewaySimulator implements TrivialDAO {
 
 	@Override
@@ -26,13 +21,30 @@ public class TrivialGatewaySimulator implements TrivialDAO {
 	}
 
 	@Override
-	public boolean updateUser(User user, User Data) {
+	public void updateUser(User user) {
 		// TODO Auto-generated method stub
-		return false;
+	}
+	
+	@Override
+	public void updateQuestion(Question question) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
 	public List<Question> findAllQuestions() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void dropDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<User> findAllUsers() {
 		// TODO Auto-generated method stub
 		return null;
 	}
