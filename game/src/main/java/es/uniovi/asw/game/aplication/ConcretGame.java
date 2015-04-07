@@ -2,6 +2,7 @@ package es.uniovi.asw.game.aplication;
 
 import java.awt.Frame;
 import java.util.List;
+import java.util.Random;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.Answer;
@@ -13,16 +14,20 @@ import es.uniovi.asw.game.view.ViewFactory;
 
 public class ConcretGame implements Game
 {
-	View currentView;
-	User[] users;
-	int currentUser;
-	Question currentQuestion;
-	int numUsers;
+	private View currentView;
+	private User[] users;
+	private int currentUser;
+	private Question currentQuestion;
+	private int numUsers;
 	private BoardBox board;
+	private int nUsers;
+	private Question[] questions;
 	
 	public ConcretGame() {
 		currentView = ViewFactory.getTestView1(this);
-		users = null;
+		nUsers = currentView.getNumColores();
+		users = null; // ¿Aquí que se guardarán todos los usuarios del sistema? ¿Al estilo de las preguntas?
+		questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
 	}
 	
 	public void run()
@@ -30,7 +35,7 @@ public class ConcretGame implements Game
 		/*cambia los usuarios de la partida de una vista a otra en caso de cambiarla.
 		 * Si la nueva vista admite menos usuarios que la antigua los ultimos en ser introducidos 
 		 * se perderán */
-		User[] newUsers = new User[currentView.getNumColores()];
+		User[] newUsers = new User[nUsers];
 		if(users!=null && newUsers.length<users.length)
 			currentView.notifyLostUsers(users.length-newUsers.length);
 		if(users!=null)
@@ -90,27 +95,38 @@ public class ConcretGame implements Game
 
 	@Override
 	public List<Question> loadQuestions() {
+		// se cargan una vez cuando por ejemplo se llama al constructor
 		return Factory.persistence.createTrivialDAO().findAllQuestions();
 	}
 	
 	@Override
 	public List<User> loadUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return Factory.persistence.createTrivialDAO().findAllUsers();
 	}
 
 	@Override
 	public Question getQuestion(String categoria) {
-		// TODO Auto-generated method stub
-		return null;
+		return getRandomQuestion(categoria);
 	}
-
+	private Question getRandomQuestion(String categoria){
+		Question q = null;
+		int i = 0; // guarda random
+		while(q != null){
+			i = new Random().nextInt() * questions.length + 0;
+			if (questions[i].getCategory().equals(categoria))
+				q = questions[i];
+		}	// se deberia considerar guardar un historico con las preguntas ya realizadas...
+		return q;
+	}
+	
 	@Override
 	public boolean isAcorrectAnswer(Answer selectedAnswer) {
 		for(Answer a : currentQuestion.getAnswers())
 			if(a == selectedAnswer && a.getIsCorrect())
 			{
 				users[currentUser].incRightQuestions();
+				// se deberia considerar actualizar los usuarios una vez finalizado el juego, no cada
+				// vez que se acierte una pregunta
 				Factory.persistence.createTrivialDAO().updateUser(users[currentUser]);
 				currentQuestion.incSuccesses();
 				Factory.persistence.createTrivialDAO().updateQuestion(currentQuestion);
@@ -172,7 +188,7 @@ public class ConcretGame implements Game
 
 	@Override
 	public boolean isWinner() {
-		// TODO Auto-generated method stub
+		// ¿Donde se esta guardando los "quesitos" que lleva cada usuario? En el modelo User no esta
 		return false;
 	}
 
