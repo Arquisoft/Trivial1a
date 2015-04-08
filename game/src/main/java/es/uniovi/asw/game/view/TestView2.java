@@ -287,6 +287,8 @@ public class TestView2 extends View {
 	private void panelMouseClicked(java.awt.event.MouseEvent evt) {
 	 
 			int id = pnBoard.getBoxId(evt.getPoint());
+			if(id==73)
+	    		return;
 			boolean correct = true/*poner a false cuando funcione getNextPositions()*/;
 			System.out.println("id: "+id);
 //			descomentar más adelante
@@ -302,40 +304,22 @@ public class TestView2 extends View {
 	 			switch (getControler().getCurrebtUserIndex()) {
 	 			
 	 			case JUGADOR_VERDE:
-	 				aux[0] = "Ficha_Verde";
-	 				for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_VERDE);
 	 				break;
 	 			case JUGADOR_MARRON:	
- 					aux[0] = "Ficha_Marron";
- 					for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_MARRON);
  				break;
 	 			case JUGADOR_AMARILLA:
-	 				aux[0] = "Ficha_Amarillo";
-	 				for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_AMARILLA);
 	 				break;
 	 			case JUGADOR_AZUL:
-	 				aux[0] = "Ficha_Azul";
-	 				for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_AZUL);
 	 				break;
 	 			case JUGADOR_NARANJA:
-	 				aux[0] = "Ficha_Naranja";
-	 				for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_NARANJA);
 	 				break;
 	 			case JUGADOR_ROSA:
-	 				aux[0] = "Ficha_Rosa";
-	 				for(int i=1; i<aux.length ; i++)
-	 					aux[i]=nombreFichas[i];
-	 				count++;
+	 				aux = moverFicha(JUGADOR_ROSA);
 	 				break;
 	 			default:
 	 				break;
@@ -347,10 +331,26 @@ public class TestView2 extends View {
 	 			showQuestion(id);
 	    	}
 	    	else
-	    		JOptionPane.showMessageDialog(TestView2.this,"posición no válida");
-	    	if(id==73)
-	    		return;	
+	    		JOptionPane.showMessageDialog(TestView2.this,"posición no válida");	
 	 }
+	
+	private String[] moverFicha(int index)
+	{
+		int count =1;
+		String[] aux = new String[nPlayers];
+		 
+		 for(int i=0; i<aux.length ; i++)
+			 	if(i!=index)
+			 	{
+			 		aux[count]=nombreFichas[i];
+			 		count++;
+			 	}
+		
+		 aux[0]=nombreFichas[index];
+		 return aux;
+		 
+	}
+
 	
 	private void btnTirarDadoMouseClicked(MouseEvent evt) {
 		int result = (int) (Math.random()*5 + 1);
@@ -362,7 +362,6 @@ public class TestView2 extends View {
 	}
 		
 //	int turn = 0;
-	private int count = 0;
 	private int nPlayers= 0;
 	private JCheckBox chckbxNewCheckBox;
 	//////
