@@ -2,6 +2,8 @@ package es.uniovi.asw.trivial;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Test;
 
 import es.uniovi.asw.game.model.Tablero;
@@ -49,9 +51,13 @@ public class TestTablero {
 		assertArrayEquals(new int[]{3,1}, t.calculaSiguienteCasilla(2));
 		assertArrayEquals(new int[]{71,69}, t.calculaSiguienteCasilla(70));
 		assertArrayEquals(null, t.calculaSiguienteCasilla(78));
-		assertArrayEquals(null, t.calculaSiguienteCasilla(0));
 
-
+		// test sobre posiciones faltaria el método de probar...
+		int[] r = t.mover(6,12);
+		for (int i = 0; i<r.length; i++)
+		{
+			System.out.println("-->"+r[i]);
+		}
 	}
 
 }
