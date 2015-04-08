@@ -73,7 +73,7 @@ public class TestView1 extends View {
 
 	@Override
 	public int getNumColores() {
-		return 1;
+		return 2;
 	}
 
 	private JLabel getLblNewLabel() {
@@ -104,5 +104,17 @@ public class TestView1 extends View {
 			btnNewButton.setBounds(210, 191, 272, 193);
 		}
 		return btnNewButton;
+	}
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showQuestion() {
+		// TODO Auto-generated method stub
+		
 	}
 }

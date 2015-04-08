@@ -1,7 +1,9 @@
 package es.uniovi.asw.game.persistence.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import es.uniovi.asw.game.model.Answer;
 import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.persistence.TrivialDAO;
@@ -33,8 +35,20 @@ public class TrivialGatewaySimulator implements TrivialDAO {
 
 	@Override
 	public List<Question> findAllQuestions() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Question> questions = new ArrayList<Question>();
+		Question q = new Question();
+		q.addComment("pregunta simulada");
+		q.setName("de que color");
+		q.setCategory("DEPORTE");
+		q.setQuestion("¿de que color es el caballo blanco de Santiago?");
+		Answer a1 = new Answer("negro");
+		a1.setIsCorrect(false);
+		Answer a2 = new Answer("blanco");
+		a2.setIsCorrect(true);
+		q.addAnswer(a1);
+		q.addAnswer(a2);
+		questions.add(q);
+		return questions;
 	}
 
 	@Override

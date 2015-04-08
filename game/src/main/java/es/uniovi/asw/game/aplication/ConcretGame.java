@@ -2,7 +2,6 @@ package es.uniovi.asw.game.aplication;
 
 import java.awt.Frame;
 import java.util.List;
-import java.util.Random;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.Answer;
@@ -20,14 +19,19 @@ public class ConcretGame implements Game
 	private Question currentQuestion;
 	private int numUsers;
 	private BoardBox board;
-	private int nUsers;
 	private Question[] questions;
 	
 	public ConcretGame() {
 		currentView = ViewFactory.getTestView1(this);
-		nUsers = currentView.getNumColores();
 		users = null; // ¿Aquí que se guardarán todos los usuarios del sistema? ¿Al estilo de las preguntas?
-		questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
+		try{
+			questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
+		}
+		catch(Exception e)
+		{
+			System.out.println("no ha sido posible conectar con la base de datos. \n por lo tanto se simulará.");
+			questions = Factory.persistence.createTrivialSimulator().findAllQuestions().toArray(new Question[0]);
+		}
 	}
 	
 	public void run()
@@ -35,13 +39,18 @@ public class ConcretGame implements Game
 		/*cambia los usuarios de la partida de una vista a otra en caso de cambiarla.
 		 * Si la nueva vista admite menos usuarios que la antigua los ultimos en ser introducidos 
 		 * se perderán */
-		User[] newUsers = new User[nUsers];
+		//el numero de usuarios admitidos depende del numero de colores de la vista. no es siempre el mismo
+		numUsers=0;
+		User[] newUsers = new User[currentView.getNumColores()];
 		if(users!=null && newUsers.length<users.length)
 			currentView.notifyLostUsers(users.length-newUsers.length);
 		if(users!=null)
 			for(int i=0; i< newUsers.length;i++)
-				if(i<users.length)
+				if(i<users.length && users[i]!=null)
+				{
 					newUsers[i]=users[i];
+					numUsers++;
+				}
 		users=newUsers;
 		currentView.render();
 	}
@@ -111,18 +120,19 @@ public class ConcretGame implements Game
 	private Question getRandomQuestion(String categoria){
 		Question q = null;
 		int i = 0; // guarda random
-		while(q != null){
-			i = new Random().nextInt() * questions.length + 0;
+		while(q == null){
+			i = (int) (Math.random()* questions.length);
 			if (questions[i].getCategory().equals(categoria))
 				q = questions[i];
 		}	// se deberia considerar guardar un historico con las preguntas ya realizadas...
+		currentQuestion = q;
 		return q;
 	}
 	
 	@Override
-	public boolean isAcorrectAnswer(Answer selectedAnswer) {
+	public boolean isAcorrectAnswer(String selectedAnswer) {
 		for(Answer a : currentQuestion.getAnswers())
-			if(a == selectedAnswer && a.getIsCorrect())
+			if(a.getAnswer().equals(selectedAnswer) && a.getIsCorrect())
 			{
 				users[currentUser].incRightQuestions();
 				// se deberia considerar actualizar los usuarios una vez finalizado el juego, no cada
@@ -141,7 +151,7 @@ public class ConcretGame implements Game
 	}
 	private void changeUser()
 	{
-		if(currentUser<numUsers)
+		if(currentUser<numUsers-1)
 			currentUser++;
 		else
 			currentUser = 0;
@@ -150,6 +160,10 @@ public class ConcretGame implements Game
 	@Override
 	public User getCurrentUser() {
 		return users[currentUser];
+	}
+	@Override
+	public int getCurrebtUserIndex() {
+		return currentUser;
 	}
 
 	@Override
@@ -190,6 +204,12 @@ public class ConcretGame implements Game
 	public boolean isWinner() {
 		// ¿Donde se esta guardando los "quesitos" que lleva cada usuario? En el modelo User no esta
 		return false;
+	}
+
+	@Override
+	public int getNumUsers() {
+		// TODO Auto-generated method stub
+		return numUsers;
 	}
 
 }

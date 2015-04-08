@@ -66,4 +66,16 @@ public class DefaultView extends View {
 		return 0;
 	}
 
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showQuestion() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

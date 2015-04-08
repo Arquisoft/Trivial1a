@@ -82,8 +82,8 @@ public abstract class View extends JFrame {
 	}
 
 	public void notifyLostUsers(int n) {
-		JOptionPane.showMessageDialog(this, "se han perdido los últimos " + n
-				+ " usuarios introducidos");
+		JOptionPane.showMessageDialog(this, "esta vista admite  " + n
+				+ " usuarios menos que la anteriór.\n se eliminarán los que se excedan.");
 	}
 
 	public void updateUsers() {
@@ -221,6 +221,9 @@ public abstract class View extends JFrame {
 	public Game getControler() {
 		return controler;
 	}
+	
+	public abstract void update();
+	public abstract void showQuestion();
 
 	@Override
 	public String toString() {

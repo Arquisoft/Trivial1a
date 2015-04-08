@@ -20,6 +20,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
+import javax.swing.JTabbedPane;
 
 public class StatisticsView extends JFrame {
 	
@@ -31,7 +32,7 @@ public class StatisticsView extends JFrame {
 	private View parentView;
 
 	private JPanel contentPane;
-	private JPanel pnPrincipal;
+	private JPanel pnUsuarios;
 	private JLabel lblTitulo;
 	private JScrollPane scrollpnTabla;
 	private JTable tablaUsuarios;
@@ -47,6 +48,10 @@ public class StatisticsView extends JFrame {
 	private JTextField txtFalladas;
 	private JTextField txtCatDificil;
 	private JButton btnAtrs;
+	private JTabbedPane tabbedPaneEstadisticas;
+	private JPanel pnQuestions;
+	private JLabel lblPreguntasRegistradas;
+	private JScrollPane scrollPane;
 
 	/**
 	 * Create the frame.
@@ -66,24 +71,24 @@ public class StatisticsView extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);	
 		contentPane.setLayout(new CardLayout(0, 0));
-		contentPane.add(getPnPrincipal(), "Panel Principal");
+		contentPane.add(getTabbedPaneEstadisticas(), "name_87790377464293");
 		contentPane.add(getPnUsuario(), "Panel Usuario");
 	}
 
-	private JPanel getPnPrincipal() {
-		if (pnPrincipal == null) {
-			pnPrincipal = new JPanel();
-			pnPrincipal.setBackground(Color.ORANGE);
-			pnPrincipal.setForeground(Color.WHITE);
-			pnPrincipal.setLayout(new BorderLayout(0, 0));
-			pnPrincipal.add(getLblTitulo(), BorderLayout.NORTH);
-			pnPrincipal.add(getScrollpnTabla(), BorderLayout.CENTER);
+	private JPanel getPnUsuarios() {
+		if (pnUsuarios == null) {
+			pnUsuarios = new JPanel();
+			pnUsuarios.setBackground(Color.ORANGE);
+			pnUsuarios.setForeground(Color.WHITE);
+			pnUsuarios.setLayout(new BorderLayout(0, 0));
+			pnUsuarios.add(getLblTitulo(), BorderLayout.NORTH);
+			pnUsuarios.add(getScrollpnTabla(), BorderLayout.CENTER);
 		}
-		return pnPrincipal;
+		return pnUsuarios;
 	}
 	private JLabel getLblTitulo() {
 		if (lblTitulo == null) {
-			lblTitulo = new JLabel("Usuarios que han jugado");
+			lblTitulo = new JLabel("Usuarios registrados");
 			lblTitulo.setBackground(Color.WHITE);
 			lblTitulo.setForeground(Color.BLACK);
 			lblTitulo.setFont(new Font("Nyala", Font.PLAIN, 35));
@@ -221,5 +226,39 @@ public class StatisticsView extends JFrame {
 			btnAtrs.setFont(new Font("Nyala", Font.PLAIN, 30));
 		}
 		return btnAtrs;
+	}
+	private JTabbedPane getTabbedPaneEstadisticas() {
+		if (tabbedPaneEstadisticas == null) {
+			tabbedPaneEstadisticas = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPaneEstadisticas.addTab("Estadísticas de usuarios", null, getPnUsuarios(), null);
+			tabbedPaneEstadisticas.addTab("Estadísticas de preguntas", null, getPnQuestions(), null);
+		}
+		return tabbedPaneEstadisticas;
+	}
+	private JPanel getPnQuestions() {
+		if (pnQuestions == null) {
+			pnQuestions = new JPanel();
+			pnQuestions.setBackground(Color.ORANGE);
+			pnQuestions.setLayout(new BorderLayout(0, 0));
+			pnQuestions.add(getLblPreguntasRegistradas(), BorderLayout.NORTH);
+			pnQuestions.add(getScrollPane(), BorderLayout.CENTER);
+		}
+		return pnQuestions;
+	}
+	private JLabel getLblPreguntasRegistradas() {
+		if (lblPreguntasRegistradas == null) {
+			lblPreguntasRegistradas = new JLabel("Preguntas registradas");
+			lblPreguntasRegistradas.setHorizontalAlignment(SwingConstants.CENTER);
+			lblPreguntasRegistradas.setForeground(Color.BLACK);
+			lblPreguntasRegistradas.setFont(new Font("Nyala", Font.PLAIN, 35));
+			lblPreguntasRegistradas.setBackground(Color.WHITE);
+		}
+		return lblPreguntasRegistradas;
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+		}
+		return scrollPane;
 	}
 }

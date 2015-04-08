@@ -17,11 +17,13 @@ public interface Game {
 	List<Question> loadQuestions();
 	List<User> loadUsers();
 	public Question getQuestion(String categoria);
-	public boolean isAcorrectAnswer(Answer selectedAnswer);
+	public boolean isAcorrectAnswer(String selectedAnswer);
 	public User getCurrentUser();
+	public int getCurrebtUserIndex();
 	public Integer[] calculateNextPositions(int number);
 	public void createBoard(int diameter, int size);
 	public boolean isWinner();
+	public int getNumUsers();
 	
 	
 	

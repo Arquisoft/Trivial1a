@@ -37,6 +37,7 @@ public class TrivialGatewayImpl implements TrivialDAO
 			BasicDBObject question = new BasicDBObject();
 			question.put("question", q.getQuestion());
 			question.put("name", q.getName());
+			question.put("category", "deportes");
 			
 			questionsTable.insert(question);
 			
