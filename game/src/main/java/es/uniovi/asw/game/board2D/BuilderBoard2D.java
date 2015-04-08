@@ -17,11 +17,11 @@ import javax.imageio.ImageIO;
 public class BuilderBoard2D {
 
 	private static final boolean CUNIA_AMARILLA = false;
-	private static final boolean CUNIA_AZUL = true;
+	private static final boolean CUNIA_AZUL = false;
 	private static final boolean CUNIA_MARRON = false;
-	private static final boolean CUNIA_NARANJA = true;
+	private static final boolean CUNIA_NARANJA = false;
 	private static final boolean CUNIA_ROSA = false;
-	private static final boolean CUNIA_VERDE = true;
+	private static final boolean CUNIA_VERDE = false;
 	///////////////////////////
 	
 	private final int[] colores = 	{	3,5,8,10,13,15,18,	20,23,26,28,31,33,36,	38,41,43,46,48,51,54,	56,59,61,64,66,69,71,

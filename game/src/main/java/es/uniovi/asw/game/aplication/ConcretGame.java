@@ -24,14 +24,10 @@ public class ConcretGame implements Game
 	public ConcretGame() {
 		currentView = ViewFactory.getTestView1(this);
 		users = null; // ¿Aquí que se guardarán todos los usuarios del sistema? ¿Al estilo de las preguntas?
-		try{
-			questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
-		}
-		catch(Exception e)
-		{
-			System.out.println("no ha sido posible conectar con la base de datos. \n por lo tanto se simulará.");
-			questions = Factory.persistence.createTrivialSimulator().findAllQuestions().toArray(new Question[0]);
-		}
+		
+		questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
+		if(questions.length==0)
+		questions = Factory.persistence.createTrivialSimulator().findAllQuestions().toArray(new Question[0]);
 	}
 	
 	public void run()

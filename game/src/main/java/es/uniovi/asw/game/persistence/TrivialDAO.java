@@ -12,6 +12,7 @@ public interface TrivialDAO {
 
 	void updateUser(User user);
 	void updateQuestion(Question question);
+	boolean existUser(User user);
 
 	List<Question> findAllQuestions();
 	List<User> findAllUsers();

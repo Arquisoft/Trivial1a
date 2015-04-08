@@ -123,7 +123,9 @@ public class TrivialGatewayImpl implements TrivialDAO {
 		return users;
 	}
 	
-	private boolean existUser(User user)
+	@Override
+	
+	public boolean existUser(User user)
 	{
 		DBCollection usersTable = dataBase.getCollection("users");
 		BasicDBObject query = new BasicDBObject();

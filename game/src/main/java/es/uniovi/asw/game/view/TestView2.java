@@ -430,7 +430,7 @@ public class TestView2 extends View {
 	
 	public void showQuestion(int index) {
 		//hallar la categoría de la pregunta con el index
-		currentQuestion = getControler().getQuestion(/*categoria*/"DEPORTE");
+		currentQuestion = getControler().getQuestion(/*categoria*/"deportes");
 		txQuestion.setText(currentQuestion.getQuestion());
 		for(Answer a : currentQuestion.getAnswers()){
 			JCheckBox ch = new JCheckBox(a.getAnswer());
