@@ -5,7 +5,6 @@ import java.util.List;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.Answer;
-import es.uniovi.asw.game.model.BoardBox;
 import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.Tablero;
 import es.uniovi.asw.game.model.User;
@@ -24,7 +23,7 @@ public class ConcretGame implements Game
 	private Question[] questions;
 	
 	public ConcretGame() {
-		currentView = ViewFactory.getTestView1(this);
+		currentView = ViewFactory.getTestView2(this);
 		users = null; // ¿Aquí que se guardarán todos los usuarios del sistema? ¿Al estilo de las preguntas?
 		
 		questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);

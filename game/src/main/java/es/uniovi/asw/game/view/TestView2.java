@@ -396,6 +396,7 @@ public class TestView2 extends View {
 		
 //	int turn = 0;
 	private int nPlayers= 0;
+	@SuppressWarnings("unused")
 	private JCheckBox chckbxNewCheckBox;
 	//////
 

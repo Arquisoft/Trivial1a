@@ -93,6 +93,7 @@ public class BuilderBoard2D {
 
 		}
 	  
+	@SuppressWarnings("unused")
 	  private void initPieces(boolean jAmarillo, boolean jAzul, boolean jMarron, boolean jNaranja, boolean jRosa, boolean jVerde){
 
 	    	try {
@@ -139,15 +140,9 @@ public class BuilderBoard2D {
 //		    		jugadores[i] = 6;
 		    		i++;
 				}
-	  			
-		    	
-		    	
-		    	
 	  		} catch (IOException e) {
-	  			// TODO Auto-generated catch block
 	  			e.printStackTrace();
 	  		}
-
 	    }
 	  
 	  private BufferedImage createPiece(String path, boolean cAmarillo, boolean cAzul, boolean cMarron, boolean cNaranja, boolean cRosa, boolean cVerde ) {
@@ -186,7 +181,6 @@ public class BuilderBoard2D {
 				}
 		      	
 	      	} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 				System.out.println("ERRRRROOOOOOOOOOOR");
 			}
@@ -194,7 +188,6 @@ public class BuilderBoard2D {
 	        try {
 				ImageIO.write(fichaRet , "png", new File("img/prueba1.png"));  
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
 	      	
@@ -217,24 +210,18 @@ public class BuilderBoard2D {
 		}//fin metod
 	  
 		
-		private BufferedImage addWedge(BufferedImage ficha, BufferedImage cunia){
+	  private BufferedImage addWedge(BufferedImage ficha, BufferedImage cunia) {
 			
 			for (int i = 0; i < cunia.getHeight(); i++) {
 					for (int j = 0; j < cunia.getWidth(); j++) {
 						int colorFicha = ficha.getRGB(i, j);
 						int colorCunia = cunia.getRGB(i, j);
 
-						if( colorFicha==TRANSPARENTE && colorCunia != TRANSPARENTE ){ 	//donde hay cunia se pinta
-							
+						if(colorFicha==TRANSPARENTE && colorCunia != TRANSPARENTE)	//donde hay cunia se pinta
 							ficha.setRGB(i, j, colorCunia);
-
-						}
-
 					}
 				}//fin fors
 			
 			return ficha;
 		}
-	  
-	
 }
