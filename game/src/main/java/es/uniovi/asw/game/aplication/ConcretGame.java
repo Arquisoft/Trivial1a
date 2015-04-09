@@ -24,7 +24,7 @@ public class ConcretGame implements Game
 	private Question[] questions;
 	
 	public ConcretGame() {
-		currentView = ViewFactory.getTestView1(this);
+		currentView = ViewFactory.getTestView2(this);
 		users = null; // ¿Aquí que se guardarán todos los usuarios del sistema? ¿Al estilo de las preguntas?
 		
 		questions = Factory.persistence.createTrivialDAO().findAllQuestions().toArray(new Question[0]);
