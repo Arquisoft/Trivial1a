@@ -205,6 +205,7 @@ public abstract class View extends JFrame {
 			mItemEstadisticas = new JMenuItem("Estadisticas");
 			mItemEstadisticas.addActionListener(new ActionListener() {
 				
+				@SuppressWarnings("deprecation")
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					IndexDialog idialog = new IndexDialog(View.this,"index");

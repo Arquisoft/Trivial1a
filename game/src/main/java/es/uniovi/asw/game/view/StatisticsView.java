@@ -20,8 +20,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import es.uniovi.asw.game.model.Question;
@@ -55,7 +53,6 @@ public class StatisticsView extends JFrame {
 	private JPanel pnQuestions;
 	private JLabel lblPreguntasRegistradas;
 	private JScrollPane scrollPane;
-	@SuppressWarnings("rawtypes")
 	private JList<User> listUsers;
 	private UserListModel listModel;
 	private User user;
@@ -252,7 +249,7 @@ public class StatisticsView extends JFrame {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
 					user = listModel.getUserAt(listUsers.getSelectedIndex());
-					UserDialog ud = new UserDialog(user);
+					new UserDialog(user);
 				}
 			});
 		}
@@ -264,7 +261,7 @@ public class StatisticsView extends JFrame {
 		}
 		return tableQuestions;
 	}
-	@SuppressWarnings("unchecked")
+	
 	private void loadUsers() {
 			listModel = new UserListModel();
 			List<User> users =  parentView.getControler().loadUsers();
@@ -302,5 +299,4 @@ public class StatisticsView extends JFrame {
 		DefaultTableModel tablemodel = new DefaultTableModel(data,colums);
 		tableQuestions.setModel(tablemodel);
 	}
-	
 }

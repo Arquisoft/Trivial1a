@@ -8,6 +8,7 @@ import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dada;
 import cucumber.api.java.es.Entonces;
 
+@SuppressWarnings("unused")
 public class GestionUsuariosSteps 
 {
 	 

@@ -5,7 +5,6 @@ import java.util.List;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.Answer;
-import es.uniovi.asw.game.model.BoardBox;
 import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.Tablero;
 import es.uniovi.asw.game.model.User;

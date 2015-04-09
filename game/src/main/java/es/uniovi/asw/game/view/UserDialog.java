@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -16,15 +18,10 @@ import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.game.model.User;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.CardLayout;
-import javax.swing.BoxLayout;
-
 public class UserDialog extends JDialog {
 
+	private static final long serialVersionUID = -5710877691527219309L;
+	
 	private JPanel pnUsuario;
 	private JPanel pnlNombre;
 	private JLabel lblUsuario;

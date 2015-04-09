@@ -2,25 +2,25 @@ package es.uniovi.asw.game.view;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import javax.swing.JTextField;
+import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.User;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class IndexDialog extends JDialog {
 
+	private static final long serialVersionUID = -835060048528176711L;
+	
 	private final JPanel contentPanel = new JPanel();
 	private JTextField txUsuario;
 	private JPasswordField txContrasenia;

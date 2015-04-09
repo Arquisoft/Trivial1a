@@ -8,6 +8,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
+@SuppressWarnings("unused")
 public class UserManagementSteps {
 	 
 //	private UserDb users ;
