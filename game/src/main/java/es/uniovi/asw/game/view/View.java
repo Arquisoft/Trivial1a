@@ -86,9 +86,9 @@ public abstract class View extends JFrame {
 
 	}
 	
-	public void showStatistics()
+	public void showStatistics(User user)
 	{
-		StatisticsView estadisticas = new StatisticsView(this);
+		StatisticsView estadisticas = new StatisticsView(this,user);
 		estadisticas.setVisible(true);
 	}
 
@@ -207,7 +207,8 @@ public abstract class View extends JFrame {
 				
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					showStatistics();
+					IndexDialog idialog = new IndexDialog(View.this,"index");
+					idialog.show();
 				}
 			});
 		}

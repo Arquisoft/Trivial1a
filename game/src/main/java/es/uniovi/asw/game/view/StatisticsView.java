@@ -1,26 +1,32 @@
 package es.uniovi.asw.game.view;
 
 import java.awt.BorderLayout;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.CardLayout;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Toolkit;
+import java.util.List;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.table.DefaultTableModel;
+
+import es.uniovi.asw.game.model.Question;
+import es.uniovi.asw.game.model.User;
+import es.uniovi.asw.game.view.models.UserListModel;
 
 public class StatisticsView extends JFrame {
 	
@@ -34,30 +40,32 @@ public class StatisticsView extends JFrame {
 	private JPanel contentPane;
 	private JPanel pnUsuarios;
 	private JLabel lblTitulo;
-	private JScrollPane scrollpnTabla;
-	private JTable tablaUsuarios;
 	private JPanel pnUsuario;
 	private JPanel pnlNombre;
 	private JLabel lblUsuario;
 	private JTextField txtUsuario;
 	private JPanel pnlEstadistica;
-	private JLabel lblCatDificil;
+	private JLabel lblCantidad;
 	private JLabel lblAcertadas;
 	private JLabel lblFalladas;
 	private JTextField txtAcertadas;
 	private JTextField txtFalladas;
-	private JTextField txtCatDificil;
-	private JButton btnAtrs;
+	private JTextField txtCantidad;
 	private JTabbedPane tabbedPaneEstadisticas;
 	private JPanel pnQuestions;
 	private JLabel lblPreguntasRegistradas;
 	private JScrollPane scrollPane;
+	@SuppressWarnings("rawtypes")
+	private JList<User> listUsers;
+	private UserListModel listModel;
+	private User user;
+	private JTable tableQuestions;
 
 	/**
 	 * Create the frame.
 	 */
-	public StatisticsView(View parentView) {
-		
+	public StatisticsView(View parentView, User user) {
+		this.user=user;
 		setTitle("Estad\u00EDsticas sobre Trivial");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\icono_trivial.png"));
 		this.parentView = parentView;
@@ -72,7 +80,11 @@ public class StatisticsView extends JFrame {
 		setContentPane(contentPane);	
 		contentPane.setLayout(new CardLayout(0, 0));
 		contentPane.add(getTabbedPaneEstadisticas(), "name_87790377464293");
-		contentPane.add(getPnUsuario(), "Panel Usuario");
+		loadUser(user);
+		if(user.isAdmin()){
+			loadUsers();
+			loadQuestions();
+		}
 	}
 
 	private JPanel getPnUsuarios() {
@@ -82,7 +94,7 @@ public class StatisticsView extends JFrame {
 			pnUsuarios.setForeground(Color.WHITE);
 			pnUsuarios.setLayout(new BorderLayout(0, 0));
 			pnUsuarios.add(getLblTitulo(), BorderLayout.NORTH);
-			pnUsuarios.add(getScrollpnTabla(), BorderLayout.CENTER);
+			pnUsuarios.add(getList_1(), BorderLayout.CENTER);
 		}
 		return pnUsuarios;
 	}
@@ -96,27 +108,6 @@ public class StatisticsView extends JFrame {
 		}
 		return lblTitulo;
 	}
-	private JScrollPane getScrollpnTabla() {
-		if (scrollpnTabla == null) {
-			scrollpnTabla = new JScrollPane();
-			scrollpnTabla.setViewportView(getTablaUsuarios());
-		}
-		return scrollpnTabla;
-	}
-	private JTable getTablaUsuarios() {
-		if (tablaUsuarios == null) {
-			tablaUsuarios = new JTable();
-			tablaUsuarios.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent arg0) {
-					//Paso a la siguiente "ventana" que es la del usuario 
-					//propio con sus estadísticas
-					((CardLayout) contentPane.getLayout()).show(contentPane, "Panel Usuario");
-				}
-			});
-		}
-		return tablaUsuarios;
-	}
 	private JPanel getPnUsuario() {
 		if (pnUsuario == null) {
 			pnUsuario = new JPanel();
@@ -124,7 +115,6 @@ public class StatisticsView extends JFrame {
 			pnUsuario.setLayout(new BorderLayout(0, 0));
 			pnUsuario.add(getPnlNombre(), BorderLayout.NORTH);
 			pnUsuario.add(getPnlEstadistica(), BorderLayout.CENTER);
-			pnUsuario.add(getBtnAtrs(), BorderLayout.SOUTH);
 		}
 		return pnUsuario;
 	}
@@ -147,6 +137,8 @@ public class StatisticsView extends JFrame {
 	private JTextField getTxtUsuario() {
 		if (txtUsuario == null) {
 			txtUsuario = new JTextField();
+			txtUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+			txtUsuario.setEditable(false);
 			txtUsuario.setFont(new Font("Nyala", Font.PLAIN, 35));
 			txtUsuario.setColumns(10);
 		}
@@ -161,17 +153,17 @@ public class StatisticsView extends JFrame {
 			pnlEstadistica.add(getTxtAcertadas());
 			pnlEstadistica.add(getLblFalladas());
 			pnlEstadistica.add(getTxtFalladas());
-			pnlEstadistica.add(getLblCatDificil());
-			pnlEstadistica.add(getTxtCatDificil());
+			pnlEstadistica.add(getLblCantidad());
+			pnlEstadistica.add(getTxtCantidad());
 		}
 		return pnlEstadistica;
 	}
-	private JLabel getLblCatDificil() {
-		if (lblCatDificil == null) {
-			lblCatDificil = new JLabel("Categor\u00EDa m\u00E1s dificil");
-			lblCatDificil.setFont(new Font("Nyala", Font.PLAIN, 25));
+	private JLabel getLblCantidad() {
+		if (lblCantidad == null) {
+			lblCantidad = new JLabel("Preguntas Respondidas");
+			lblCantidad.setFont(new Font("Nyala", Font.PLAIN, 25));
 		}
-		return lblCatDificil;
+		return lblCantidad;
 	}
 	private JLabel getLblAcertadas() {
 		if (lblAcertadas == null) {
@@ -205,33 +197,23 @@ public class StatisticsView extends JFrame {
 		}
 		return txtFalladas;
 	}
-	private JTextField getTxtCatDificil() {
-		if (txtCatDificil == null) {
-			txtCatDificil = new JTextField();
-			txtCatDificil.setFont(new Font("Nyala", Font.PLAIN, 25));
-			txtCatDificil.setBackground(Color.ORANGE);
-			txtCatDificil.setColumns(10);
+	private JTextField getTxtCantidad() {
+		if (txtCantidad == null) {
+			txtCantidad = new JTextField();
+			txtCantidad.setFont(new Font("Nyala", Font.PLAIN, 25));
+			txtCantidad.setBackground(Color.ORANGE);
+			txtCantidad.setColumns(10);
 		}
-		return txtCatDificil;
-	}
-	private JButton getBtnAtrs() {
-		if (btnAtrs == null) {
-			btnAtrs = new JButton("Atr\u00E1s");
-			btnAtrs.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					//volvemos al panel principal
-					((CardLayout) contentPane.getLayout()).show(contentPane, "Panel Principal");
-				}
-			});
-			btnAtrs.setFont(new Font("Nyala", Font.PLAIN, 30));
-		}
-		return btnAtrs;
+		return txtCantidad;
 	}
 	private JTabbedPane getTabbedPaneEstadisticas() {
 		if (tabbedPaneEstadisticas == null) {
 			tabbedPaneEstadisticas = new JTabbedPane(JTabbedPane.TOP);
-			tabbedPaneEstadisticas.addTab("Estadísticas de usuarios", null, getPnUsuarios(), null);
-			tabbedPaneEstadisticas.addTab("Estadísticas de preguntas", null, getPnQuestions(), null);
+			tabbedPaneEstadisticas.addTab("Mis estadísticas", null,getPnUsuario(),null);
+			if(user.isAdmin()){
+				tabbedPaneEstadisticas.addTab("Estadísticas de usuarios", null, getPnUsuarios(), null);
+				tabbedPaneEstadisticas.addTab("Estadísticas de preguntas", null, getPnQuestions(), null);
+				}				
 		}
 		return tabbedPaneEstadisticas;
 	}
@@ -258,7 +240,67 @@ public class StatisticsView extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
+			scrollPane.setViewportView(getTableQuestions());
 		}
 		return scrollPane;
 	}
+	@SuppressWarnings("rawtypes")
+	private JList getList_1() {
+		if (listUsers == null) {
+			listUsers = new JList<User>();
+			listUsers.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					user = listModel.getUserAt(listUsers.getSelectedIndex());
+					UserDialog ud = new UserDialog(user);
+				}
+			});
+		}
+		return listUsers;
+	}
+	private JTable getTableQuestions() {
+		if (tableQuestions == null) {
+			tableQuestions = new JTable();
+		}
+		return tableQuestions;
+	}
+	@SuppressWarnings("unchecked")
+	private void loadUsers() {
+			listModel = new UserListModel();
+			List<User> users =  parentView.getControler().loadUsers();
+			for (User u : users )
+				listModel.addUser(u);
+			listUsers.setModel(listModel);
+	}
+	private void loadUser(User user)
+	{
+		txtUsuario.setText(user.getName());
+		txtCantidad.setText(""+user.getRightQuestions()+user.getFailedQuestions());
+		if(user.getRightQuestions()+user.getFailedQuestions()!=0){
+			txtAcertadas.setText(""+user.getRightQuestions()*100/(user.getRightQuestions()+user.getFailedQuestions()));
+			txtFalladas.setText(""+user.getFailedQuestions()*100/(user.getRightQuestions()+user.getFailedQuestions()));
+		}
+		else{
+			txtAcertadas.setText("ninguna pregunta contestada");
+			txtFalladas.setText("ninguna pregunta contestada");
+			}
+	}
+	
+	private void loadQuestions()
+	{
+		List<Question> questions = parentView.getControler().loadQuestions();
+		String[] colums={"Pregunta","nºAciertos","nºFallos"};
+		String[][]data = new String[questions.size()][3];
+		for(int i=0; i< questions.size(); i++)
+		{
+			
+			data[i][0]=questions.get(i).getName();
+			data[i][1]=questions.get(i).getSuccesses()+"";
+			data[i][2]=questions.get(i).getFailures()+"";
+		}
+			
+		DefaultTableModel tablemodel = new DefaultTableModel(data,colums);
+		tableQuestions.setModel(tablemodel);
+	}
+	
 }
