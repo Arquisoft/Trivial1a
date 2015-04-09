@@ -15,7 +15,7 @@ import es.uniovi.asw.game.persistence.DBHelper;
 import es.uniovi.asw.game.persistence.TrivialDAO;
 
 public class TrivialGatewayImpl implements TrivialDAO {
-	private static final String DB_NAME = "trivialDataBase";
+	private static final String DB_NAME = "trivial1a";
 	private DB dataBase;
 
 	public TrivialGatewayImpl() {
