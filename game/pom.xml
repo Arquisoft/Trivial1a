@@ -71,7 +71,7 @@
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-picocontainer</artifactId>
-			<version>1.1.5</version>
+			<version>1.2.2</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -130,6 +130,11 @@
 	</dependencyManagement>
 	<!--Build plugins -->
 	<build>
+	<testResources>
+		<testResource>
+		<directory>src/test/resources</directory>
+		</testResource>
+	</testResources>
 		<pluginManagement>
 			<plugins>
 				<plugin>

@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial;
+package es.uniovi.asw.steps;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;

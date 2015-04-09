@@ -1,4 +1,4 @@
-package es.uniovi.asw.trivial;
+package es.uniovi.asw.steps;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
