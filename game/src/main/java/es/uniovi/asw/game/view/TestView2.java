@@ -39,6 +39,9 @@ import es.uniovi.asw.game.model.Question;
  * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public class TestView2 extends View {
+	
+	private static final long serialVersionUID = 1L;
+	
 	private static final boolean FICHA_AMARILLA = true;
 	private static final boolean FICHA_AZUL = true;
 	private static final boolean FICHA_MARRON =  true;

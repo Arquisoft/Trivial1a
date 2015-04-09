@@ -1,9 +1,12 @@
 package es.uniovi.asw.trivial;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.List;
 
-import cucumber.api.java.es.*;
-import cucumber.api.PendingException;
-import static org.assertj.core.api.Assertions.*;
+import cucumber.api.java.es.Cuando;
+import cucumber.api.java.es.Dada;
+import cucumber.api.java.es.Entonces;
 
 public class GestionUsuariosSteps 
 {

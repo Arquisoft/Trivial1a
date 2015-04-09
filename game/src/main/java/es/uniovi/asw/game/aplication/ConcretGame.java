@@ -180,6 +180,7 @@ public class ConcretGame implements Game
 		return currentUser;
 	}
 	@Override
+
 	public void moverUser(int casilla){
 		
 		getCurrentUser().setCasilla(casilla);		
@@ -189,7 +190,6 @@ public class ConcretGame implements Game
 	public int[] calculateNextPositions() {
 
 		return board.mover(tirada, getCurrentUser().getCasilla() );
-
 	}
 	
 	@Override
@@ -255,5 +255,4 @@ public class ConcretGame implements Game
 
 		return numUsers;
 	}
-
 }

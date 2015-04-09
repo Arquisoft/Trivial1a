@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -18,6 +17,8 @@ import es.uniovi.asw.game.aplication.Game;
  */
 public class DefaultView extends View {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 
 	public DefaultView(Game game, String name) {
@@ -62,20 +63,16 @@ public class DefaultView extends View {
 
 	@Override
 	public int getNumColores() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void showQuestion() {
-		// TODO Auto-generated method stub
 		
 	}
-
 }
