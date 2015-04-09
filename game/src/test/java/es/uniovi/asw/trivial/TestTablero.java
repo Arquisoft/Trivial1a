@@ -54,7 +54,7 @@ public class TestTablero {
 		assertArrayEquals(null, t.calculaSiguienteCasilla(78));
 
 		// test sobre posiciones faltaria el método de probar...
-		int[] r = t.mover(6,12);
+		int[] r = t.mover(5, 47);
 		for (int i = 0; i<r.length; i++)
 		{
 			System.out.println("-->"+r[i]);
