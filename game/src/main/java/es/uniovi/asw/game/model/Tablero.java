@@ -1,11 +1,15 @@
 package es.uniovi.asw.game.model;
 
+import java.util.ArrayList;
+
 public class Tablero {
 
 	
 	private int tamaño, nArcos, nPasillos, tArco, tPasillo;
 	private int[] tablero;
 	
+	// tamaño para que funcione; nArcos = nPasillos = tArco = 6;
+	//							 tPasillo = 5;
 	public Tablero(int nArcos, int nPasillos, int tArco, int tPasillo)
 	{
 		this.nArcos = nArcos;
@@ -13,6 +17,85 @@ public class Tablero {
 		this.tArco = tArco;
 		this.tPasillo = tPasillo;
 		tamaño = nArcos * tArco + nPasillos * this.tPasillo + nArcos +1; // incluyendo la casilla centro (la 0)
+	}
+	
+	public int[] mover(int posiciones, int n)
+	{
+		int [] pos = new int[6]; // tamaño 6 será el maximo numero de movimientos diferentes
+		if (n == 0 && posiciones < 6)
+			for (int i = 0; i<6; i++)
+				pos[i] = tamaño - posiciones - tPasillo*i;
+		else if (n == 0 && posiciones == 6)
+			for (int i = 0; i<6; i++)
+				pos[i] = 1+i*(tArco+1);
+		else{
+			if (n >= nArcos * tArco + tArco && n< tamaño -1) // es una casilla de los pasillos
+				return sacaTodo(posiciones, n);
+			else // es una quesito o casilla de los arcos
+			{
+				// maximo 3 movimientos
+				if (posibleQuesito(n))
+				{
+					int [] aux = calculaSiguienteCasilla(n);
+					aux[0] = aux[0] + posiciones - 1;
+					aux[1] = aux[1] - posiciones + 1;
+					if (posiciones == 6)
+						aux[2] = 0;
+					else
+						aux[2] = aux[2] + posiciones - 1;
+					return aux;
+				}
+				// maximo 6 posibles movimientos
+				else 
+				{
+					return sacaTodo(posiciones, n);
+				}
+			}
+		}
+		return pos;
+	}
+	
+	public int[] sacaTodo(int posiciones, int n)
+	{
+		int i = 0;
+		ArrayList<Integer> conformado = new ArrayList<Integer>();
+		conformado.add(n);
+		while(i < posiciones)
+		{	
+			int[] aux = null;
+			ArrayList<Integer> copy = new ArrayList<Integer>(conformado);
+			for (Integer e : copy)
+			{
+				aux = calculaSiguienteCasilla(e);
+				if (aux != null){
+				for (int j = 0; j<aux.length; j++)
+					if (!copy.contains(aux[j]))
+						conformado.add(aux[j]);
+				}
+			}
+			i++;
+		}
+		// filtramos
+		ArrayList<Integer> copy = new ArrayList<Integer>();
+		int mayor = 0;
+		for (Integer e : conformado){
+			if (e > 36 || e == n - posiciones || e == n + posiciones)
+			{
+				copy.add(e);
+				i++;
+			}
+			if (e > mayor)
+				mayor = e;
+		}
+		conformado = new ArrayList<Integer>(copy);
+		for (Integer e : copy)
+			if (e  + posiciones > mayor && e != mayor)
+				conformado.remove(e);
+
+		int[] r = new int[conformado.size()];
+		for(int j = 0; j<conformado.size(); j++)
+			r[j] = conformado.get(j);
+		return r;
 	}
 	
 	/**
@@ -23,8 +106,12 @@ public class Tablero {
 	 */
 	public int[] calculaSiguienteCasilla(int n)
 	{    
-		if (n == 0)
-			return null; // fin del juego
+		if (n == 0){
+			int[] res = new int[nArcos];
+			for (int i = 0; i<nArcos;i++)
+				res[i] = tArco*nArcos+tArco + i * tPasillo;
+			return res;
+		}
 		else if (n >= 1 && n <= nArcos * tArco && posibleQuesito(n)) // si la casilla es un quesito
 			if (n == 1)
 				return new int []{n + 1, nArcos * tArco + tArco, calculaPosicionQuesito(n)};

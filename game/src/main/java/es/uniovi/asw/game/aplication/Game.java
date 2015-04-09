@@ -20,11 +20,15 @@ public interface Game {
 	public boolean isAcorrectAnswer(String selectedAnswer);
 	public User getCurrentUser();
 	public int getCurrebtUserIndex();
-	public Integer[] calculateNextPositions(int number);
+//	public int[] calculateNextPositions(int number);
 	public void createBoard(int diameter, int size);
 	public boolean isWinner();
 	public int getNumUsers();
+	////
 	
 	
+	public int tirarDado();
+	public void moverUser(int casilla);
+	public int[] calculateNextPositions();
 	
 }

@@ -9,6 +9,10 @@ import es.uniovi.asw.game.aplication.ConcretGame;
  */
 public class App {
 	public static void main(String[] args) {
+//		for (int i = 0; i < 43 ;i++) {
+//			System.out.println("i: "+i+"\t"+((i-2%42)));
+//		}
+//		
 		ConcretGame game = new ConcretGame();
 		game.run();
 	}

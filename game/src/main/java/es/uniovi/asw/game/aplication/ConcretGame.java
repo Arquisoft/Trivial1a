@@ -7,6 +7,7 @@ import es.uniovi.asw.game.infrastructure.Factory;
 import es.uniovi.asw.game.model.Answer;
 import es.uniovi.asw.game.model.BoardBox;
 import es.uniovi.asw.game.model.Question;
+import es.uniovi.asw.game.model.Tablero;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.view.View;
 import es.uniovi.asw.game.view.ViewFactory;
@@ -18,7 +19,8 @@ public class ConcretGame implements Game
 	private int currentUser;
 	private Question currentQuestion;
 	private int numUsers;
-	private BoardBox board;
+	private Tablero board;
+	private int tirada;
 	private Question[] questions;
 	
 	public ConcretGame() {
@@ -46,8 +48,20 @@ public class ConcretGame implements Game
 				{
 					newUsers[i]=users[i];
 					numUsers++;
+					newUsers[i].setCasilla(0); 				//Central
+															//resetear quesitos
+					newUsers[i].setQuesitoAmarillo(false);
+					newUsers[i].setQuesitoAzul(false);
+					newUsers[i].setQuesitoMarron(false);
+					newUsers[i].setQuesitoNaranja(false);
+					newUsers[i].setQuesitoRosa(false);
+					newUsers[i].setQuesitoVerde(false);
 				}
 		users=newUsers;
+		
+		createBoard(1, 1);
+		
+				
 		currentView.render();
 	}
 
@@ -136,6 +150,10 @@ public class ConcretGame implements Game
 				Factory.persistence.createTrivialDAO().updateUser(users[currentUser]);
 				currentQuestion.incSuccesses();
 				Factory.persistence.createTrivialDAO().updateQuestion(currentQuestion);
+				
+				//FIXME Comprobar quesito y añadir
+							
+				
 				return true;
 			}
 		users[currentUser].incFailedQuestions();
@@ -161,19 +179,31 @@ public class ConcretGame implements Game
 	public int getCurrebtUserIndex() {
 		return currentUser;
 	}
-
 	@Override
-	public Integer[] calculateNextPositions(int number) {
-		// TODO Auto-generated method stub
-		return null;
+	public void moverUser(int casilla){
+		
+		getCurrentUser().setCasilla(casilla);		
+	}
+	
+	@Override
+	public int[] calculateNextPositions() {
+
+		return board.mover(tirada, getCurrentUser().getCasilla() );
+
+	}
+	
+	@Override
+	public int tirarDado(){
+		tirada = (int) (Math.random()*5 + 1);
+		return tirada;
 	}
 
-	@Override
+	/*@Override
 	public void createBoard(int diameter, int size) {
 		board = new BoardBox(0);
 		createBoard(board,diameter, size);
 	}
-	
+
 	//no funciona
 	public void createBoard(BoardBox box, Integer diameter, Integer size) 
 	{ 
@@ -196,15 +226,33 @@ public class ConcretGame implements Game
 		
 	}
 
+	*/
+	
+	@Override
+	public void createBoard(int diameter, int size) {
+		// tamaño para que funcione; nArcos = nPasillos = tArco = 6;
+				//							 tPasillo = 5;
+		board = new Tablero(6, 6, 6, 5);
+		
+	
+	}
+	
 	@Override
 	public boolean isWinner() {
-		// ¿Donde se esta guardando los "quesitos" que lleva cada usuario? En el modelo User no esta
+		
+		if(		getCurrentUser().isQuesitoAmarillo() && getCurrentUser().isQuesitoAzul() && getCurrentUser().isQuesitoMarron()
+				&& getCurrentUser().isQuesitoNaranja() && getCurrentUser().isQuesitoRosa() && getCurrentUser().isQuesitoVerde() )
+		{
+			return true;
+			
+		}
+		
 		return false;
 	}
 
 	@Override
 	public int getNumUsers() {
-		// TODO Auto-generated method stub
+
 		return numUsers;
 	}
 

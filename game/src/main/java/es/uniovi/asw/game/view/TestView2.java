@@ -66,7 +66,7 @@ public class TestView2 extends View {
 	private JTextArea txQuestion;
 	private JPanel answersPanel;
 	private boolean fichasJugadores[];
-	private Integer[] nexPositions;
+	private int[] nexPositions;
 	
 	
 	
@@ -286,17 +286,19 @@ public class TestView2 extends View {
 
 	private void panelMouseClicked(java.awt.event.MouseEvent evt) {
 	 
+		if( !btnTirarDado.isEnabled() ){
+			
 			int id = pnBoard.getBoxId(evt.getPoint());
 			if(id==73)
 	    		return;
-			boolean correct = true/*poner a false cuando funcione getNextPositions()*/;
+			boolean correct = false/*poner a false cuando funcione getNextPositions()*/;
 			System.out.println("id: "+id);
-//			descomentar más adelante
-//	    	for(int i=0; i< nexPositions.length;i++)
-//	    	{
-//	    		if(id == nexPositions[i])
-//	    		correct = true;
-//	    	}
+			//descomentar más adelante
+	    	for(int i=0; i< nexPositions.length;i++)
+	    	{
+	    		if(id == nexPositions[i])
+	    		correct = true;
+	    	}
 	    	if(correct)
 	    	{
 	    		 String[] aux = new String[nPlayers];
@@ -324,7 +326,10 @@ public class TestView2 extends View {
 	 			default:
 	 				break;
 	 			}
+	 			
 	 			try{
+	 				getControler().moverUser(id);  //FIXME -- MOVER USER  id correcta¿
+	 				
 	 				pnBoard.repintarTablero(aux, id);
 	 			}catch(Exception e){}
 	 			nexPositions = null;
@@ -332,6 +337,9 @@ public class TestView2 extends View {
 	    	}
 	    	else
 	    		JOptionPane.showMessageDialog(TestView2.this,"posición no válida");	
+		}
+		
+		
 	 }
 	
 	private String[] moverFicha(int index)
@@ -353,12 +361,34 @@ public class TestView2 extends View {
 
 	
 	private void btnTirarDadoMouseClicked(MouseEvent evt) {
-		int result = (int) (Math.random()*5 + 1);
+		
+		int dado = getControler().tirarDado();
 		btnTirarDado.setEnabled(false);
-		labelDado.setIcon(null);
-		labelDado.setText(""+result);
-		nexPositions = getControler().calculateNextPositions(result);
-		System.out.println("DADOO");
+		labelDado.setIcon(new ImageIcon("img/dados/"+dado+".png"));
+		
+		//mostrar casillas posbles??
+//		nexPositions = getControler().calculateNextPositions();
+		int[] aux = getControler().calculateNextPositions();
+		
+		for (int i = 0 ; i < aux.length; i++){	//traducir a casillas graficas 
+			
+			if(aux[i] == 0){
+				aux[i]= 72;
+				System.out.println("\t"+aux[i]);
+			}else if(aux[i] == 1){
+				aux[i]= 41;
+				System.out.println("\t"+aux[i]);
+			}else if(aux[i]>=1 && aux[i]<=42){ 		//circunferencia
+				aux[i]= (aux[i]-2%42);
+				System.out.println("\t"+aux[i]);
+			}else if(aux[i]>=43 && aux[i]<=71){
+				aux[i]= aux[i]-1;
+				System.out.println("\t"+aux[i]);
+			}
+		
+		}
+		nexPositions = aux;
+		
 	}
 		
 //	int turn = 0;
@@ -430,7 +460,7 @@ public class TestView2 extends View {
 	
 	public void showQuestion(int index) {
 		//hallar la categoría de la pregunta con el index
-		currentQuestion = getControler().getQuestion(/*categoria*/"deportes");
+		currentQuestion = getControler().getQuestion(/*categoria*/"deportes"); //FIXME categorias de las preguntas
 		txQuestion.setText(currentQuestion.getQuestion());
 		for(Answer a : currentQuestion.getAnswers()){
 			JCheckBox ch = new JCheckBox(a.getAnswer());
