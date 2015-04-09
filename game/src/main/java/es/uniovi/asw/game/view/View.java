@@ -4,7 +4,6 @@ import java.awt.GraphicsConfiguration;
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
 
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
@@ -12,8 +11,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-
-import org.openqa.selenium.internal.seleniumemulation.Close;
 
 import es.uniovi.asw.game.aplication.Game;
 import es.uniovi.asw.game.model.User;
@@ -25,6 +22,8 @@ import es.uniovi.asw.game.model.User;
  */
 public abstract class View extends JFrame {
 
+	private static final long serialVersionUID = 1L;
+	
 	private static Game controler;
 	private String viewName;
 
@@ -42,24 +41,21 @@ public abstract class View extends JFrame {
 	/* constructores de la super clase Jframe */
 	public View() throws HeadlessException {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public View(GraphicsConfiguration arg0) {
 		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 
 	public View(String arg0, GraphicsConfiguration arg1) {
 		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
 	}
 
 	public View(String arg0) throws HeadlessException {
 		super(arg0);
-		// TODO Auto-generated constructor stub
 	}
 
+	@SuppressWarnings("static-access")
 	public View(Game controler, String name) {
 		this.controler = controler;
 		viewName = name;

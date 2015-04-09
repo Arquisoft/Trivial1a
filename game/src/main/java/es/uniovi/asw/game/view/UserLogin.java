@@ -1,28 +1,26 @@
 package es.uniovi.asw.game.view;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.JPasswordField;
-import javax.swing.JButton;
+import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.view.models.UserListModel;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import javax.swing.event.ListSelectionListener;
-import javax.swing.event.ListSelectionEvent;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 
 /**
  * 
@@ -30,11 +28,14 @@ import java.awt.event.FocusEvent;
  * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
 public class UserLogin extends JFrame {
+	
+	private static final long serialVersionUID = 1L;
+
 	//la vista que se está usando en este momento. se accede al controlador(Game) a traves de ella
 	private View parentView;
 	
 	private JPanel UserLogcontentPane;
-	private JList ListUsers;
+	private JList<User> ListUsers;
 	private JPanel UsersLoginPanel;
 	private JLabel lbUser;
 	private JTextField txName;
@@ -69,9 +70,9 @@ public class UserLogin extends JFrame {
 		loadUsers();
 	}
 
-	private JList getListUsers() {
+	private JList<User> getListUsers() {
 		if (ListUsers == null) {
-			ListUsers = new JList();
+			ListUsers = new JList<User>();
 			ListUsers.addListSelectionListener(new ListSelectionListener() {
 				public void valueChanged(ListSelectionEvent arg0) {
 					btEliminar.setEnabled(true);
@@ -116,7 +117,7 @@ public class UserLogin extends JFrame {
 			txName.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent arg0) {
-					if(!txName.getText().equals("") && !txPasswd.getText().equals(""))
+					if(!txName.getText().equals("") && !String.valueOf(txPasswd.getPassword()).equals(""))
 					{
 						btAniadir.setEnabled(true);
 						btSignIn.setEnabled(true);
@@ -153,7 +154,7 @@ public class UserLogin extends JFrame {
 			txPasswd.addKeyListener(new KeyAdapter() {
 				@Override
 				public void keyReleased(KeyEvent e) {
-					if(!txName.getText().equals("") && !txPasswd.getText().equals(""))
+					if(!txName.getText().equals("") && !String.valueOf(txPasswd.getPassword()).equals(""))
 					{
 						btAniadir.setEnabled(true);
 						btSignIn.setEnabled(true);
@@ -169,10 +170,9 @@ public class UserLogin extends JFrame {
 		if (btAniadir == null) {
 			btAniadir = new JButton("A\u00F1adir a la partida");
 			btAniadir.addActionListener(new ActionListener() {
-				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent arg0) 
 				{
-					if(parentView.getControler().addUserToGame(txName.getText(), txPasswd.getText()))
+					if(parentView.getControler().addUserToGame(txName.getText(), String.valueOf(txPasswd.getPassword())))
 						JOptionPane.showMessageDialog(UserLogin.this,"Usuario añadido correctamente");
 					else
 						JOptionPane.showMessageDialog(UserLogin.this,"Error de login o numero máximo de jugadores alcanzado");
@@ -200,9 +200,8 @@ public class UserLogin extends JFrame {
 			btSignIn = new JButton("Reg\u00EDstrate ahora");
 			btSignIn.setEnabled(false);
 			btSignIn.addActionListener(new ActionListener() {
-				@SuppressWarnings("deprecation")
 				public void actionPerformed(ActionEvent arg0) {
-					if(parentView.getControler().registerNewUser(txName.getText(), txPasswd.getText()))
+					if(parentView.getControler().registerNewUser(txName.getText(), String.valueOf(txPasswd.getPassword())))
 						JOptionPane.showMessageDialog(UserLogin.this,"Usuario registrado correctamente");
 					else
 						JOptionPane.showMessageDialog(UserLogin.this,"Ya existe un usuario con el mísmo nombre :S");
@@ -262,7 +261,7 @@ public class UserLogin extends JFrame {
 	private void loadUsers() {
 		listModel = new UserListModel();
 		for (User u : parentView.getControler().getUsers())
-			listModel.addUser(u);
+			((UserListModel) listModel).addUser(u);
 		ListUsers.setModel(listModel);
 	}
 }

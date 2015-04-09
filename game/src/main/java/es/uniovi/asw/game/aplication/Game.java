@@ -2,13 +2,12 @@ package es.uniovi.asw.game.aplication;
 
 import java.util.List;
 
-import es.uniovi.asw.game.model.Answer;
-import es.uniovi.asw.game.model.BoardBox;
 import es.uniovi.asw.game.model.Question;
 import es.uniovi.asw.game.model.User;
 import es.uniovi.asw.game.view.View;
 
 public interface Game {
+	
 	public User[] getUsers();
 	public void setView(View view);
 	public boolean addUserToGame(String name,String passwd);
@@ -24,7 +23,5 @@ public interface Game {
 	public void createBoard(int diameter, int size);
 	public boolean isWinner();
 	public int getNumUsers();
-	
-	
-	
+	public void run();
 }

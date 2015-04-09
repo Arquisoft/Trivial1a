@@ -11,12 +11,15 @@ import es.uniovi.asw.game.model.User;
  * @author Grupo 1a
  * @see <a href = "https://github.com/Arquisoft/Trivial1a/" /> Git Grupo 1a </a>
  */
-@SuppressWarnings({ "rawtypes", "serial" })
-public class UserListModel extends AbstractListModel {
+
+public class UserListModel extends AbstractListModel<User> {
+
+	private static final long serialVersionUID = 1L;
+	
 	ArrayList<User> users = new ArrayList<User>();
 
 	@Override
-	public Object getElementAt(int index) {
+	public User getElementAt(int index) {
 		return users.get(index);
 	}
 
@@ -32,5 +35,4 @@ public class UserListModel extends AbstractListModel {
 	public User getUserAt(int index) {
 		return users.get(index);
 	}
-
 }

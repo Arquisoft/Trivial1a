@@ -15,11 +15,6 @@ import javax.swing.border.EmptyBorder;
 
 import es.uniovi.asw.game.aplication.Game;
 
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
-import javax.swing.JCheckBoxMenuItem;
-
 /**
  * 
  * @author Grupo 1a

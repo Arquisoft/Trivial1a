@@ -164,7 +164,6 @@ public class ConcretGame implements Game
 
 	@Override
 	public Integer[] calculateNextPositions(int number) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -204,8 +203,6 @@ public class ConcretGame implements Game
 
 	@Override
 	public int getNumUsers() {
-		// TODO Auto-generated method stub
 		return numUsers;
 	}
-
 }
