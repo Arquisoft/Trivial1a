@@ -17,7 +17,7 @@ import es.uniovi.asw.trivial.persistence.TrivialDAO;
 
 public class TrivialGatewayImpl implements TrivialDAO
 {
-	private static final String DB_NAME = "trivialDataBase";
+	private static final String DB_NAME = "trivial1a";
 
 	private DB dataBase;
 	

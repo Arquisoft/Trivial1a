@@ -1,9 +1,12 @@
 package es.uniovi.asw.trivial.infrastructure;
 
 import java.net.UnknownHostException;
+import java.util.Arrays;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
 
 public class DBHelper 
 {
@@ -14,7 +17,12 @@ public class DBHelper
 	
 	private static void crearConexion() {
 		try {
-			mongo = new MongoClient("localhost", 27017);
+//			mongo = new MongoClient("localhost", 27017);
+			
+			char[] pass={'1','2','3','4'};
+			MongoCredential credential = MongoCredential.createMongoCRCredential("trivial1a", "trivial1a", pass);
+			mongo = new MongoClient(new ServerAddress("ds039311.mongolab.com:39311"), Arrays.asList(credential));
+			
 		} catch (UnknownHostException e) {
 			throw new RuntimeException("No ha sido posible establecer la conexión con "
 					+ "la Base de Datos. Error: " + e.getMessage());
