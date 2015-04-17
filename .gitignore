@@ -23,3 +23,15 @@ local.properties
 .buildpath
 .target
 .texlipse
+
+logs
+project/project
+project/target
+target
+tmp
+.history
+dist
+.settings
+.idea
+.idea_modules
+.settings
