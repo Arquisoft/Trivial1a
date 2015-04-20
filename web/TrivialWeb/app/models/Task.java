@@ -5,9 +5,6 @@ import play.modules.mongodb.jackson.MongoDB;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import net.vz.mongodb.jackson.Id;
 import net.vz.mongodb.jackson.ObjectId;
-import org.codehaus.jackson.annotate.JsonProperty;
-
-import javax.persistence.*;
 
 public class Task{
     

@@ -4,8 +4,7 @@
 
 # Home page
 GET     /                           controllers.Application.index()
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
-
+GET  	/public/*file		controllers.Assets.at(path="/public", file)
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     /tasks                  controllers.Application.tasks()

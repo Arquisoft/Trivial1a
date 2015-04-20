@@ -12,12 +12,12 @@ public class Application extends Controller {
   
   public static Result index() {
 //    return redirect(routes.Application.tasks());
-	  return redirect(routes.Application.users());
+	  return ok(views.html.inicio.render());
   }
   
   public static Result users() {
     return ok(
-      views.html.index.render(User.all(), userForm)
+      views.html.index.render()
     );
   }
    
