@@ -1,6 +1,6 @@
 body {
-        background-color: #444;
-        background: url(@routes.Assets.at("images/nubes.jpg");
+        background-color: #555;
+        background: url("/public/images/nubes.jpg");
         
     }
     .form-signin input[type="text"] {
@@ -8,6 +8,9 @@ body {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
     }
+    
+
+</style>
     .form-signin input[type="password"] {
         margin-bottom: 10px;
         border-top-left-radius: 0;
