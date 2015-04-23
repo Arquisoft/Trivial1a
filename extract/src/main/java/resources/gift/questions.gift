@@ -1,0 +1,155 @@
+$CATEGORY:deportes
+
+::-01. ¿En qué deporte se u...::¿En qué deporte se usa tiza? {
+~En el tenis
+~El el críket
+=En el billar
+~En el curling 
+####En el billar, para frotar la punta de los tacos.
+}
+
+$CATEGORY:deportes
+::-02. ¿Cuál es el limite d...::¿Cuál es el limite de edad establecido para participar en los Juegos Olímpicos? {
+=Ninguno
+~35
+}
+
+$CATEGORY:geografia
+
+::-03. ¿Qué isla del Caribe...::¿Qué isla del Caribe tiene nombre de flor? {
+~Lirio salvaje
+=La isla Margarita
+}
+
+$CATEGORY:geografia
+::-04. ¿Qué capital espaniol...::¿Qué capital espaniola tiene cinco veces la misma vocal "a"? {
+=Guadalajara
+~Madrid
+}
+
+$CATEGORY:geografia
+::-05. ¿Cuántas capitales d...::¿Cuántas capitales de provincia espaniolas empiezan por "V"?\: {
+~0
+=3
+~5
+~2
+####Tres\: Valencia, Valladolid y Vitoria
+}
+
+$CATEGORY:geografia
+::-06. ¿En qué provincia es...::¿En qué provincia espaniola se halla la ciudad de Jabugo, famosa por sus exquisitos jamones? {
+~En Madrid
+~En Cáceres
+~En Murcia
+=En Huelva
+}
+
+$CATEGORY:geografia
+::-07. ¿Cuál es la moneda d...::¿Cuál es la moneda de Suiza? {
+~El Euro
+=El franco suizo
+~La libra
+}
+
+$CATEGORY:geografia
+::-08. ¿Cuál es la residenc...::¿Cuál es la residencia oficial más grande del mundo? {
+=El Vaticano
+~La república independiente de tu casa
+}
+
+$CATEGORY:ciencias
+
+::-09. ¿Cuántas manos tiene...::¿Cuántas manos tiene un caballo? {
+=Dos
+~Una
+~Ninguna
+~Cuatro
+}
+
+$CATEGORY:ciencias
+::-10. ¿Cómo se llaman las ...::¿Cómo se llaman las crías de la mula?\: {
+~mulas
+~nazguls
+~siatinos
+=No tienen nombre
+####La mula no tiene crías, es estéril
+}
+
+$CATEGORY:ciencias
+::-11. ¿Qué órgano segrega ...::¿Qué órgano segrega la hormona insulina? {
+=El páncreas
+~el pene
+~el hígado
+~los riniones
+}
+
+$CATEGORY:ciencias
+::-12. ¿Cuál es el fruto de...::¿Cuál es el fruto del roble? {
+~La encina
+=La bellota
+~La pinia
+}
+
+$CATEGORY:ciencias
+::-13. ¿Cuál de los cinco s...::¿Cuál de los cinco sentidos se desarrolla el primero? {
+~La vista
+~El tacto
+~El gusto
+~El oído
+=El olfato
+}
+
+
+$CATEGORY:arte y literatura
+
+::-14. ¿Qué instrumento mus...::¿Qué instrumento musical tiene nombre y forma geométricos? {
+=El triángulo
+~El tambor
+}
+
+$CATEGORY:arte y literatura
+::Sin código -15. ¿Cuáles son las dos ...::¿Cuáles son las dos primeras palabras de la Biblia? {
+="Al Principio"
+~En un lugar
+~Hola suelo!
+}
+
+$CATEGORY:arte y literatura
+::-16. ¿Quién escribió "El ...::¿Quién escribió "El Diario de Ana Frank"? {
+=Ana Frank
+~Lorca
+}
+
+$CATEGORY:arte y literatura
+::-17. ¿Con qué nombre firm...::¿Con qué nombre firmaba Pablo Picasso sus pinturas? {
+=Con Picasso
+~Colibrítani
+}
+
+$CATEGORY:arte y literatura
+::-18. ¿Qué lado de los lib...::¿Qué lado de los libros suele tener los números pares? {
+~El derecho
+=El izquierdo
+}
+
+$CATEGORY:arte y literatura
+::-19. ¿Cuántas pirámides h...::¿Cuántas pirámides hay en Egipto? {
+~10
+~100
+~1.000
+=10.000.
+}
+
+$CATEGORY:historia
+
+::-20. ¿Fue Felipe V de Esp...::¿Fue Felipe V de Espania hijo de Felipe IV? {
+~Si
+=No
+}
+
+$CATEGORY:espectaculos
+::-21 ¿Que es el holi..::¿Que es el holi festival? {
+~una fiesta patronal de culluchaca, Peru
+~un festival de musica rock
+=el festival indio de comienzo de la primavera
+}
