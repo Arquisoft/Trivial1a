@@ -14,6 +14,10 @@ public class Application extends Controller {
 //    return redirect(routes.Application.tasks());
 	  return ok(views.html.inicio.render());
   }
+  public static Result index2() {
+//    return redirect(routes.Application.tasks());
+	  return ok(views.html.registro.render());
+  }
   
   public static Result users() {
     return ok(
