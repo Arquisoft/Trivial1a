@@ -18,6 +18,18 @@ public class Application extends Controller {
 //    return redirect(routes.Application.tasks());
 	  return ok(views.html.registro.render());
   }
+  public static Result index3() {
+//    return redirect(routes.Application.tasks());
+	  return ok(views.html.prejuego.render());
+  }
+  public static Result index4() {
+
+	  return ok(views.html.ayudaa.render());
+}
+  public static Result index5() {
+
+	  return ok(views.html.estadisticas.render());
+}
   
   public static Result users() {
     return ok(

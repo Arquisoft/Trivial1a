@@ -1,0 +1,67 @@
+@()
+
+@import helper._
+
+@bienvenida("Estadisticas") {
+
+<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/estadisticas.scala.css") media="screen" />	
+	<script type="text/javascript">
+window.onload = function() {
+document.onmousemove = function(ev) {
+var x = ev.clientX;
+var y = ev.clientY;
+document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
+</script>
+
+<body>
+<h1>Estadisticas</h1>
+<div class="container">
+	<div class="row">
+	 <span class="progress-type">Porcentaje de aciertos en la categoria de Geogriafia</span>                   
+        <div class="progress">
+            <div class="progress-G" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                <span class="progress-completed">60%</span>
+            </div>
+            
+        </div>
+        <span class="progress-type">Porcentaje de aciertos en la categoria de Ciencias y Naturaleza</span>
+        <div class="progress">
+            <div class="progress-Ci" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                <span class="progress-completed">40%</span>
+            </div>
+            
+        </div>
+        <span class="progress-type">Porcentaje de aciertos en la categoria de Arte y Literatura</span>
+        <div class="progress">
+         <div class="progress-M"  aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+                <span class="progress-completed">20%</span>
+            </div>
+            
+        </div>
+        <span class="progress-type">Porcentaje de aciertos en la categoria de Deportes</span>
+        <div class="progress">
+         <div class="progress-D" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                 <span class="progress-completed">60%</span>
+            </div>
+            
+        </div>
+         <span class="progress-type">Porcentaje de aciertos en la categoria de Historia</span>
+        <div class="progress">
+            <div class="progress-H"aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                 <span class="progress-completed">80%</span>
+            </div>
+           
+        </div>
+         <span class="progress-type">Porcentaje de aciertos en la categoria de Entretenimiento</span>
+        <div class="progress">
+            <div class="progress-E" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                 <span class="progress-completed">80%</span>
+            </div>
+          </div>
+	</div>
+</div>
+<div class="boton">
+<input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
+</div>
+</body>
+}

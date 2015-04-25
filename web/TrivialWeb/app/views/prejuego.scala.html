@@ -2,21 +2,23 @@
 
 @import helper._
 
-@bienvenida("Registro") {
+@bienvenida("prejuego") {
 
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/inicio.scala.css") media="screen" />	
-<!--Este script es el movimiento del fondo de pantalla-->
-<script type="text/javascript">
+	<script type="text/javascript">
 window.onload = function() {
 document.onmousemove = function(ev) {
 var x = ev.clientX;
 var y = ev.clientY;
 document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
 </script>
+<script>
+function enviar(pagina){
+	document.nombreDelFormulario.action = pagina;
+	document.nombreDelFormulario.submit();
 
- 
-
-
+	}
+</script>
  <body>
  
 <div class="container">
@@ -30,16 +32,14 @@ document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
                             </div>
                             <div class="panel-body">
                       
-                                <form accept-charset="UTF-8" role="form" class="form-signin" name ="formularioContacto">
+                                <form accept-charset="UTF-8" role="form" class="form-signin">
                                     <fieldset>
                                         <label class="panel-login">
                                             <div class="login_result"></div>
                                         </label>
-                                        <input class="form-control" placeholder="Insertar usuario" name="usuario" id="usuario" type="text">
-                                        <input class="form-control" placeholder="Insertar password" id="password" name="password" type="password">
-                                         <input class="form-control" placeholder="Vuelva a introducir la password" id="password" name="password" type="password">
-                                         <input class="btn btn-lg btn-success btn-block"  type="submit" id="Entrar" value="Registrarme" >
-                                         <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
+                                        <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" value="Jugar">
+                                        <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='estadisticas'" id="Entrar"  value="Estadisticas">
+                                        <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
                                     </fieldset>
                                 </form>
                             </div>

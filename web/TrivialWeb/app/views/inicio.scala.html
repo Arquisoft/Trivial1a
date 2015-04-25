@@ -12,13 +12,7 @@ var x = ev.clientX;
 var y = ev.clientY;
 document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
 </script>
-<script>
-function enviar(pagina){
-	document.nombreDelFormulario.action = pagina;
-	document.nombreDelFormulario.submit();
 
-	}
-</script>
  <body>
  
 <div class="container">
@@ -39,7 +33,7 @@ function enviar(pagina){
                                         </label>
                                         <input class="form-control" placeholder="Usuario" id="usuario" type="text">
                                         <input class="form-control" placeholder="Password" id="password" type="password">
-                                        <input class="btn btn-lg btn-success btn-block" type="submit" id="Entrar" value="Entrar">
+                                        <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='prejuego' " id="Entrar" value="Entrar">
                                         <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick="location.href ='Registro' " value="Registrame">
                                     </fieldset>
                                 </form>
