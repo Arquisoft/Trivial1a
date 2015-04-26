@@ -5,7 +5,7 @@
 # Home page
 GET     /                           controllers.Application.index()
 GET  	/public/*file		controllers.Assets.at(path="/public", file)
-GET     /Registro                           controllers.Application.index2()
+GET     /registro                           controllers.Application.index2()
 GET    /prejuego                       controllers.Application.index3()
 GET    /ayuda                          controllers.Application.index4()
 GET    /estadisticas                         controllers.Application.index5()
