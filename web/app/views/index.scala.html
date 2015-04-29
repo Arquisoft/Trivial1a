@@ -1,0 +1,78 @@
+@()
+
+@import helper._
+
+@main("Juego",scripts) {
+    
+<div id="container" style="position:absolute;top: 100px; left: 100px; margin:200 auto 30px auto;">
+	<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
+	<div id="output" style="position:absolute; padding:5px; min-width:100px;"></div>
+</div>
+
+<h2>Test canvas</h2>
+   
+    
+}
+
+
+ @scripts= {
+
+  		<script type="text/javascript">
+  		window.onload = function() {
+					var canvas = document.getElementById("lienzo");
+							if (canvas && canvas.getContext) {
+							
+							var ctx = canvas.getContext("2d");
+	
+							if (ctx) {			
+									
+					
+								var output = document.getElementById("output");								
+					
+								canvas.addEventListener("mousemove", function(evt) {
+								var mousePos = oMousePos(canvas, evt);
+								marcarCoords(output, mousePos.x, mousePos.y)
+								}, false);
+																		
+								canvas.addEventListener("mouseout", function(evt) {
+								limpiarCoords();
+								}, false);
+								     
+							}
+							var img = new Image();
+								img.src = "@routes.Assets.at("real500.png")";
+								img.onload = function(){
+								         ctx.drawImage(img, 0, 0);
+								     }	
+
+					}
+									
+					function marcarCoords(object, x, y){
+							output.innerHTML = ("x: "+x+", y: "+y);
+							output.style.top= (y+10)+"px";
+							output.style.left= (x+10)+"px";
+							output.style.backgroundColor="#FFF";
+							output.style.border="1px solid #d9d9d9"
+							canvas.style.cursor = "pointer";
+					}
+													
+					function limpiarCoords(){
+							output.innerHTML ="";
+							output.style.top= 0+"px";
+							output.style.left= 0+"px";
+							output.style.backgroundColor="transparent"
+							output.style.border="none";
+							canvas.style.cursor = "default";
+			}
+									
+					function oMousePos(canvas, evt) {
+					var ClientRect = canvas.getBoundingClientRect();
+							return {//objeto
+							x: Math.round(evt.clientX - ClientRect.left),
+							y: Math.round(evt.clientY - ClientRect.top)
+							}
+					}
+			}
+		</script>
+			
+	}

@@ -1,0 +1,9 @@
+1- Descargar: http://downloads.typesafe.com/typesafe-activator/1.3.2/typesafe-activator-1.3.2.zip
+2- Copiar por ejemplo en "C:\activator-1.3.2"
+3- Agregar C:\activator-1.3.2 al path
+4- Abrir cmd y situarse sobre la carpeta \....\git\Trivial1a\web\TrivialWeb
+5- Ejecutar "activator" y dentro "eclipse" 
+6- Importar desde eclipse.
+7- En el cmd ejecutar "run" 
+8- http://localhost:9000/
+9-
