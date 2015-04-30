@@ -13,7 +13,7 @@ Escenario: Borrar jugador
     
 Escenario: Mover ficha desde la casilla 6 con un 2
 	Dada un tablero del trivial y estoy en la casilla 6 y me sale un 2
-    Entonces podre ir a las posiciones 19, 31, 43, 56, 67 y 4
+    Entonces podre ir a las posiciones 19, 31, 43, 55, 67 y 4
     
 Escenario: Mover ficha desde la casilla 1 con un 2
 	Dada un tablero del trivial y estoy en la casilla 1 y me sale un 2
