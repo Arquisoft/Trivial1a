@@ -1,19 +1,16 @@
-package es.uniovi.asw.trivial;
+package es.uniovi.asw.game;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import es.uniovi.asw.game.model.Tablero;
 
-public class TestTablero {
+public class GameTest {
 
-	@Test
-	public void test() {
-		Tablero t = new Tablero(6,6,6,5);
+    @Test
+    public void test() {
+    	Tablero t = new Tablero(6,6,6,5);
 		
 		assertFalse(t.posibleQuesito(0));
 		assertFalse(t.posibleQuesito(42));
@@ -53,8 +50,5 @@ public class TestTablero {
 		assertArrayEquals(new int[]{71,69}, t.calculaSiguienteCasilla(70));
 		assertArrayEquals(null, t.calculaSiguienteCasilla(78));
 
-		// test sobre posiciones faltaria el método de probar...
-
-	}
-
+    }
 }

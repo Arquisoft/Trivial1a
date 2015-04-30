@@ -1,8 +1,9 @@
-package es.uniovi.asw.trivial;
+package es.uniovi.asw.runner;
+
+import org.junit.runner.RunWith;
 
 import cucumber.api.CucumberOptions;
 import cucumber.api.junit.Cucumber;
-import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
@@ -10,4 +11,5 @@ import org.junit.runner.RunWith;
         glue 		= "es.uniovi.asw.steps",
         features 	= "classpath:cucumber/"
 )
-public class RunGameTest {}
+public class RunGameTest {
+}

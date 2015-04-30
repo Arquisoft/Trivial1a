@@ -1,8 +1,11 @@
 package cucumber;
 
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.List;
 
+import junit.framework.Assert;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dada;
 import cucumber.api.java.es.Entonces;
@@ -27,6 +30,8 @@ public class GestionUsuariosSteps
 	@Entonces("^el número de usuarios es (\\d+)$")
 	public void el_número_de_usuarios_es(int n) throws Throwable {
 //	    assertThat(users.size()).isEqualTo(n);  
+        assertEquals(4, 5);
+
 	}
 
 	@Dada("^la siguiente lista de usuarios:$")
