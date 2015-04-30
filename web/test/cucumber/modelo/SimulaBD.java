@@ -1,4 +1,4 @@
-package es.uniovi.asw.modelo;
+package cucumber.modelo;
 
 import java.util.ArrayList;
 
@@ -61,7 +61,7 @@ public class SimulaBD {
 
 	/**
 	 * Simula un Select pregunta, respuesta where pregunta = pregunta...
-	 * Formateado en un booleano que indicar� si la pregunta esta almacenada en
+	 * Formateado en un booleano que indicara si la pregunta esta almacenada en
 	 * la BD con esa respuesta para esa pregunta
 	 * 
 	 * @return boolean

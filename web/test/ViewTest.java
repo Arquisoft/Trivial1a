@@ -14,7 +14,6 @@ import play.test.TestBrowser;
 
 public class ViewTest {
 
-
     @Test
     public void testTitle() {
     	WebDriver driver = new HtmlUnitDriver();
