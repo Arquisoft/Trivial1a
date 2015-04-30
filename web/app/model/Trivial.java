@@ -138,7 +138,7 @@ public class Trivial {
 	private void loadQuestions() {
 		this.questions = new HashMap<>();
 		
-		for (Color c : Color.values())
-			this.questions.put(c, new ArrayList<>());
+		//for (Color c : Color.values())
+		//	this.questions.put(c, new ArrayList<>());
 	}
 }

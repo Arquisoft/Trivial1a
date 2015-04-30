@@ -11,7 +11,7 @@ window.onload = function() {
 document.onmousemove = function(ev) {
 var x = ev.clientX;
 var y = ev.clientY;
-document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
+document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
 </script>
 
  
@@ -36,7 +36,11 @@ document.body.style.backgroundPosition = y/8 + 'px ' + x/8 + 'px';};};
                                             <div class="login_result"></div>
                                         </label>
                                         <input class="form-control" placeholder="Insertar usuario" name="usuario" id="usuario" type="text">
+                                         <input class="form-control" placeholder="Inserte su nombre" name="nombre" id="unombre" type="text">
+                                        <input class="form-control" placeholder="Inserte sus apellidos" id="apellidos" name=apellidos" type="password">
+                                        
                                         <input class="form-control" placeholder="Insertar password" id="password" name="password" type="password">
+                                        
                                          <input class="form-control" placeholder="Vuelva a introducir la password" id="password" name="password" type="password">
                                          <input class="btn btn-lg btn-success btn-block"  type="submit" id="Entrar" value="Registrarme" >
                                          <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
