@@ -3,13 +3,13 @@
 @import helper._
 
 @main("Juego",scripts) {
-    
+  
 <div id="container" style="position:absolute;top: 100px; left: 100px; margin:200 auto 30px auto;">
 	<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
 	<div id="output" style="position:absolute; padding:5px; min-width:100px;"></div>
 </div>
 
-<h2>Test canvas</h2>
+<h2>Trivial 1a</h2>
    
     
 }
@@ -40,7 +40,7 @@
 								     
 							}
 							var img = new Image();
-								img.src = "@routes.Assets.at("real500.png")";
+								img.src = "@routes.Assets.at("images/real500.png")";
 								img.onload = function(){
 								         ctx.drawImage(img, 0, 0);
 								     }	

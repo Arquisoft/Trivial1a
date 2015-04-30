@@ -31,6 +31,10 @@ public class Application extends Controller {
 
 	  return ok(views.html.estadisticas.render());
 }
+  public static Result index6() {
+
+	  return ok(views.html.index.render());
+}
   
   public static Result users() {
     return ok(
