@@ -11,6 +11,17 @@ Escenario: Borrar jugador
     Cuando borro un jugador que existe en la partida
     Entonces tendre otro jugador menos en la partida    
     
+Escenario: Crear un tablero
+	Dado un nuevo juego de trivial
+	Entonces compruebo el numero de casillas y los colores de ellas
+	
+Escenario: Comprobar estadisticas
+	Dado un jugador con ninguna pregunta acertada ni fallada
+	Cuando acierta una pregunta
+	Entonces tendra una pregunta mas acertada
+	Y si falla una pregunta
+	Entonces tendra una pregunta mas fallada
+    
 Escenario: Mover ficha desde la casilla 6 con un 2
 	Dada un tablero del trivial y estoy en la casilla 6 y me sale un 2
     Entonces podre ir a las posiciones 19, 31, 43, 55, 67 y 4

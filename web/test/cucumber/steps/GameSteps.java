@@ -15,6 +15,7 @@ import org.junit.Assert;
 import cucumber.api.java.es.Cuando;
 import cucumber.api.java.es.Dada;
 import cucumber.api.java.es.Entonces;
+import cucumber.api.java.es.Y;
 import cucumber.modelo.SimulaBD;
 import cucumber.modelo.UserSimplificado;
 
@@ -25,6 +26,7 @@ public class GameSteps {
 	private static Trivial trivial;
 	private static List<Integer> posiblesMovimientos;
 	private static int ref;
+	private static Player estadisticas;
 	
 	@Dada("^la lista de usuarios del sistema$")
 	public void la_siguiente_lista_de_usuarios() throws Throwable {
@@ -94,7 +96,51 @@ public class GameSteps {
 		Assert.assertTrue(trivial.getPlayers().size() == ref);
 	}
 	
-	// mover ficha desde la casilla 6 con un 2 podré ir a 15, 31, 43, 56, 67, 4
+	//estadisticas
+	@Dada("^un jugador con ninguna pregunta acertada ni fallada$")
+	public void jugador_sin_estadisticas() throws Throwable {
+		estadisticas = new Player(new User("Pepe"));
+		estadisticas.setWins(0);
+		estadisticas.setFails(0);
+	}
+	
+	@Cuando("^acierta una pregunta$")
+	public void acierta_pregunta() throws Throwable {
+		ref = estadisticas.getWins();
+		estadisticas.setWins(estadisticas.getWins()+1); // quizas un metodo de incrementar y decrementar
+	}
+	
+	@Entonces("^tendra una pregunta mas acertada$")
+	public void pregunta_mas_acertada() throws Throwable {
+		Assert.assertTrue((ref + 1)==estadisticas.getWins());
+	}
+	
+	@Y("^si falla una pregunta$")
+	public void falla_pregunta() throws Throwable {
+		ref = estadisticas.getFails();
+		estadisticas.setFails(estadisticas.getFails()+1);
+	}
+	
+	@Entonces("^tendra una pregunta mas fallada$")
+	public void pregunta_mas_fallada() throws Throwable {
+		Assert.assertTrue((ref + 1)==estadisticas.getFails());		
+	}
+	
+	// creacion tablero
+	@Dada("^un nuevo juego de trivial$")
+	public void juego_nuevo() throws Throwable {
+		trivial = new Trivial();
+	}
+	
+	@Entonces("^compruebo el numero de casillas y los colores de ellas$")
+	public void comprueba_casillas_preguntas() throws Throwable {
+		Assert.assertTrue((trivial.getGraph().getBoxes().length - 2) % 6 == 0); 
+		Assert.assertTrue((trivial.getPlayers().size() == 0)); 
+		Assert.assertTrue((trivial.getGraph() != null));
+		//	Assert.assertTrue((!trivial.getQuestions().isEmpty()));
+	}
+	
+	// mover ficha desde la casilla 6 con un 2 podré ir a 15, 31, 43, 55, 67, 4
 	@Dada("^un tablero del trivial y estoy en la casilla 6 y me sale un 2$")
 	public void tablero_iniciado_para_mover_del_6_con_un_2() throws Throwable {
 		Graph tablero = new Graph();
@@ -104,9 +150,12 @@ public class GameSteps {
 			posiblesMovimientos.add(b.getId());
 	}
 	
+	@Entonces("^podre ir a las posiciones 19, 31, 43, 55, 67 y 4$")
 	public void tablero_muevo_del_6_con_un_2() throws Throwable {
 		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
-				{{ add(19); add(31); add(43); add(56); add(67); add(4); }};
+				{{ add(19); add(31); add(43); add(55); add(67); add(4); }};
+		for (Integer i : movimientos)
+			Assert.assertTrue(posiblesMovimientos.contains(i));
 	}
 	
 	// mover ficha desde la casilla 1 con un 2 podré ir a 9, 72, 3
@@ -119,6 +168,7 @@ public class GameSteps {
 			posiblesMovimientos.add(b.getId());
 	}
 	
+	@Entonces("^podre ir a las posiciones 9, 72, 3$")
 	public void tablero_muevo_del_1_con_un_2() throws Throwable {
 		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
 				{{ add(9); add(72); add(3); }};
@@ -136,6 +186,7 @@ public class GameSteps {
 			posiblesMovimientos.add(b.getId());
 	}
 	
+	@Entonces("^podre ir a las posiciones 7, 23, 10$")
 	public void tablero_muevo_del_15_con_un_5() throws Throwable {
 		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
 				{{ add(7); add(23); add(10); }};
@@ -160,7 +211,7 @@ public class GameSteps {
 			if (p.getUser().getLogin().equals("Pepe"))
 				player = p;
 		int n = player.getWedges().size();
-		player.getWedges().add(new Graph().getBox(1).getCategory());
+		player.addWedge(new Graph().getBox(1).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
 	}
 	
@@ -169,7 +220,7 @@ public class GameSteps {
 		trivial = new Trivial();
 		Player player = new Player(new User("Pepe"));
 		player.setActual(new Box(1));
-		player.setPiece(new Graph().getBox(1).getCategory());
+		player.addWedge(new Graph().getBox(1).getCategory());
 		trivial.addPlayer(player);
 	}
 	
@@ -180,16 +231,18 @@ public class GameSteps {
 			if (p.getUser().getLogin().equals("Pepe"))
 				player = p;
 		int n = player.getWedges().size();
-		player.getWedges().add(new Graph().getBox(1).getCategory());
+//error		
+		player.addWedge(new Graph().getBox(1).getCategory()); // no se deberia poder añadir; deberia ser 
+			// addWedge la encargada de comprobar si se puede añadir
 		Assert.assertTrue((n) == player.getWedges().size());
-	}
+	}	
 	
 	@Dada("^un jugador con el quesito de la casilla 1 que cae en la casilla 14$")
 	public void jugador_con_quesitos_casilla_14() throws Throwable {
 		trivial = new Trivial();
 		Player player = new Player(new User("Pepe"));
 		player.setActual(new Box(1));
-		player.setPiece(new Graph().getBox(1).getCategory());
+		player.addWedge(new Graph().getBox(1).getCategory());
 		trivial.addPlayer(player);
 	}
 	
@@ -200,7 +253,7 @@ public class GameSteps {
 			if (p.getUser().getLogin().equals("Pepe"))
 				player = p;
 		int n = player.getWedges().size();
-		player.getWedges().add(new Graph().getBox(14).getCategory());
+		player.addWedge(new Graph().getBox(14).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
 	}
 }
