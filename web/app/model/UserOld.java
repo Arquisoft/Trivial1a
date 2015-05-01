@@ -2,9 +2,8 @@ package model;
 
 import java.util.List;
 
-import net.vz.mongodb.jackson.Id;
-import net.vz.mongodb.jackson.JacksonDBCollection;
-import net.vz.mongodb.jackson.ObjectId;
+import com.mongodb.BasicDBObject;
+import net.vz.mongodb.jackson.*;
 import play.modules.mongodb.jackson.MongoDB;
 
 public class UserOld {
@@ -36,6 +35,27 @@ public class UserOld {
 	 public static List<UserOld> all() {
 		    return UserOld.coll.find().toArray();
 	 }
+
+	public static UserOld authenticate(String name, String password) {
 	
+		UserOld user = null;
+
+		BasicDBObject query = new BasicDBObject("name", name);
+		query.append("password",password);
+		
+		DBCursor<UserOld> cursor = coll.find(query);
+		
+		try {
+			   while(cursor.hasNext()) {
+				 user = cursor.next();
+			   }
+			} finally {
+			   cursor.close();
+			}
+			
+		return user;
+	}
+	
+	 
 
 }

@@ -1,10 +1,17 @@
-@()
+@(name:String)
 
 @import helper._
 
-@bienvenida("prejuego") {
+<!DOCTYPE html>
 
-<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/inicio.scala.css") media="screen" />	
+<html>
+<head>
+		<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/inicio.scala.css") media="screen" />	
+    	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    	<title>Prejuego</title>
+
+
 	<script type="text/javascript">
 window.onload = function() {
 document.onmousemove = function(ev) {
@@ -12,6 +19,8 @@ var x = ev.clientX;
 var y = ev.clientY;
 document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
 </script>
+</head>
+
 
  <body>
  
@@ -29,9 +38,9 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
                                 <form accept-charset="UTF-8" role="form" class="form-signin">
                                     <fieldset>
                                         <label class="panel-login">
-                                            <div class="login_result"></div>
+                                            <div class="login_result"><h2 class="navbar-text" align=center>Bienvenido @name !!</h2></div>
                                         </label>
-                                        <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='index'"id="Entrar" value="Jugar">
+                                        <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='tablero'"id="Entrar" value="Jugar">
                                         <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='estadisticas'" id="Entrar"  value="Estadisticas">
                                         <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
                                     </fieldset>
@@ -41,8 +50,6 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
                     </div>
                 </div>
             </div>
-            </body>
-            
-            
+            </body>      
 
-}
+</html>

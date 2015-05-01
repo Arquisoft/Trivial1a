@@ -1,10 +1,16 @@
-@()
+@(loginForm:Form[model.Login])
 
 @import helper._
 
-@bienvenida("Inicio") {
+<!DOCTYPE html>
 
+<html>
+
+<head>
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/inicio.scala.css") media="screen" />	
+	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    	<title>Inicio</title>
 	<script type="text/javascript">
 window.onload = function() {
 document.onmousemove = function(ev) {
@@ -12,6 +18,7 @@ var x = ev.clientX;
 var y = ev.clientY;
 document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
 </script>
+</head>
 
  <body>
  
@@ -21,22 +28,41 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
                         <div class="panel panel-default">
                             <div class="panel-heading">                                
                                 <div class="row-fluid user-row">
-                                    <img src="/public/images/titulo.png" class="img-responsive" alt="Conxole Admin"/>
+                                    <img src="@routes.Assets.at("images/titulo.png")" class="img-responsive" alt="Conxole Admin"/>
                                 </div>
                             </div>
                             <div class="panel-body">
-                      
-                                <form accept-charset="UTF-8" role="form" class="form-signin">
-                                    <fieldset>
+                                          
+                                                                 
+                                       @helper.form(action = routes.Application.enviarLogin()){
+											<form accept-charset="UTF-8" role="form" >
+                                    		<fieldset>
                                         <label class="panel-login">
-                                            <div class="login_result"></div>
+                                        
+                                        @if(loginForm.hasGlobalErrors){
+                                      	 <div class="alert alert-danger" role="alert">
+										 	 @loginForm.globalError.message
+										 </div>
+                                        } 
+                                            
                                         </label>
-                                        <input class="form-control" placeholder="Usuario" id="usuario" type="text">
-                                        <input class="form-control" placeholder="Password" id="password" type="password">
-                                        <input class="btn btn-lg btn-success btn-block" type="button" onClick="location.href ='prejuego' " id="Entrar" value="Entrar">
-                                        <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick="location.href ='registro' " value="Registrame">
+                                       
+                                        <input class="form-control" placeholder="Usuario" id="@loginForm("name").id" name="@loginForm("name").name" 
+                                        	value="@loginForm("name").value" type="text">
+                                        <input class="form-control" placeholder="Password" id="@loginForm("password").id" name="@loginForm("password").name" 
+                                        	value="@loginForm("password").value" type="password">
+                                     
+                                         <button type="submit" class="btn btn-lg btn-success btn-block">Entrar</button>
+                                       
+                                       
+                                       <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick="location.href ='registro' " value="Registrame">
                                     </fieldset>
                                 </form>
+                                      } 
+
+
+
+                                        
                             </div>
                         </div>
                     </div>
@@ -46,4 +72,4 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
             
             
 
-}
+</html>

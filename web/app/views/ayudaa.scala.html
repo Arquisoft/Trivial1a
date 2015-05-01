@@ -2,10 +2,16 @@
 
 @import helper._
 
-@bienvenida("Ayuda") {
+<!DOCTYPE html>
+
+<html>
+
 
     <head>
     	<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/ayuda.scala.css") media="screen" />	
+    	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    	<title>Ayuda</title>
 	<script type="text/javascript">
 window.onload = function() {
 document.onmousemove = function(ev) {
@@ -15,6 +21,10 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
 </script>
     	
     </head>
+    
+    
+    
+    
     <body>
        <nav class="navbar navbar-inverse sidebar" role="navigation">
     <div class="container-fluid">
@@ -49,4 +59,4 @@ document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
 <!-- Content Here -->
 </div>
     </body>
-}
+</html>
