@@ -145,17 +145,12 @@ public class GameSteps {
 	public void tablero_iniciado_para_mover_del_6_con_un_2() throws Throwable {
 		Graph tablero = new Graph();
 		posiblesMovimientos = tablero.getNextPositions(6, 2).stream().map(x -> x.getId()).collect(Collectors.toList());
-//		posiblesMovimientos = new ArrayList<Integer>();
-//		for (Box b : tablero.getNextPositions(6, 2))
-//			posiblesMovimientos.add(b.getId());
 	}
 	
 	@Entonces("^podre ir a las posiciones 19, 31, 43, 55, 67 y 4$")
 	public void tablero_muevo_del_6_con_un_2() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
-				{{ add(19); add(31); add(43); add(55); add(67); add(4); }};
-		for (Integer i : movimientos)
-			Assert.assertTrue(posiblesMovimientos.contains(i));
+		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(19); add(31); add(43); add(55); add(67); add(4); }};
+		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	
 	// mover ficha desde la casilla 1 con un 2 podré ir a 9, 72, 3
@@ -163,17 +158,12 @@ public class GameSteps {
 	public void tablero_iniciado_para_mover_del_1_con_un_2() throws Throwable {
 		Graph tablero = new Graph();
 		posiblesMovimientos = tablero.getNextPositions(1, 2).stream().map(x -> x.getId()).collect(Collectors.toList());
-//		posiblesMovimientos = new ArrayList<Integer>();
-//		for (Box b : tablero.getNextPositions(1, 2))
-//			posiblesMovimientos.add(b.getId());
 	}
 	
 	@Entonces("^podre ir a las posiciones 9, 72, 3$")
 	public void tablero_muevo_del_1_con_un_2() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
-				{{ add(9); add(72); add(3); }};
-		for (Integer i : movimientos)
-			Assert.assertTrue(posiblesMovimientos.contains(i));
+		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(9); add(72); add(3); }};
+		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	
 	// mover ficha desde la casilla 15 con un 5 podré ir a 7, 23, 10
@@ -181,17 +171,12 @@ public class GameSteps {
 	public void tablero_iniciado_para_mover_del_15_con_un_5() throws Throwable {
 		Graph tablero = new Graph();
 		posiblesMovimientos = tablero.getNextPositions(15, 5).stream().map(x -> x.getId()).collect(Collectors.toList());
-//		posiblesMovimientos = new ArrayList<Integer>();
-//		for (Box b : tablero.getNextPositions(15, 5))
-//			posiblesMovimientos.add(b.getId());
 	}
 	
 	@Entonces("^podre ir a las posiciones 7, 23, 10$")
 	public void tablero_muevo_del_15_con_un_5() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() 
-				{{ add(7); add(23); add(10); }};
-		for (Integer i : movimientos)
-			Assert.assertTrue(posiblesMovimientos.contains(i));
+		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(7); add(23); add(10); }};
+		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	
 	// acertar casilla
@@ -205,11 +190,8 @@ public class GameSteps {
 	
 	@Entonces("^acierta la pregunta y se le asigna un quesito$")
 	public void asignar_pregunta_casilla_1() throws Throwable {
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
-//		Player player = null;
-//		for (Player p : trivial.getPlayers())
-//			if (p.getUser().getLogin().equals("Pepe"))
-//				player = p;
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
+				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(1).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
@@ -226,10 +208,8 @@ public class GameSteps {
 	
 	@Entonces("^acierta la pregunta y no se le asigna el quesito al tenerlo ya$")
 	public void no_asignar_pregunta_casilla_1() throws Throwable {
-		Player player = null;
-		for (Player p : trivial.getPlayers())
-			if (p.getUser().getLogin().equals("Pepe"))
-				player = p;
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
+				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);;
 		int n = player.getWedges().size();
 //error		
 		player.addWedge(new Graph().getBox(1).getCategory()); // no se deberia poder añadir; deberia ser 
@@ -248,10 +228,8 @@ public class GameSteps {
 	
 	@Entonces("^acierta la pregunta y se le asigna el quesito$")
 	public void asignar_pregunta_casilla_14() throws Throwable {
-		Player player = null;
-		for (Player p : trivial.getPlayers())
-			if (p.getUser().getLogin().equals("Pepe"))
-				player = p;
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
+				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);;
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(14).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());

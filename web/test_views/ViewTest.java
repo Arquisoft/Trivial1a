@@ -30,7 +30,6 @@ public class ViewTest {
         assertEquals(driver.getTitle(), "Estadísticas");
     }
     */
-	
     @Test
     public void testContainsStyle() {
     	new Callback<TestBrowser>() {
