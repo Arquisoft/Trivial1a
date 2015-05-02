@@ -1,6 +1,7 @@
 package cucumber.steps;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -149,7 +150,8 @@ public class GameSteps {
 	
 	@Entonces("^podre ir a las posiciones 19, 31, 43, 55, 67 y 4$")
 	public void tablero_muevo_del_6_con_un_2() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(19); add(31); add(43); add(55); add(67); add(4); }};
+		ArrayList<Integer> movimientos = new ArrayList<Integer>();
+		movimientos.addAll(Arrays.asList(19, 31, 43, 55, 67, 4));
 		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	
@@ -162,7 +164,8 @@ public class GameSteps {
 	
 	@Entonces("^podre ir a las posiciones 9, 72, 3$")
 	public void tablero_muevo_del_1_con_un_2() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(9); add(72); add(3); }};
+		ArrayList<Integer> movimientos = new ArrayList<Integer>();
+		movimientos.addAll(Arrays.asList(9, 72, 3));
 		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	
@@ -175,7 +178,8 @@ public class GameSteps {
 	
 	@Entonces("^podre ir a las posiciones 7, 23, 10$")
 	public void tablero_muevo_del_15_con_un_5() throws Throwable {
-		ArrayList<Integer> movimientos = new ArrayList<Integer>() {{ add(7); add(23); add(10); }};
+		ArrayList<Integer> movimientos = new ArrayList<Integer>();
+		movimientos.addAll(Arrays.asList(7, 23, 10));
 		movimientos.stream().forEach(x -> Assert.assertTrue(posiblesMovimientos.contains(x)));	
 	}
 	

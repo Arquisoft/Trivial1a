@@ -15,5 +15,6 @@ libraryDependencies ++= Seq(
   "com.google.inject" % "guice" % "3.0" 
 )
 
+libraryDependencies += jdbc
 
 javaOptions in Test += "-Dconfig.file=conf/test.conf"

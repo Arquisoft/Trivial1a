@@ -6,29 +6,30 @@ import model.UserOld;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-
+import views.html.*;
 
 public class Application extends Controller {
+	
   static Form<Task> taskForm = Form.form(Task.class); 
   static Form<UserOld> userForm = Form.form(UserOld.class);
    
-  
   public static Result mostrarInicio() {
 	  
 	  Form<Login> loginForm = Form.form(Login.class);
-	  return ok(views.html.inicio.render(loginForm));
+	  return ok(inicio.render(loginForm));
   }
   
   public static Result  enviarLogin() {
+	  
 	  Form<Login> filledForm = Form.form(Login.class).bindFromRequest();
 	  
 	  if(filledForm.hasErrors()) {	  
 		  
-        return badRequest(views.html.inicio.render(filledForm));
+        return badRequest(inicio.render(filledForm));
 //		  return ok(routes.Application.mostrarInicio());
       } else {
     	  Login login = filledForm.get();
-       return ok(views.html.prejuego.render(login.name)); 
+       return ok(prejuego.render(login.name)); 
 //    	  return redirect(routes.Application.mostrarPrejuego(login.name)); 
       }
 
@@ -37,27 +38,29 @@ public class Application extends Controller {
   }
   
 //  public static Result mostrarPrejuego(String name ){
+// 
 ////    return redirect(routes.Application.tasks());
 //
 //	  return ok(views.html.prejuego.render(name));
 //  }
   
   public static Result mostrarRegistro() {
+	  
 //    return redirect(routes.Application.tasks());
-	  return ok(views.html.registro.render());
+	  return ok(registro.render());
   }
  
   public static Result mostrarAyuda() {
 
-	  return ok(views.html.ayudaa.render());
+	  return ok(ayudaa.render());
 }
   public static Result mostrarEstadisticas() {
 
-	  return ok(views.html.estadisticas.render());
+	  return ok(estadisticas.render());
 }
   public static Result mostrarTablero() {
 
-	  return ok(views.html.tablero.render());
+	  return ok(tablero.render());
 }
   
    
@@ -89,5 +92,4 @@ public class Application extends Controller {
 //    Task.delete(id);
 //    return redirect(routes.Application.tasks());
 //  }
-  
 }
