@@ -1,9 +1,14 @@
 package controllers;
 
+import java.awt.Point;
+
+
+
 import model.Login;
 import model.Register;
 import model.Task;
 import model.User;
+import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
@@ -36,13 +41,6 @@ public class Application extends Controller {
 		// return ok(views.html.prejuego.render(login.name));
 	}
 
-	// public static Result mostrarPrejuego(String name ){
-	//
-	// // return redirect(routes.Application.tasks());
-	//
-	// return ok(views.html.prejuego.render(name));
-	// }
-
 	public static Result mostrarRegistro() {
 		Form<Register> registerForm = Form.form(Register.class);
 		
@@ -66,6 +64,22 @@ public class Application extends Controller {
 	}
 	
 	
+	
+	public static Result clickTablero() {
+
+		DynamicForm data = Form.form().bindFromRequest();
+		
+		int x = Integer.parseInt( data.get("x") );
+
+		int y = Integer.parseInt( data.get("y") );
+		
+		Point point = new Point(x, y);
+		
+		return ok();
+		
+	}
+	
+	
 
 	public static Result mostrarAyuda() {
 
@@ -79,7 +93,7 @@ public class Application extends Controller {
 
 	public static Result mostrarTablero() {
 
-		return ok(tablero.render());
+		return ok(tablero.render(0,0));
 	}
 
 	// public static Result index() {

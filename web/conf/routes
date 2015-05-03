@@ -6,14 +6,16 @@
 
 GET     	/                           	controllers.Application.mostrarInicio()
 POST 		/								controllers.Application.enviarLogin()
-
 POST		/registro						controllers.Application.enviarRegistro()
+GET         /tablero                        controllers.Application.mostrarTablero()
+POST        /tablero                        controllers.Application.clickTablero()
+
 
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()
 GET    		/ayuda                          controllers.Application.mostrarAyuda()
 GET    		/estadisticas                   controllers.Application.mostrarEstadisticas()
-GET         /tablero                        controllers.Application.mostrarTablero()
+
 
 # Map static resources from the /public folder to the /assets URL path
 #GET     	/tasks                  		controllers.Application.tasks()

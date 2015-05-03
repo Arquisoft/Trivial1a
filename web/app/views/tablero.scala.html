@@ -1,4 +1,4 @@
-@()
+@(x:Int, y:Int)
 
 @import helper._
 
@@ -16,36 +16,69 @@
 
 
  @scripts= {
+ 
+ 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
 
   		<script type="text/javascript">
   		window.onload = function() {
-					var canvas = document.getElementById("lienzo");
-							if (canvas && canvas.getContext) {
-							
-							var ctx = canvas.getContext("2d");
-	
-							if (ctx) {			
-									
-					
-								var output = document.getElementById("output");								
-					
-								canvas.addEventListener("mousemove", function(evt) {
-								var mousePos = oMousePos(canvas, evt);
-								marcarCoords(output, mousePos.x, mousePos.y)
-								}, false);
-																		
-								canvas.addEventListener("mouseout", function(evt) {
-								limpiarCoords();
-								}, false);
-								     
-							}
-							var img = new Image();
-								img.src = "@routes.Assets.at("images/tableros/real500.png")";
-								img.onload = function(){
-								         ctx.drawImage(img, 0, 0);
-								     }	
+										var canvas = document.getElementById("lienzo");
+												if (canvas && canvas.getContext) {
+												
+												var ctx = canvas.getContext("2d");
+						
+												if (ctx) {			
+														
+										
+													var output = document.getElementById("output");								
+										
+													canvas.addEventListener("mousemove", function(evt) {
+														var mousePos = oMousePos(canvas, evt);
+													marcarCoords(output, mousePos.x, mousePos.y)
+													}, false);
+																							
+													canvas.addEventListener("mouseout", function(evt) {
+													limpiarCoords();
+													}, false);
+													
+													
+													canvas.addEventListener("click", function(evt) {
+													
+														var mousePos = oMousePos(canvas, evt);
+														$.post("tablero",
+															    {x:mousePos.x, y:mousePos.y},
+															    function(data, textStatus, jqXHR)
+															    {
+															           alert(data)
+															    });		
+												
+												
+													}, false);
+													
+													
 
-					}
+													     
+												}
+												var img = new Image();
+													img.src = "@routes.Assets.at("images/tableros/real500.png")";
+													img.onload = function(){
+													        ctx.drawImage(img, 0, 0);
+													     }	
+								     
+							
+								}
+					
+								
+								
+						
+					
+							
+							
+						
+						
+						
+								
+								
 									
 					function marcarCoords(object, x, y){
 							output.innerHTML = ("x: "+x+", y: "+y);
