@@ -18,10 +18,10 @@ public class User {
 	public String id;
 	
 	public String userName="";
-	public String name="";
-	public String password="";
+	public String name="";	
 	public String surName="";
-	public Role role;
+	public String password="";
+	public Role role = Role.USER;
 	
 	public User(String userName) {
 		this.userName = userName;
@@ -36,6 +36,43 @@ public class User {
 	public static User findByLogin(String login) {
 		
 		return users.findOne(new BasicDBObject("login", login));
+	}
+	
+	
+	public User(String userName, String name,String surName,String password) {
+
+		this.userName = userName;
+		this.name = name;
+		this.password = password;
+		this.surName = surName;
+		
+	}
+	public static User register(String userName, String name,String surName,String password) {
+		User user = new User(userName,name,surName,password);
+		
+		user = users.insert(user).getSavedObject();
+		
+		return user;
+	}
+	
+	public static boolean existUserName(String userName){
+		
+		User user = null;
+		
+		BasicDBObject query = new BasicDBObject("userName", userName);
+
+		DBCursor<User> cursor = users.find(query);
+		
+		try {
+			   while(cursor.hasNext()) {
+				 user = cursor.next();
+			   }
+			} finally {
+			   cursor.close();
+			}
+		
+		return user==null?false:true;
+		
 	}
 	
 	public static User authenticate(String userName, String password) {

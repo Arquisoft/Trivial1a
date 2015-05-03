@@ -195,7 +195,7 @@ public class GameSteps {
 	@Entonces("^acierta la pregunta y se le asigna un quesito$")
 	public void asignar_pregunta_casilla_1() throws Throwable {
 		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				login.equals("Pepe")).collect(Collectors.toList()).get(0);
+				userName.equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(1).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
@@ -213,7 +213,7 @@ public class GameSteps {
 	@Entonces("^acierta la pregunta y no se le asigna el quesito al tenerlo ya$")
 	public void no_asignar_pregunta_casilla_1() throws Throwable {
 		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				login.equals("Pepe")).collect(Collectors.toList()).get(0);;
+				userName.equals("Pepe")).collect(Collectors.toList()).get(0);;
 		int n = player.getWedges().size();
 //error		
 		player.addWedge(new Graph().getBox(1).getCategory()); // no se deberia poder añadir; deberia ser 
@@ -233,7 +233,7 @@ public class GameSteps {
 	@Entonces("^acierta la pregunta y se le asigna el quesito$")
 	public void asignar_pregunta_casilla_14() throws Throwable {
 		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				login.equals("Pepe")).collect(Collectors.toList()).get(0);;
+				userName.equals("Pepe")).collect(Collectors.toList()).get(0);;
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(14).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());

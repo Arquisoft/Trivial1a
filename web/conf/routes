@@ -7,6 +7,8 @@
 GET     	/                           	controllers.Application.mostrarInicio()
 POST 		/								controllers.Application.enviarLogin()
 
+POST		/registro						controllers.Application.enviarRegistro()
+
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()
 GET    		/ayuda                          controllers.Application.mostrarAyuda()

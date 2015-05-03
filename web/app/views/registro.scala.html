@@ -1,4 +1,4 @@
-@()
+@(registerForm: Form[model.Register])
 
 @import helper._
 
@@ -36,7 +36,45 @@
                             </div>
                             <div class="panel-body">
                       
-                                <form accept-charset="UTF-8" role="form" class="form-signin" name ="formularioContacto">
+                      @helper.form(action = routes.Application.enviarRegistro()){
+								<form accept-charset="UTF-8" role="form" class="form-signin" >
+                                    <fieldset>
+                                        <label class="panel-login">
+                                        
+                                        @if(registerForm.hasGlobalErrors){
+                                      	 <div class="alert alert-danger" role="alert">
+										 	 @registerForm.globalError.message
+										 </div>
+                                        } 
+                                            
+                                        </label>
+                                       
+                                        <input class="form-control" placeholder="Usuario" id="@registerForm("userName").id" name="@registerForm("userName").name" 
+                                        	value="@registerForm("userName").value" type="text">
+                                        	
+                                        <input class="form-control" placeholder="Nombre" id="@registerForm("name").id" name="@registerForm("name").name" 
+                                        	value="@registerForm("name").value" type="text">
+                                        	 <input class="form-control" placeholder="Apellidos" id="@registerForm("surName").id" name="@registerForm("surName").name" 
+                                        	value="@registerForm("surName").value" type="text">
+                                        	
+                                        <input class="form-control" placeholder="Password" id="@registerForm("password").id" name="@registerForm("password").name" 
+                                        	value="@registerForm("password").value" type="password">
+                                      	<input class="form-control" placeholder="Password de nuevo" id="@registerForm("password2").id" name="@registerForm("password2").name" 
+                                        	value="@registerForm("password2").value" type="password">
+                                        	
+                                        	
+                                         <button type="submit" class="btn btn-lg btn-success btn-block">Registrarme</button>
+                                    	 <input class="btn btn-lg btn-success btn-block" type="button" id="Atras" onClick= "javascript:history.back()" value="Atras">
+                                    </fieldset>
+                                </form>
+                                      } 
+                      
+                      
+                      
+                      
+                      
+                      
+                            <!--    <form accept-charset="UTF-8" role="form" class="form-signin" name ="formularioContacto">
                                     <fieldset>
                                         <label class="panel-login">
                                             <div class="login_result"></div>
@@ -52,6 +90,17 @@
                                          <input class="btn btn-lg btn-success btn-block" type="button" id="Entrar" onClick= "javascript:history.back()" value="Atras">
                                     </fieldset>
                                 </form>
+                                
+                                
+                           -->      
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 package controllers;
 
 import model.Login;
+import model.Register;
 import model.Task;
 import model.User;
 import play.data.Form;
@@ -10,8 +11,6 @@ import views.html.*;
 
 public class Application extends Controller {
 
-	static Form<Task> taskForm = Form.form(Task.class);
-	static Form<User> userForm = Form.form(User.class);
 
 	public static Result mostrarInicio() {
 
@@ -45,10 +44,28 @@ public class Application extends Controller {
 	// }
 
 	public static Result mostrarRegistro() {
-
-		// return redirect(routes.Application.tasks());
-		return ok(registro.render());
+		Form<Register> registerForm = Form.form(Register.class);
+		
+		return ok(registro.render(registerForm));
 	}
+	
+	public static Result enviarRegistro() {
+
+		Form<Register> filledForm = Form.form(Register.class).bindFromRequest();
+
+		if (filledForm.hasGlobalErrors()) {
+
+			return badRequest(registro.render(filledForm));
+			
+		} else {
+			Register registro= filledForm.get();
+			User.register(registro.userName, registro.name, registro.surName, registro.password);
+			return redirect(routes.Application.mostrarInicio());
+		}
+
+	}
+	
+	
 
 	public static Result mostrarAyuda() {
 
