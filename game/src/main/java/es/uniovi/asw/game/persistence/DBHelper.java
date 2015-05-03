@@ -36,7 +36,7 @@ public class DBHelper {
 			
 			char[] pass={'1','2','3','4'};
 			MongoCredential credential = MongoCredential.createMongoCRCredential("trivial1a", "trivial1a", pass);
-			mongo = new MongoClient(new ServerAddress("ds039311.mongolab.com:39311"), Arrays.asList(credential));
+			mongo = new MongoClient(new ServerAddress("ds029541.mongolab.com:29541"), Arrays.asList(credential));
 			
 		} catch (UnknownHostException e) {
 			throw new RuntimeException(

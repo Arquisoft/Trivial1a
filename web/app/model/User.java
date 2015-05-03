@@ -2,13 +2,12 @@ package model;
 
 import java.util.List;
 
-import model.types.Role;
-import net.vz.mongodb.jackson.Id;
-import net.vz.mongodb.jackson.JacksonDBCollection;
-import net.vz.mongodb.jackson.ObjectId;
-import play.modules.mongodb.jackson.MongoDB;
-
 import com.mongodb.BasicDBObject;
+
+import net.vz.mongodb.jackson.*;
+import play.modules.mongodb.jackson.MongoDB;
+import model.types.Role;
+
 
 public class User {
 
@@ -18,16 +17,18 @@ public class User {
 	@ObjectId
 	public String id;
 	
-	public String login;
-	public String password;
-	public String name;
-	public String surName;
+	public String userName="";
+	public String name="";
+	public String password="";
+	public String surName="";
 	public Role role;
 	
-	public User(String login) {
-		this.login = login;
+	public User(String userName) {
+		this.userName = userName;
 	}
-	
+	public User(){
+		
+	}
 	public List<User> findAll() {
 		return users.find().toArray();
 	}
@@ -35,5 +36,25 @@ public class User {
 	public static User findByLogin(String login) {
 		
 		return users.findOne(new BasicDBObject("login", login));
+	}
+	
+	public static User authenticate(String userName, String password) {
+		
+		User user = null;
+
+		BasicDBObject query = new BasicDBObject("userName", userName);
+		query.append("password",password);
+		
+		DBCursor<User> cursor = users.find(query);
+		
+		try {
+			   while(cursor.hasNext()) {
+				 user = cursor.next();
+			   }
+			} finally {
+			   cursor.close();
+			}
+			
+		return user;
 	}
 }

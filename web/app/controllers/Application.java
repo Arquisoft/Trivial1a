@@ -23,13 +23,13 @@ public class Application extends Controller {
 
 		Form<Login> filledForm = Form.form(Login.class).bindFromRequest();
 
-		if (filledForm.hasErrors()) {
+		if (filledForm.hasGlobalErrors()) {
 
 			return badRequest(inicio.render(filledForm));
 			// return ok(routes.Application.mostrarInicio());
 		} else {
 			Login login = filledForm.get();
-			return ok(prejuego.render(login.getLogin()));
+			return ok(prejuego.render(login.userName));
 			// return redirect(routes.Application.mostrarPrejuego(login.name));
 		}
 
