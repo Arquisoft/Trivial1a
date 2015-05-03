@@ -21,10 +21,10 @@ public class Test {
 		// Usuario que se recupera de la base de datos en el inicio de sesión
 		// si hay varios jugadores, se añaden a la partida creada por el usuario que inició la sesión
 		User u = new User("login");
-		u.setName("Login");
-		u.setSurName("Login");
-		u.setRole(Role.USER);
-		u.setPassword("pass");
+		u.name = "Login";
+		u.surName = "Login";
+		u.role = Role.USER;
+		u.password = "pass";
 		
 		Player p = new Player(u);
 		p.setActual(trivial.getGraph().getBox(7));

@@ -1,57 +1,39 @@
 package model;
 
+import java.util.List;
+
 import model.types.Role;
+import net.vz.mongodb.jackson.Id;
+import net.vz.mongodb.jackson.JacksonDBCollection;
+import net.vz.mongodb.jackson.ObjectId;
+import play.modules.mongodb.jackson.MongoDB;
+
+import com.mongodb.BasicDBObject;
 
 public class User {
 
-	private String login;
-	private String password;
-	private String name;
-	private String surName;
-	private Role role;
+	private static JacksonDBCollection<User, String> users = MongoDB.getCollection("users", User.class, String.class);
+	
+	@Id
+	@ObjectId
+	public String id;
+	
+	public String login;
+	public String password;
+	public String name;
+	public String surName;
+	public Role role;
 	
 	public User(String login) {
+		this.login = login;
+	}
+	
+	public List<User> findAll() {
+		return users.find().toArray();
+	}
+	
+	public static User findByLogin(String login) {
 		
-		this.login = login;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSurName() {
-		return surName;
-	}
-
-	public void setSurName(String surName) {
-		this.surName = surName;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
+		return users.findOne(new BasicDBObject("login", login));
 	}
 }

@@ -1,8 +1,8 @@
-name := "Trivial1a"
+name := "web"
 
 version := "1.0-SNAPSHOT"
 
-scalaVersion := "2.11.1"
+scalaVersion := "2.11.6"
 
 lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
@@ -12,9 +12,7 @@ libraryDependencies ++= Seq(
   "info.cukes" % "cucumber-java" % "1.2.2",
   "info.cukes" % "cucumber-guice" % "1.2.2",
   "info.cukes" % "cucumber-scala_2.10" % "1.2.2",
-  "com.google.inject" % "guice" % "3.0" 
+  "com.google.inject" % "guice" % "3.0"
 )
-
-libraryDependencies += jdbc
 
 javaOptions in Test += "-Dconfig.file=conf/test.conf"

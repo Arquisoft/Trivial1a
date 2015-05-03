@@ -2,33 +2,35 @@ package persistance.impl;
 
 import java.util.List;
 
+import com.mongodb.BasicDBObject;
+
 import model.User;
+import net.vz.mongodb.jackson.JacksonDBCollection;
 import persistance.UserDAO;
+import play.modules.mongodb.jackson.MongoDB;
 
 public class UserDAOImpl implements UserDAO {
 
-	//private DB dataBase;
+	private JacksonDBCollection<User, String> users;
 
 	public UserDAOImpl() {
 		
-		//DB.algo();
+		users = MongoDB.getCollection("users", User.class, String.class);
 	}
 	
 	@Override
 	public void save(User user) {
-		// TODO Auto-generated method stub
-
+		users.save(user);
 	}
 
 	@Override
 	public User findByLogin(String login) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return users.findOne(new BasicDBObject("login", login));
 	}
 
 	@Override
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return users.find().toArray();
 	}
 }
