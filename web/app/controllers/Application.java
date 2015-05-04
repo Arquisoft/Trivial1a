@@ -1,8 +1,8 @@
 package controllers;
 
-import java.awt.Point;
-
-
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 
 
 
@@ -14,22 +14,28 @@ import javax.imageio.ImageIO;
 
 import controllers.board2D.BuilderBoard2D;
 import model.Login;
+import model.Question;
 import model.Register;
-import model.Task;
 import model.Trivial;
 import model.User;
+import model.types.Color;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
-import views.html.*;
+import views.html.ayuda;
+import views.html.estadisticas;
+import views.html.inicio;
+import views.html.prejuego;
+import views.html.registro;
+import views.html.tablero;
 
 public class Application extends Controller {
-	
 	
 	static Trivial trivial = null;
 	static BuilderBoard2D builderBoard = null;
 	
+
 	public static Result mostrarInicio() {
 
 		Form<Login> loginForm = Form.form(Login.class);
@@ -60,10 +66,10 @@ public class Application extends Controller {
 
 	public static Result mostrarRegistro() {
 		Form<Register> registerForm = Form.form(Register.class);
-		
+
 		return ok(registro.render(registerForm));
 	}
-	
+
 	public static Result enviarRegistro() {
 
 		Form<Register> filledForm = Form.form(Register.class).bindFromRequest();
@@ -71,14 +77,16 @@ public class Application extends Controller {
 		if (filledForm.hasGlobalErrors()) {
 
 			return badRequest(registro.render(filledForm));
-			
+
 		} else {
-			Register registro= filledForm.get();
-			User.register(registro.userName, registro.name, registro.surName, registro.password);
+			Register registro = filledForm.get();
+			User.register(registro.userName, registro.name, registro.surName,
+					registro.password);
 			return redirect(routes.Application.mostrarInicio());
 		}
 
 	}
+
 	
 	public static Result clickJugar(){//TODO JUGAR
 		
@@ -98,39 +106,64 @@ public class Application extends Controller {
 	}
 
 	
-	
+
+
+
 	public static Result clickTablero() {
 
 		  DynamicForm form = Form.form().bindFromRequest();
 
-		     if (form.data().size() == 0) {
-		         return badRequest("No vienen coordenadas bien");
-		     } else { 
-		      
-		         String response = Integer.parseInt(form.get("x")) +";"+ Integer.parseInt(form.get("y") );
-		         
-		         
-		         BufferedImage img = builderBoard.getBufferedBoard();
-		         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		         try {
-					ImageIO.write( img, "jpg", baos );
-					baos.flush();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		         
-		     	byte[] imageInByte = baos.toByteArray();
-		         
-		         
-		         
-		         return ok(imageInByte).as("image/jpeg");
-		         
-		     }
+//		     if (form.data().size() == 0) {
+//		         return badRequest("No vienen coordenadas bien");
+//		     } else { 
+//		      
+//		         String response = Integer.parseInt(form.get("x")) +";"+ Integer.parseInt(form.get("y") );
+//		         
+//		         
+//		         BufferedImage img = builderBoard.getBufferedBoard();
+//		         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//		         try {
+//					ImageIO.write( img, "jpg", baos );
+//					baos.flush();
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+//		         
+//		     	byte[] imageInByte = baos.toByteArray();
+//		         
+//		         
+//		         
+//		         return ok(imageInByte).as("image/jpeg");
+//		         
+//		     }
 		   
+
+		if (form.data().size() == 0) {
+			return badRequest("No vienen coordenadas bien");
+		} else {
+
+			Map<Color, List<Question>> questions = trivial.getQuestions();
+			List<Question> questions2 = questions.get(Color.YELLOW);
+
+			Random generator = new Random();
+			int i = generator.nextInt(questions2.size());
+
+			Question question = questions2.get(i);
+
+			String response = Integer.parseInt(form.get("x")) + ";"
+					+ Integer.parseInt(form.get("y")) + ";"
+					+ question.getQuestion() + ";"
+					+ question.getAnswers().get(0).answer + ";"
+					+ question.getAnswers().get(1).answer + ";"
+					+ question.getAnswers().get(2).answer + ";"
+					+ question.getAnswers().get(3).answer + ";"
+					+ question.getAnswers().get(4).answer;
+			
+			return ok(response);
+		}
+
 	}
-	
-	
 
 	public static Result mostrarAyuda() {
 
@@ -142,10 +175,16 @@ public class Application extends Controller {
 		return ok(estadisticas.render());
 	}
 
+
 //	public static Result mostrarTablero() {
 //
 //		return ok(tablero.render(0,0));
 //	}
+
+	public static Result mostrarTablero() {
+
+		return ok(tablero.render());
+	}
 
 	// public static Result index() {
 	// return ok(

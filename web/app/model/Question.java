@@ -3,14 +3,27 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.vz.mongodb.jackson.Id;
+import net.vz.mongodb.jackson.JacksonDBCollection;
+import net.vz.mongodb.jackson.ObjectId;
+import play.modules.mongodb.jackson.MongoDB;
+
 public class Question {
-	private String category;
-	private String name;
-	private String question;
-	private List<Answer> answers;
-	private List<String> comments;
-	private int successes;
-	private int failures;
+	
+	private static JacksonDBCollection<Question, String> questions = MongoDB.getCollection("questions", Question.class, String.class);
+	
+	@Id
+	@ObjectId
+	public String id;
+	
+	public String category;
+	public String name;
+	public String question;
+	
+	public List<Answer> answers;
+	public List<String> comments;
+	public int successes;
+	public int failures;
 	
 	public Question() {
 		answers = new ArrayList<Answer>();
@@ -19,6 +32,10 @@ public class Question {
 		this.failures = 0;
 	}
 
+	public static List<Question> findAll() {
+		return questions.find().toArray();
+	}
+	
 	/**
 	 * GetCategory
 	 * 
@@ -100,7 +117,8 @@ public class Question {
 	 * @return List<Answers> con las {@Answers} de la Question
 	 */
 	public List<Answer> getAnswers() {
-		return answers;
+		 
+		return Answer.findByQuestion(getName());
 	}
 
 	/**

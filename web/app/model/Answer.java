@@ -1,5 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import net.vz.mongodb.jackson.DBCursor;
+import net.vz.mongodb.jackson.Id;
+import net.vz.mongodb.jackson.JacksonDBCollection;
+import net.vz.mongodb.jackson.ObjectId;
+import play.modules.mongodb.jackson.MongoDB;
+
+import com.mongodb.BasicDBObject;
+
 /**
  * 
  * @author Grupo 1a
@@ -7,15 +18,53 @@ package model;
  */
 public class Answer {
 	
-	private String answer;
-	private Boolean isCorrect;
+	private static JacksonDBCollection<Answer, String> answers = MongoDB.getCollection("answers", Answer.class, String.class);
+
+	@Id
+	@ObjectId
+	public String id;
+	public Boolean correct;
+	public String answer;
+	public String questionName;
+
+	
+	
+	public Answer(){}
+	
+	public String getQuestionName() {
+		return questionName;
+	}
+
+
+	public void setQuestionName(String questionName) {
+		this.questionName = questionName;
+	}
 
 	public Answer(String answer) {
 		
 		this.answer = answer;
-		this.isCorrect = false;
+		this.correct = false;
 	}
 
+	
+	public static List<Answer> findByQuestion(String question){
+		Answer correcta = null;
+		List<Answer> lista = new ArrayList<Answer>();
+		DBCursor<Answer> cursor= answers.find(new BasicDBObject("questionName", question));
+		
+		try {
+			   while(cursor.hasNext()) {
+				 lista.add(cursor.next());
+				 if(cursor.curr().correct)
+					 correcta=cursor.curr();
+			   }
+			} finally {
+			   cursor.close();
+			}
+		lista.add(correcta);
+		return lista;
+		
+	 }
 	/**
 	 * GetAnswer;
 	 * 
@@ -31,7 +80,7 @@ public class Answer {
 	 * @return Boolean que determina si es correcta o no la pregunta.
 	 */
 	public Boolean getIsCorrect() {
-		return isCorrect;
+		return correct;
 	}
 
 	/**
@@ -42,6 +91,6 @@ public class Answer {
 	 *            correcta
 	 */
 	public void setIsCorrect(Boolean isCorrect) {
-		this.isCorrect = isCorrect;
+		this.correct = isCorrect;
 	}
 }

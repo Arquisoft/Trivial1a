@@ -7,26 +7,26 @@ import model.types.Color;
 
 public class Player {
 
-	private User user;
+	private String name;
 	private Box actual;
 	private Color piece;
 	private List<Color> wedges;
 	private Integer wins, fails;
 	
-	public Player(User user) {
+	public Player(String name) {
 		
-		this.user = user;
+		this.name = name;
 		this.wedges = new ArrayList<>();
 		this.setWins(0);
 		this.setFails(0);
 	}
 	
-	public User getUser() {
-		return user;
+	public String getUser() {
+		return name;
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
+	public void setUser(String name) {
+		this.name = name;
 	}
 
 	public Box getActual() {

@@ -14,6 +14,7 @@ public class Trivial {
 	private Graph graph;
 	private Map<Color,List<Question>> questions;
 	private List<Player> players;
+
 	
 	public Trivial(String playerName) {
 		
@@ -139,7 +140,7 @@ public class Trivial {
 	private void loadQuestions() {
 		this.questions = new HashMap<>();
 		
-		//for (Color c : Color.values())
-		//	this.questions.put(c, new ArrayList<>());
+		for (Color c : Color.values())
+			this.questions.put(c, Question.findAll());
 	}
 }

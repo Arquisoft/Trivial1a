@@ -15,7 +15,7 @@ public class Test {
 //			System.out.println(b.getId());
 //		}
 		
-		Trivial trivial = new Trivial();
+		Trivial trivial = new Trivial("pepe");
 		
 		
 		// Usuario que se recupera de la base de datos en el inicio de sesión
@@ -26,7 +26,7 @@ public class Test {
 		u.role = Role.USER;
 		u.password = "pass";
 		
-		Player p = new Player(u);
+		Player p = new Player("pepe");
 		p.setActual(trivial.getGraph().getBox(7));
 		p.setPiece(Color.BLUE);
 		

@@ -1,6 +1,5 @@
 package model;
 
-import play.data.validation.Constraints.Required;
 
 public class Register {
 
