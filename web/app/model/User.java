@@ -2,11 +2,14 @@ package model;
 
 import java.util.List;
 
-import com.mongodb.BasicDBObject;
-
-import net.vz.mongodb.jackson.*;
-import play.modules.mongodb.jackson.MongoDB;
 import model.types.Role;
+import net.vz.mongodb.jackson.DBCursor;
+import net.vz.mongodb.jackson.Id;
+import net.vz.mongodb.jackson.JacksonDBCollection;
+import net.vz.mongodb.jackson.ObjectId;
+import play.modules.mongodb.jackson.MongoDB;
+
+import com.mongodb.BasicDBObject;
 
 
 public class User {
