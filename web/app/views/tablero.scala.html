@@ -1,4 +1,4 @@
-@(x:Int, y:Int)
+@()
 
 @import helper._
 
@@ -35,31 +35,34 @@
 														var mousePos = oMousePos(canvas, evt);
 													marcarCoords(output, mousePos.x, mousePos.y)
 													}, false);
-																							
+																						
 													canvas.addEventListener("mouseout", function(evt) {
 													limpiarCoords();
 													}, false);
 													
 													
 													canvas.addEventListener("click", function(evt) {
-													
-														var mousePos = oMousePos(canvas, evt);
-														$.post("tablero",
-															    {x:mousePos.x, y:mousePos.y},
-															    function(data, textStatus, jqXHR)
-															    {
-															           alert(data)
-															    });		
-												
-												
-													}, false);
-													
-													
+             
+														              var mousePos = oMousePos(canvas, evt);
+														              $.post("tablero",
+														                   {x:mousePos.x, y:mousePos.y},
+														                   function(data, textStatus, jqXHR){
+														                   			   var ficha = new Image();
+																		               ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
+																		               ficha.onload = function(){
+																		               var split=data.split(";")
+																		                     ctx.drawImage(ficha, split[0],split[1]);
+																		                  }
+																		                   });  
+																		            
+																		            
+																	}, false);
+																	
 
 													     
 												}
 												var img = new Image();
-													img.src = "@routes.Assets.at("images/tableros/real500.png")";
+													img.src = "@{Application.clickTablero()}";
 													img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	

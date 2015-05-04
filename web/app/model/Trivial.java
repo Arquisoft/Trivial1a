@@ -15,10 +15,11 @@ public class Trivial {
 	private Map<Color,List<Question>> questions;
 	private List<Player> players;
 	
-	public Trivial() {
+	public Trivial(String playerName) {
 		
 		this.graph = new Graph();
 		this.players = new ArrayList<>();
+		players.add(new Player(playerName));
 		loadQuestions();
 	}
 

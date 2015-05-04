@@ -4,9 +4,19 @@ import java.awt.Point;
 
 
 
+
+
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
+import controllers.board2D.BuilderBoard2D;
 import model.Login;
 import model.Register;
 import model.Task;
+import model.Trivial;
 import model.User;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -15,8 +25,11 @@ import play.mvc.Result;
 import views.html.*;
 
 public class Application extends Controller {
-
-
+	
+	
+	static Trivial trivial = null;
+	static BuilderBoard2D builderBoard = null;
+	
 	public static Result mostrarInicio() {
 
 		Form<Login> loginForm = Form.form(Login.class);
@@ -33,7 +46,11 @@ public class Application extends Controller {
 			// return ok(routes.Application.mostrarInicio());
 		} else {
 			Login login = filledForm.get();
-			return ok(prejuego.render(login.userName));
+			
+			Form<String> nameForm = Form.form(String.class);
+			
+			return ok(prejuego.render(login.userName, nameForm));
+			
 			// return redirect(routes.Application.mostrarPrejuego(login.name));
 		}
 
@@ -63,20 +80,54 @@ public class Application extends Controller {
 
 	}
 	
+	public static Result clickJugar(){//TODO JUGAR
+		
+//		Form<String> nameForm = Form.form(String.class).bindFromRequest();
+		
+//		if (nameForm.hasGlobalErrors()) {
+//			return badRequest();
+//		} else {
+			
+			trivial = new Trivial("NOMBRE");
+			builderBoard = new BuilderBoard2D(true, false, false, false, false, false);
+			
+			return ok(tablero.render());
+//		}
+
+		
+	}
+
 	
 	
 	public static Result clickTablero() {
 
-		DynamicForm data = Form.form().bindFromRequest();
-		
-		int x = Integer.parseInt( data.get("x") );
+		  DynamicForm form = Form.form().bindFromRequest();
 
-		int y = Integer.parseInt( data.get("y") );
-		
-		Point point = new Point(x, y);
-		
-		return ok();
-		
+		     if (form.data().size() == 0) {
+		         return badRequest("No vienen coordenadas bien");
+		     } else { 
+		      
+		         String response = Integer.parseInt(form.get("x")) +";"+ Integer.parseInt(form.get("y") );
+		         
+		         
+		         BufferedImage img = builderBoard.getBufferedBoard();
+		         ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		         try {
+					ImageIO.write( img, "jpg", baos );
+					baos.flush();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		         
+		     	byte[] imageInByte = baos.toByteArray();
+		         
+		         
+		         
+		         return ok(imageInByte).as("image/jpeg");
+		         
+		     }
+		   
 	}
 	
 	
@@ -91,10 +142,10 @@ public class Application extends Controller {
 		return ok(estadisticas.render());
 	}
 
-	public static Result mostrarTablero() {
-
-		return ok(tablero.render(0,0));
-	}
+//	public static Result mostrarTablero() {
+//
+//		return ok(tablero.render(0,0));
+//	}
 
 	// public static Result index() {
 	// return ok(
