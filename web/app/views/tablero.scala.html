@@ -3,14 +3,13 @@
 @import helper._
 
 @main("Juego",scripts) {
+<link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/index.scala.css") media="screen" />	
   
-<div id="container" style="position:absolute;top: 100px; left: 100px; margin:200 auto 30px auto;">
+<div id="container" >
 	<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
-	<div id="output" style="position:absolute; padding:5px; min-width:100px;"></div>
+	<div id="output"></div>
 </div>
-
 <h2>Trivial 1a</h2>
-   
     
 }
 
