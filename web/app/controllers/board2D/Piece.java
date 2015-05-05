@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 public class Piece {
 
     private BufferedImage image;
-    private int boxId = 72; //CASILLA_CENTRAL
+//    private int boxId = 7; //CASILLA_CENTRAL
 
     /**
      * Sole constructor.
@@ -46,13 +46,13 @@ public class Piece {
         return new Dimension(image.getWidth(), image.getHeight());
     }
 
-	public int getBoxId() {
-		return boxId;
-	}
-
-	public void setBoxId(int boxId) {
-		this.boxId = boxId;
-	}
+//	public int getBoxId() {
+//		return boxId;
+//	}
+//
+//	public void setBoxId(int boxId) {
+//		this.boxId = boxId;
+//	}
     
   
 }

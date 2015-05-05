@@ -19,6 +19,7 @@ public class Player {
 		this.wedges = new ArrayList<>();
 		this.setWins(0);
 		this.setFails(0);
+		actual = new Box(7);
 	}
 	
 	public String getUser() {

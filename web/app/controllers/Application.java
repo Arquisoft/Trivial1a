@@ -10,7 +10,11 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
+
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
 import model.Login;
 import model.Question;
 import model.Register;
@@ -28,6 +32,7 @@ import views.html.prejuego;
 import views.html.registro;
 import views.html.tablero;
 import controllers.board2D.BuilderBoard2D;
+import cucumber.api.java.cs.A;
 
 public class Application extends Controller {
 	
@@ -98,6 +103,7 @@ public class Application extends Controller {
 			trivial = new Trivial("NOMBRE");
 			builderBoard = new BuilderBoard2D(true, false, false, false, false, false);
 			
+			getImage();
 			return ok(tablero.render());
 //		}
 
@@ -121,6 +127,34 @@ public class Application extends Controller {
 	        } catch (Exception e) {  }
 	        System.out.println("LLEGA AQUI");
 	    return ok(input).as("image/png");
+	}
+	
+	
+	public static Result clickDado(){
+			
+		//pintar posibles
+		int[] aux = trivial.getPosiblesMov();
+		
+		builderBoard.pintarPosiblesMov(aux);
+		
+//////
+		 ByteArrayInputStream input = null; 
+		 
+	        try {
+	        	BufferedImage img = builderBoard.getBufferedBoard();
+	        	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	        	byte[] byteArray={};          
+	            ImageIO.write( img, "png", baos );
+	            baos.flush();
+	            byteArray = baos.toByteArray();
+	            input = new ByteArrayInputStream(byteArray);
+	        } catch (Exception e) {  }
+	        System.out.println("LLEGA CLICKDADO");
+	        
+//	        Base64.encode(byteArray);
+	    return ok(input).as("image/png");
+//		 System.out.println("LLEGA CLICKDADO");
+//		return getImage();
 	}
 
 	public static Result clickTablero() {

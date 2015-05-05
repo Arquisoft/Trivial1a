@@ -2,6 +2,7 @@ package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -14,6 +15,7 @@ public class Trivial {
 	private Graph graph;
 	private Map<Color,List<Question>> questions;
 	private List<Player> players;
+	private Player actualPlayer;
 
 	
 	public Trivial(String playerName) {
@@ -21,6 +23,7 @@ public class Trivial {
 		this.graph = new Graph();
 		this.players = new ArrayList<>();
 		players.add(new Player(playerName));
+		actualPlayer= players.get(0);
 		loadQuestions();
 	}
 
@@ -55,6 +58,23 @@ public class Trivial {
 	public void removePlayer(Player player) {
 		this.players.remove(player);
 	}
+	
+	
+	public int[] getPosiblesMov(){
+		
+		Integer tirada = Random.throwDie();
+		Integer[] aux = {};
+		List<Box> positions = graph.getNextPositions(actualPlayer.getActual().getId(), tirada);
+
+		int[] ret = new int[positions.size()];
+		  for(int i = 0;i < ret.length;i++)
+			    ret[i] = positions.get(i).getId();
+
+		return ret;
+	}
+	
+
+	
 	
 	public void game() {
 		

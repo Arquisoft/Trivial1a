@@ -61,7 +61,7 @@
                         	<p id="numero" >Número Obtenido</p>
                         </div>
                         <div class="panel-footer">
-                <button id="lanzar" type="button" class="btn btn-primary" onclick="lanzar()">Lanzar</button> 
+                <button id="lanzar" type="button" class="btn btn-primary" onclick="lanzar()" >Lanzar</button> 
                         </div>
                     </div>
        </div>
@@ -78,17 +78,38 @@
 
    		<script type="text/javascript">
 
-  		
-  		function lanzar(){
-  			var total = 0;
-  			var parrafo;
-  			$("#lanzar").prop('disabled', true);
-  			parrafo=document.getElementById("numero");
- 			total = Math.floor((Math.random() * 6) + 1);	
- 			parrafo.innerHTML=total;
- 			
-  		}
-  		
+function lanzar(){
+
+
+
+
+	var total = 0;
+	var parrafo;
+	$("#lanzar").prop('disabled', true);
+	parrafo=document.getElementById("numero");
+	total = Math.floor((Math.random() * 6) + 1);	
+	parrafo.innerHTML=total;
+	
+		
+	$.ajax({
+    type: "GET",
+    url: "tablero/dado",
+    dataType: "image/png",
+    success: function(img) {
+     			
+  		      
+    },
+    error: function(error, txtStatus) {
+      console.log(txtStatus);
+      console.log('error');
+    }
+  });
+	
+				
+
+}
+
+ 		
   		
   		function compareAnswer(elmnt){
   		var correcta;
@@ -126,18 +147,9 @@
 										
 													var output = document.getElementById("output");								
 										
-													canvas.addEventListener("mousemove", function(evt) {
-														var mousePos = oMousePos(canvas, evt);
-													marcarCoords(output, mousePos.x, mousePos.y)
-													}, false);
-																							
-													canvas.addEventListener("mouseout", function(evt) {
-													limpiarCoords();
-													}, false);
-													
-													
+																								
 														var img = new Image(); 
-														img.src=@{routes.Application.getImage()}
+														img.src=@{routes.Application.getImage()};
 														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
@@ -151,7 +163,7 @@
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
-														img.src=@{routes.Application.getImage()};
+														img.src=@{routes.Application.getImage()}
 														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
@@ -194,35 +206,7 @@
 							
 								}
 					
-								
-								
-						
-					
-							
-							
-						
-						
-						
-								
-								
-									
-					function marcarCoords(object, x, y){
-							output.innerHTML = ("x: "+x+", y: "+y);
-							output.style.top= (y+10)+"px";
-							output.style.left= (x+10)+"px";
-							output.style.backgroundColor="#FFF";
-							output.style.border="1px solid #d9d9d9"
-							canvas.style.cursor = "pointer";
-					}
-													
-					function limpiarCoords(){
-							output.innerHTML ="";
-							output.style.top= 0+"px";
-							output.style.left= 0+"px";
-							output.style.backgroundColor="transparent"
-							output.style.border="none";
-							canvas.style.cursor = "default";
-			}
+
 									
 					function oMousePos(canvas, evt) {
 					var ClientRect = canvas.getBoundingClientRect();

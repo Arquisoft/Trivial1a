@@ -60,27 +60,6 @@ public class TrivialBoard  {
         pieces.put(name, new Piece(buferedImage) );
     }
 
-//    @Override
-//    public Dimension getPreferredSize() {
-//        return new Dimension(offscreenImage.getWidth(null), offscreenImage.getHeight(null));
-//    }
-//
-//    @Override
-//    public int getWidth() {
-//        return offscreenImage.getWidth(null);
-//    }
-//
-//    @Override
-//    public int getHeight() {
-//        return offscreenImage.getHeight(null);
-//    }
-//
-//    @Override
-//    public void paintComponent(Graphics g) {
-//        super.paintComponent(g);
-//        g.drawImage(offscreenImage, 0, 0, null);
-//    }
-
     /**
      * Display the board, without any pieces.
      * Useful to initialize your screen.
@@ -92,36 +71,36 @@ public class TrivialBoard  {
     }
     
     //primer elemento es el k cambia 
-    public void repintarTablero(String piezas[], int boxId){
-    	
-    	drawBoard();						//resetear tablero		
-    	
-    	pintarPieza(piezas[0], boxId);
-    	    
-    	if(piezas.length > 1)
-			for (int i = 1; i < piezas.length; i++) {
-				pintarPieza(piezas[i]);
-			}
-    	
-    }
+//    public void repintarTablero(String piezas[], int boxId){
+//    	
+//    	drawBoard();						//resetear tablero		
+//    	
+//    	pintarPieza(piezas[0], boxId);
+//    	    
+//    	if(piezas.length > 1)
+//			for (int i = 1; i < piezas.length; i++) {
+//				pintarPieza(piezas[i]);
+//			}
+//    	
+//    }
 
     
-    public void pintarPieza(String pieza){
-		
-		Graphics2D g = offscreenImage.createGraphics();
-	    Piece piece = pieces.get(pieza);
-	    Box box = board.getBox(piece.getBoxId());
-	    
-	    g.drawImage(piece.getImage(), box.getPoint().x, box.getPoint().y, null);
-//	    repaint();
-	}
+//    public void pintarPieza(String pieza){
+//		
+//		Graphics2D g = offscreenImage.createGraphics();
+//	    Piece piece = pieces.get(pieza);
+//	    Box box = board.getBox(piece.getBoxId());
+//	    
+//	    g.drawImage(piece.getImage(), box.getPoint().x, box.getPoint().y, null);
+////	    repaint();
+//	}
       
-    private void pintarPieza(String pieza, int boxId){
+    public void pintarPieza(String pieza, int boxId){
 		
 		Graphics2D g = offscreenImage.createGraphics();
 	    Box box = board.getBox(boxId);
 	    Piece piece = pieces.get(pieza);
-	    piece.setBoxId(boxId);
+//	    piece.setBoxId(boxId);
 		
 	    g.drawImage(piece.getImage(), box.getPoint().x, box.getPoint().y, null);
 //	    repaint();

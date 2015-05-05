@@ -55,6 +55,18 @@ public class BuilderBoard2D {
 	
 	  
 	  
+		public void pintarPosiblesMov(int[] pos){
+			
+			gb2d.drawBoard();
+//	        gb2d.pintarPieza(piezas.getItem(0), CASILLA_CENTRAL);
+			System.out.println("POS: ");
+			for (int i = 0; i < pos.length; i++) {
+				gb2d.pintarPieza("x",  pos[i] );
+				
+			}
+			
+		}
+	
 		public BufferedImage getBufferedBoard(){
 			
 			 try {
@@ -63,6 +75,7 @@ public class BuilderBoard2D {
 					e.printStackTrace();
 				} 
 			 
+			 System.out.println("YEAHHH");
 			return gb2d.getImgBoard();
 		}
 		
@@ -82,8 +95,11 @@ public class BuilderBoard2D {
           piezas = new List();
           initPieces(jAmarillo, jAzul, jMarron, jNaranja, jRosa, jVerde);
           
-          gb2d.repintarTablero(piezas.getItems(), CASILLA_CENTRAL);	
-                      
+//          gb2d.repintarTablero(piezas.getItems(), CASILLA_CENTRAL);	
+          gb2d.drawBoard();
+          gb2d.pintarPieza(piezas.getItem(0), CASILLA_CENTRAL);
+          
+          
 		   } catch (IOException ex) {
 		       System.out.println(ex.getMessage());
 		       System.exit(1);
@@ -97,38 +113,28 @@ public class BuilderBoard2D {
 	  				14,15,16,17,18,19,  20,57,58,59,60,61,  21,22,23,24,25,26,  
 	  				27,62,63,64,65,66,  28,29,30,31,32,33,  34,67,68,69,70,71,
 	  				35,36,37,38,39,40,  41,42,43,44,45,46,   0,1,2,3,4,5};
-		  
-//		  System.out.println(colores[aux[7]]);System.out.println(coordenadas.length);
-//		  System.out.println(coordenadas.length);System.out.println(colores.length);
-//		  System.out.println("aux: "+aux.length);
-	  int j = 1; 
+
 		for (int i = 0; i < aux.length; i++) {
 			
 			if(i+1==7){
 				gb2d.addBox(CASILLA_CENTRAL, new Color(68, 56, 140), new Point(250 - MITAD_FICHA,250 - MITAD_FICHA)); // CENTRAL
-//				j++;
 				continue;
 			}
 				
 			gb2d.addBox(i+1, new Color(colores[aux[i]], colores[aux[i]], colores[aux[i]]),new Point(coordenadas[aux[i]][0] - MITAD_FICHA, coordenadas[aux[i]][1] - MITAD_FICHA));
-//			System.out.println(j);
-//			j++;
 			
 		}
-//		System.out.println(j);
-//		gb2d.addBox(0, new Color(15,15,15),new Point(324 - MITAD_FICHA, 463 - MITAD_FICHA));
-		
-		
-		//gb2d.addBox(ZONA_BLANCA, new Color(255, 255, 255), new Point(0, 0)); // BLANCO
-	
 
-		}
+	  }
 	  
 	@SuppressWarnings("unused")
 	  private void initPieces(boolean jAmarillo, boolean jAzul, boolean jMarron, boolean jNaranja, boolean jRosa, boolean jVerde){
 
 	    	try {
 	    		int i = 0;
+	    		
+	    		
+	    		
 		    	if(jAmarillo){
 		    		BufferedImage ficha = createPiece( "img/fichas/fAmarilla.png", CUNIA_AMARILLA, CUNIA_AZUL, CUNIA_MARRON, CUNIA_NARANJA, CUNIA_ROSA, CUNIA_VERDE);
 		    		gb2d.addPiece( "Ficha_Amarillo", ficha );
@@ -171,6 +177,11 @@ public class BuilderBoard2D {
 //		    		jugadores[i] = 6;
 		    		i++;
 				}
+		    	
+		    	BufferedImage equis = ImageIO.read(new File("img/fichas/x.png"));
+	    		gb2d.addPiece( "x", equis );
+	    		piezas.add("x");
+		    	
 	  		} catch (IOException e) {
 	  			e.printStackTrace();
 	  		}

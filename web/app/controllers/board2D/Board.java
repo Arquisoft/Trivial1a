@@ -40,7 +40,7 @@ public class Board {
      * @throws IllegalArgumentException if the id or the cache color already exists
      */
     public void addBox(int id, Color cache, Point reference) {
-    	 System.out.println("boxes: "+boxes.size());
+    	
         if(boxes.containsKey(id)) {
             throw new IllegalArgumentException("Duplicated id: " + id);
         }
