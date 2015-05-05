@@ -18,6 +18,22 @@ public class Trivial {
 	private Player actualPlayer;
 
 	
+	public Player getActualPlayer() {
+		return actualPlayer;
+	}
+
+	public void setActualPlayer(Player actualPlayer) {
+		this.actualPlayer = actualPlayer;
+	}
+
+	public void setGraph(Graph graph) {
+		this.graph = graph;
+	}
+
+	public void setPlayers(List<Player> players) {
+		this.players = players;
+	}
+
 	public Trivial(String playerName) {
 		
 		this.graph = new Graph();
@@ -60,10 +76,9 @@ public class Trivial {
 	}
 	
 	
-	public int[] getPosiblesMov(){
+	public int[] getPosiblesMov(int x){
 		
-		Integer tirada = Random.throwDie();
-		Integer[] aux = {};
+		Integer tirada = x; 
 		List<Box> positions = graph.getNextPositions(actualPlayer.getActual().getId(), tirada);
 
 		int[] ret = new int[positions.size()];

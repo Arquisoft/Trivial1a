@@ -1,20 +1,16 @@
 package controllers;
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.awt.Point;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-
+import model.Box;
 import model.Login;
 import model.Question;
 import model.Register;
@@ -32,7 +28,6 @@ import views.html.prejuego;
 import views.html.registro;
 import views.html.tablero;
 import controllers.board2D.BuilderBoard2D;
-import cucumber.api.java.cs.A;
 
 public class Application extends Controller {
 	
@@ -92,19 +87,18 @@ public class Application extends Controller {
 	}
 
 	
-	public static Result clickJugar(){//TODO JUGAR
+public static Result clickJugar(String name){//TODO JUGAR
 		
 //		Form<String> nameForm = Form.form(String.class).bindFromRequest();
 		
 //		if (nameForm.hasGlobalErrors()) {
 //			return badRequest();
 //		} else {
-			
-			trivial = new Trivial("NOMBRE");
+			System.out.println(name);
+			trivial = new Trivial(name);
 			builderBoard = new BuilderBoard2D(true, false, false, false, false, false);
 			
-			getImage();
-			return ok(tablero.render());
+			return ok(tablero.render(name));
 //		}
 
 		
@@ -133,7 +127,10 @@ public class Application extends Controller {
 	public static Result clickDado(){
 			
 		//pintar posibles
-		int[] aux = trivial.getPosiblesMov();
+
+		  DynamicForm form = Form.form().bindFromRequest();
+		int x=Integer.parseInt(form.get("total"));
+		int[] aux = trivial.getPosiblesMov(x);
 		
 		builderBoard.pintarPosiblesMov(aux);
 		
@@ -161,29 +158,14 @@ public class Application extends Controller {
 
 		  DynamicForm form = Form.form().bindFromRequest();
 
-//		         BufferedImage img = builderBoard.getBufferedBoard();
-//		         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//		         try {
-//					ImageIO.write( img, "jpg", baos );
-//					baos.flush();
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//		         
-//		     	byte[] imageInByte = baos.toByteArray();
-//		      
-//		     	 File file = new File( "d:\Images\"+name+".jpg" );
-//		        return ok(org.apache.commons.io.FileUtils.readFileToByteArray(file)).as("image/jpeg");
-// 
 
 		if (form.data().size() == 0) {
 			return badRequest("No vienen coordenadas bien");
 		} else {
 
 			int casilla = builderBoard.getCasilla(new Point(Integer.parseInt(form.get("x")), Integer.parseInt(form.get("y"))) ) ;
-			
-			System.out.println(casilla);
+			Box actual=new Box(casilla);
+			trivial.getActualPlayer().setActual(actual); 
 			
 			Map<Color, List<Question>> questions = trivial.getQuestions();
 			List<Question> questions2 = questions.get(Color.YELLOW);
@@ -222,11 +204,11 @@ public class Application extends Controller {
 //
 //		return ok(tablero.render(0,0));
 //	}
-
-	public static Result mostrarTablero() {
-
-		return ok(tablero.render());
-	}
+//
+//	public static Result mostrarTablero() {
+//
+//		return ok(tablero.render());
+//	}
 
 	// public static Result index() {
 	// return ok(

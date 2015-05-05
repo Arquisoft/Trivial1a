@@ -7,19 +7,12 @@
 GET     	/                           	controllers.Application.mostrarInicio()
 POST 		/								controllers.Application.enviarLogin()
 POST		/registro						controllers.Application.enviarRegistro()
-GET 		/tablero/dado					controllers.Application.clickDado()
+
+POST 		/dado							controllers.Application.clickDado()
 GET     	/tablero/   					controllers.Application.getImage()
-
-GET 		/tablero 						controllers.Application.clickJugar()
-
-
-#GET         /tablero                        controllers.Application.mostrarTablero()
+GET 		/tablero/:name 					controllers.Application.clickJugar(name: String)
 POST        /tablero                        controllers.Application.clickTablero()
-
-
-
-#POST     	/tablero/    					controllers.Application.getImage()
-
+ 
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()
 GET    		/ayuda                          controllers.Application.mostrarAyuda()

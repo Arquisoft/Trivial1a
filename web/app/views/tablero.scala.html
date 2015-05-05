@@ -1,4 +1,4 @@
-@()
+@(user:String)
 
 @import helper._
 
@@ -80,34 +80,26 @@
 
 function lanzar(){
 
-
-
-
 	var total = 0;
 	var parrafo;
 	$("#lanzar").prop('disabled', true);
 	parrafo=document.getElementById("numero");
 	total = Math.floor((Math.random() * 6) + 1);	
 	parrafo.innerHTML=total;
+	var img = new Image(); 
+	var canvas = document.getElementById("lienzo");
+	var ctx = canvas.getContext("2d");
 	
-		
-	$.ajax({
-    type: "GET",
-    url: "tablero/dado",
-    dataType: "image/png",
-    success: function(img) {
-     			
-  		      
-    },
-    error: function(error, txtStatus) {
-      console.log(txtStatus);
-      console.log('error');
-    }
-  });
 	
-				
-
-}
+	$.post("/dado", {total:total},function(data) {
+		var img = new Image(); 
+	 img.src=@{routes.Application.getImage()}; 
+	 img.onload = function(){
+	 ctx.drawImage(img, 0, 0);
+		 }
+		});
+		 
+	}
 
  		
   		
@@ -124,14 +116,18 @@ function lanzar(){
   		$("#res4").prop('disabled', true);
   		
   		if(correcta === respuesta){ 
+  		  	var aciertos=parseInt(sessionStorage.getItem("aciertos"));
+  			aciertos=aciertos+1;
+  			sessionStorage.setItem("aciertos", aciertos); 
   		  	 $("#ok").show();
   			$("#acierto").show();
   			
   		}else
-  		{  
+  		{  var fallos=parseInt(sessionStorage.getItem("fallos"));
+  			fallos=fallos+1;
+  			sessionStorage.setItem("fallos", fallos); 
   		  	 $("#ok").show(); 
   			$("#error").show();
-  		
   		}
   		
   		}
@@ -141,16 +137,20 @@ function lanzar(){
 												if (canvas && canvas.getContext) {
 												
 												var ctx = canvas.getContext("2d");
-						
+												
+												var usuario= localStorage.getItem("usuario");
+												if(usuario==null){ 
+												sessionStorage.setItem("usuario", "@user");
+												sessionStorage.setItem("aciertos", "0");
+												sessionStorage.setItem("fallos", "0");
+												}
+												
 												if (ctx) {			
-														
-										
-													var output = document.getElementById("output");								
-										
-																								
+														 
+														var output = document.getElementById("output");	 
 														var img = new Image(); 
-														img.src=@{routes.Application.getImage()};
-														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
+														img.src=@{routes.Application.getImage()}; 
+														
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	
@@ -158,25 +158,17 @@ function lanzar(){
 														canvas.addEventListener("click", function(evt) {
 													
 														var mousePos = oMousePos(canvas, evt);
-														$.post("tablero",
+														$.post("/tablero",
 															    {x:mousePos.x, y:mousePos.y},
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
 														img.src=@{routes.Application.getImage()}
-														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
-														img.onload = function(){
+														 img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
-													     }	
-															//var ficha = new Image();
-															//ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
-															
+													     }	 
 															var split=data.split(";")
-															
-															//ficha.onload = function(){ 
-															
-															//ctx.drawImage(ficha,split[0],split[1]);
-															
+															 
 															document.getElementById("pr").innerHTML = split[2];
 													    	document.getElementById("res1").value = split[3];
 													    	document.getElementById("res2").value= split[4];
@@ -193,8 +185,7 @@ function lanzar(){
 															$("#error").hide();
 															$("#ok").hide();
 															$("#myModal").modal('show');
-													    	  
-													    	  // }
+													    	   
 													      });		
 												
 												
