@@ -125,18 +125,15 @@ public static Result clickJugar(String name){//TODO JUGAR
 	
 	
 	public static Result clickDado(){
-			
-		//pintar posibles
 
 		DynamicForm form = Form.form().bindFromRequest();
+		
 		int x=Integer.parseInt(form.get("total"));
 		int[] aux = trivial.getPosiblesMov(x);
 		
 		builderBoard.pintarPosiblesMov(aux);
 		
-//////
 		 ByteArrayInputStream input = null; 
-		 
 	        try {
 	        	BufferedImage img = builderBoard.getBufferedBoard();
 	        	ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -147,11 +144,8 @@ public static Result clickJugar(String name){//TODO JUGAR
 	            input = new ByteArrayInputStream(byteArray);
 	        } catch (Exception e) {  }
 	        System.out.println("LLEGA CLICKDADO");
-	        
-//	        Base64.encode(byteArray);
-	    return ok(input).as("image/png");
-//		 System.out.println("LLEGA CLICKDADO");
-//		return getImage();
+	         
+	    return ok(input).as("image/png"); 
 	}
 
 	public static Result clickTablero() {
@@ -166,7 +160,6 @@ public static Result clickJugar(String name){//TODO JUGAR
 			int casilla = builderBoard.getCasilla(new Point(Integer.parseInt(form.get("x")), Integer.parseInt(form.get("y"))) ) ;
 			Box actual=new Box(casilla);
 			trivial.getActualPlayer().setActual(actual); 
-			
 			Map<Color, List<Question>> questions = trivial.getQuestions();
 			List<Question> questions2 = questions.get(Color.YELLOW);
 
