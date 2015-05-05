@@ -128,7 +128,7 @@ public static Result clickJugar(String name){//TODO JUGAR
 			
 		//pintar posibles
 
-		  DynamicForm form = Form.form().bindFromRequest();
+		DynamicForm form = Form.form().bindFromRequest();
 		int x=Integer.parseInt(form.get("total"));
 		int[] aux = trivial.getPosiblesMov(x);
 		
