@@ -6,6 +6,7 @@ import java.util.Random;
 
 
 
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -143,6 +144,10 @@ public class Application extends Controller {
 			return badRequest("No vienen coordenadas bien");
 		} else {
 
+			int casilla = builderBoard.getCasilla(new Point(Integer.parseInt(form.get("x")), Integer.parseInt(form.get("y"))) ) ;
+			
+			System.out.println(casilla);
+			
 			Map<Color, List<Question>> questions = trivial.getQuestions();
 			List<Question> questions2 = questions.get(Color.YELLOW);
 

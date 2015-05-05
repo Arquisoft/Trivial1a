@@ -4,10 +4,7 @@
 
 @main("Juego",scripts) {
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/index.scala.css") media="screen" />	
-<div id="container" > 
-
-
-
+<div id="container" >  
 <div id="myModal" class="modal fade"  data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" >
         <div class="modal-content">
@@ -52,16 +49,22 @@
   					</div>
                 <button id="ok" type="button" class="btn btn-primary collapse" data-dismiss="modal">Ok</button> 
             </div>
-            
-            
             </div> 
         </div>
     </div>
 </div>
-
-
-
-	<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
+<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
+<div class="col-sm-4">
+<div class="panel panel-yellow" style="text-align: center;"> 
+                        <div class="panel-body">
+                        	<img src="@routes.Assets.at("images/dados/Dado.gif")" align="middle"/>
+                        	<p id="numero" >Número Obtenido</p>
+                        </div>
+                        <div class="panel-footer">
+                <button id="lanzar" type="button" class="btn btn-primary" onclick="lanzar()">Lanzar</button> 
+                        </div>
+                    </div>
+       </div>
 </div> 
 <h2>Trivial 1a</h2>  
 }
@@ -75,6 +78,17 @@
  
 
   		<script type="text/javascript">
+  		
+  		function lanzar(){
+  			var total = 0;
+  			var parrafo;
+  			$("#lanzar").prop('disabled', true);
+  			parrafo=document.getElementById("numero");
+ 			total = Math.floor((Math.random() * 6) + 1);	
+ 			parrafo.innerHTML=total;
+ 			
+  		}
+  		
   		
   		function compareAnswer(elmnt){
   		var correcta;
@@ -116,7 +130,7 @@
 														var mousePos = oMousePos(canvas, evt);
 													marcarCoords(output, mousePos.x, mousePos.y)
 													}, false);
-																						
+																							
 													canvas.addEventListener("mouseout", function(evt) {
 													limpiarCoords();
 													}, false);
@@ -138,7 +152,6 @@
 														var img = new Image();
 														img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
-
 													        ctx.drawImage(img, 0, 0);
 													     }	
 															var ficha = new Image();
@@ -155,6 +168,12 @@
 													    	document.getElementById("res3").value= split[5];
 													    	document.getElementById("res4").value= split[6];
 															document.getElementById("res").value = split[7];
+															
+															$("#lanzar").prop('disabled', false);
+															$("#res1").prop('disabled', false); 
+  															$("#res2").prop('disabled', false);
+  															$("#res3").prop('disabled', false);
+  															$("#res4").prop('disabled', false);
 															$("#acierto").hide();
 															$("#error").hide();
 															$("#ok").hide();

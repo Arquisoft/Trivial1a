@@ -36,10 +36,7 @@ public class User {
 		return users.find().toArray();
 	}
 	
-	public static User findByLogin(String login) {
-		
-		return users.findOne(new BasicDBObject("login", login));
-	}
+
 	
 	
 	public User(String userName, String name,String surName,String password) {

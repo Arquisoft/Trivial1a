@@ -65,6 +65,10 @@ public class BuilderBoard2D {
 			 
 			return gb2d.getImgBoard();
 		}
+		
+		public int getCasilla(Point point){
+			return gb2d.getBoxId(point);
+		}
 	
 	
 	  public BuilderBoard2D(boolean jAmarillo, boolean jAzul, boolean jMarron, boolean jNaranja, boolean jRosa, boolean jVerde){
