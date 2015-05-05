@@ -75,9 +75,9 @@
  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
- 
 
-  		<script type="text/javascript">
+   		<script type="text/javascript">
+
   		
   		function lanzar(){
   			var total = 0;
@@ -136,8 +136,9 @@
 													}, false);
 													
 													
-														var img = new Image();
-														img.src = "@routes.Assets.at("images/tableros/real500.png")";
+														var img = new Image(); 
+														img.src=@{routes.Application.getImage()}
+														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	
@@ -150,18 +151,20 @@
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
-														img.src = "@routes.Assets.at("images/tableros/real500.png")";
+														img.src=@{routes.Application.getImage()};
+														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	
-															var ficha = new Image();
-															ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
+															//var ficha = new Image();
+															//ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
 															
 															var split=data.split(";")
 															
-															ficha.onload = function(){ 
+															//ficha.onload = function(){ 
 															
-															ctx.drawImage(ficha,split[0],split[1]);
+															//ctx.drawImage(ficha,split[0],split[1]);
+															
 															document.getElementById("pr").innerHTML = split[2];
 													    	document.getElementById("res1").value = split[3];
 													    	document.getElementById("res2").value= split[4];
@@ -178,7 +181,8 @@
 															$("#error").hide();
 															$("#ok").hide();
 															$("#myModal").modal('show');
-													    	   }
+													    	  
+													    	  // }
 													      });		
 												
 												

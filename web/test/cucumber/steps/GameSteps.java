@@ -224,7 +224,7 @@ public class GameSteps {
 	@Dada("^un jugador con el quesito de la casilla 1 que cae en la casilla 14$")
 	public void jugador_con_quesitos_casilla_14() throws Throwable {
 		trivial = new Trivial("pepe");
-		Player player = new Player(new User("Pepe"));
+		Player player = new Player("Pepe");
 		player.setActual(new Box(1));
 		player.addWedge(new Graph().getBox(1).getCategory());
 		trivial.addPlayer(player);

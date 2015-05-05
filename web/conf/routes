@@ -12,6 +12,7 @@ GET 		/tablero 						controllers.Application.clickJugar()
 #GET         /tablero                        controllers.Application.mostrarTablero()
 POST        /tablero                        controllers.Application.clickTablero()
 
+GET     	/tablero/     					controllers.Application.getImage()
 
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()

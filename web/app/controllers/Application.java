@@ -1,19 +1,16 @@
 package controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-
-
 import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
-
-import controllers.board2D.BuilderBoard2D;
 import model.Login;
 import model.Question;
 import model.Register;
@@ -30,6 +27,7 @@ import views.html.inicio;
 import views.html.prejuego;
 import views.html.registro;
 import views.html.tablero;
+import controllers.board2D.BuilderBoard2D;
 
 public class Application extends Controller {
 	
@@ -108,19 +106,27 @@ public class Application extends Controller {
 
 	
 
-
+	public static Result getImage() {
+	    ByteArrayInputStream input = null; 
+	    
+	        try {
+	        	BufferedImage img = builderBoard.getBufferedBoard();
+	        	ByteArrayOutputStream baos = new ByteArrayOutputStream();
+	            byte[] byteArray;
+	            
+	            ImageIO.write( img, "png", baos );
+	            baos.flush();
+	            byteArray = baos.toByteArray();
+	            input = new ByteArrayInputStream(byteArray);
+	        } catch (Exception e) {  }
+	        System.out.println("LLEGA AQUI");
+	    return ok(input).as("image/png");
+	}
 
 	public static Result clickTablero() {
 
 		  DynamicForm form = Form.form().bindFromRequest();
 
-//		     if (form.data().size() == 0) {
-//		         return badRequest("No vienen coordenadas bien");
-//		     } else { 
-//		      
-//		         String response = Integer.parseInt(form.get("x")) +";"+ Integer.parseInt(form.get("y") );
-//		         
-//		         
 //		         BufferedImage img = builderBoard.getBufferedBoard();
 //		         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 //		         try {
@@ -132,13 +138,10 @@ public class Application extends Controller {
 //				}
 //		         
 //		     	byte[] imageInByte = baos.toByteArray();
-//		         
-//		         
-//		         
-//		         return ok(imageInByte).as("image/jpeg");
-//		         
-//		     }
-		   
+//		      
+//		     	 File file = new File( "d:\Images\"+name+".jpg" );
+//		        return ok(org.apache.commons.io.FileUtils.readFileToByteArray(file)).as("image/jpeg");
+// 
 
 		if (form.data().size() == 0) {
 			return badRequest("No vienen coordenadas bien");
