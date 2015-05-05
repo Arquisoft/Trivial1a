@@ -4,10 +4,7 @@
 
 @main("Juego",scripts) {
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/index.scala.css") media="screen" />	
-<div id="container" > 
-
-
-
+<div id="container" >  
 <div id="myModal" class="modal fade"  data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog" >
         <div class="modal-content">
@@ -52,16 +49,22 @@
   					</div>
                 <button id="ok" type="button" class="btn btn-primary collapse" data-dismiss="modal">Ok</button> 
             </div>
-            
-            
             </div> 
         </div>
     </div>
 </div>
-
-
-
-	<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
+<canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
+<div class="col-sm-4">
+<div class="panel panel-yellow" style="text-align: center;"> 
+                        <div class="panel-body">
+                        	<img src="@routes.Assets.at("images/dados/Dado.gif")" align="middle"/>
+                        	<p id="numero" >Número Obtenido</p>
+                        </div>
+                        <div class="panel-footer">
+                <button id="lanzar" type="button" class="btn btn-primary" onclick="lanzar()">Lanzar</button> 
+                        </div>
+                    </div>
+       </div>
 </div> 
 <h2>Trivial 1a</h2>  
 }
@@ -72,9 +75,18 @@
  		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
- 
-
-  		<script type="text/javascript">
+   		<script type="text/javascript">
+  		
+  		function lanzar(){
+  			var total = 0;
+  			var parrafo;
+  			$("#lanzar").prop('disabled', true);
+  			parrafo=document.getElementById("numero");
+ 			total = Math.floor((Math.random() * 6) + 1);	
+ 			parrafo.innerHTML=total;
+ 			
+  		}
+  		
   		
   		function compareAnswer(elmnt){
   		var correcta;
@@ -116,14 +128,15 @@
 														var mousePos = oMousePos(canvas, evt);
 													marcarCoords(output, mousePos.x, mousePos.y)
 													}, false);
-																						
+																							
 													canvas.addEventListener("mouseout", function(evt) {
 													limpiarCoords();
 													}, false);
 													
 													
-														var img = new Image();
-														img.src = "@routes.Assets.at("images/tableros/real500.png")";
+														var img = new Image(); 
+														img.src=@{routes.Application.getImage()}
+														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	
@@ -136,30 +149,38 @@
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
-														img.src = "@routes.Assets.at("images/tableros/real500.png")";
+														img.src=@{routes.Application.getImage()};
+														//img.src = "@routes.Assets.at("images/tableros/real500.png")";
 														img.onload = function(){
-
 													        ctx.drawImage(img, 0, 0);
 													     }	
-															var ficha = new Image();
-															ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
+															//var ficha = new Image();
+															//ficha.src = "@routes.Assets.at("images/fichas/fAmarilla.png")";
 															
 															var split=data.split(";")
 															
-															ficha.onload = function(){ 
+															//ficha.onload = function(){ 
 															
-															ctx.drawImage(ficha,split[0],split[1]);
+															//ctx.drawImage(ficha,split[0],split[1]);
+															
 															document.getElementById("pr").innerHTML = split[2];
 													    	document.getElementById("res1").value = split[3];
 													    	document.getElementById("res2").value= split[4];
 													    	document.getElementById("res3").value= split[5];
 													    	document.getElementById("res4").value= split[6];
 															document.getElementById("res").value = split[7];
+															
+															$("#lanzar").prop('disabled', false);
+															$("#res1").prop('disabled', false); 
+  															$("#res2").prop('disabled', false);
+  															$("#res3").prop('disabled', false);
+  															$("#res4").prop('disabled', false);
 															$("#acierto").hide();
 															$("#error").hide();
 															$("#ok").hide();
 															$("#myModal").modal('show');
-													    	   }
+													    	  
+													    	  // }
 													      });		
 												
 												
