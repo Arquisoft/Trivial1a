@@ -83,7 +83,7 @@
                                         </tr>  
                                     </tbody>
                                 </table>                         
-                                <button id="inicio" type="button" class="btn btn-primary" data-dismiss="modal" href="/">Volver a inicio</button> 
+                                <button id="inicio" type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:history.back()">Volver a inicio</button> 
                             </div>
                     	</div> 
                		 </div>  
@@ -130,6 +130,17 @@ function lanzar(){
 	var ctx = canvas.getContext("2d");
 	
 	
+	$.ajax({
+        type : 'GET',
+        url : '@routes.Application.getImage()',
+        data : {   },
+        success : function(data) {
+           var img = new Image();
+			img.onload = function(){
+	 ctx.drawImage(img, 0, 0);
+		 }
+        }
+    });
 	$.post("/dado", {total:total},function(data) {
 		var img = new Image(); 
 	 img.src=@{routes.Application.getImage()}; 
@@ -213,6 +224,18 @@ function lanzar(){
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
+														$.ajax({
+       												 	type : 'GET',
+       												 	url : '@routes.Application.getImage()',
+        												data : {   },
+      												  	success : function(data) {
+           												var img = new Image();
+														img.onload = function(){
+														ctx.drawImage(img, 0, 0);
+																 }
+       														}
+   														});
+   																 
 														img.src=@{routes.Application.getImage()}
 														 img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
