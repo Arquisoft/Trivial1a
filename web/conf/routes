@@ -19,7 +19,9 @@ POST		/fallo							controllers.Application.fallo()
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()
 GET    		/ayuda                          controllers.Application.mostrarAyuda()
-GET    		/estadisticas                   controllers.Application.mostrarEstadisticas()
+
+GET    		/estadisticas/					controllers.Application.cargarEstadisticas()
+GET    		/estadisticas/:name				controllers.Application.mostrarEstadisticas(name:String)
 
 
 # Map static resources from the /public folder to the /assets URL path

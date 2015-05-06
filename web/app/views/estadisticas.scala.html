@@ -1,10 +1,11 @@
-@()
+@(user:String)
 
 @import helper._
 
 <!DOCTYPE html>
 
 <html>
+
 
 <head>
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/estadisticas.scala.css") media="screen" />	
@@ -13,57 +14,90 @@
     	<link rel="stylesheet" type="text/css" href='@routes.Assets.at("stylesheets/bootstrap.min.css")'>
     	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     	<title>Estadísticas</title>
-	<script type="text/javascript">
-window.onload = function() {
-document.onmousemove = function(ev) {
-var x = ev.clientX;
-var y = ev.clientY;
-document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
+    	
+    	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script type="text/javascript">
+		window.onload = function() {
+		document.onmousemove = function(ev) {
+		var x = ev.clientX;
+		var y = ev.clientY;
+		document.body.style.backgroundPosition = y/10 + 'px ' + x/10 + 'px';};};
+		
+		 
+		window.onload = function() {
+		$.get( '@routes.Application.cargarEstadisticas()', {usuario:"@user"}, function(data) {  		
+			   
+			  if(data=="invalido"){
+			  	window.location="http://localhost:9000/";
+			  }
+			  
+			var split=data.split(";");
+  			document.getElementById('pciencias').style.width= ((parseInt(split[0])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById('parte').style.width= ((parseInt(split[1])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById('phistoria').style.width= ((parseInt(split[2])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById('pgeografia').style.width= ((parseInt(split[3])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById('pentretenimiento').style.width= ((parseInt(split[4])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById('pdeporte').style.width= ((parseInt(split[5])/parseInt(split[6]))*100).toFixed(2) +'%';
+ 
+ 			document.getElementById("ciencias").innerHTML = ((parseInt(split[0])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById("arte").innerHTML = ((parseInt(split[1])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById("historia").innerHTML= ((parseInt(split[2])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById("geografia").innerHTML= ((parseInt(split[3])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById("entretenimiento").innerHTML = ((parseInt(split[4])/parseInt(split[6]))*100).toFixed(2) +'%';
+			document.getElementById("deporte").innerHTML= ((parseInt(split[5])/parseInt(split[6]))*100).toFixed(2) +'%';
+
+       					 }  ); 
+					
+							}
+ 
+
+
 </script>
 </head>
 <body>
-<h1>Estadisticas</h1>
+<h1>Estadisticas de @user</h1>
 <div class="container">
 	<div class="row">
-	 <span class="progress-type">Porcentaje de aciertos en la categoria de Geogriafia</span>                   
-        <div class="progress">
-            <div class="progress-G" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                <span class="progress-completed">60%</span>
+	 <span class="progress-type">Porcentaje de aciertos en la categoria de Geografáa</span>                   
+        <div   class="progress">
+            <div  id="pgeografia" class="progress-G" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  >
+                <span id="geografia" class="progress-completed"></span>
             </div>
             
         </div>
         <span class="progress-type">Porcentaje de aciertos en la categoria de Ciencias y Naturaleza</span>
-        <div class="progress">
-            <div class="progress-Ci" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                <span class="progress-completed">40%</span>
+        <div   class="progress">
+            <div  id="pciencias" class="progress-Ci" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" >
+                <span id="ciencias" class="progress-completed"></span>
             </div>
             
         </div>
         <span class="progress-type">Porcentaje de aciertos en la categoria de Arte y Literatura</span>
-        <div class="progress">
-         <div class="progress-M"  aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                <span class="progress-completed">20%</span>
+        <div  class="progress">
+         <div id="parte" class="progress-M"  aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" >
+                <span id="arte" class="progress-completed"></span>
             </div>
             
         </div>
         <span class="progress-type">Porcentaje de aciertos en la categoria de Deportes</span>
-        <div class="progress">
-         <div class="progress-D" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                 <span class="progress-completed">60%</span>
+        <div  class="progress">
+         <div id="pdeporte" class="progress-D" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" >
+                 <span id="deporte" class="progress-completed"></span>
             </div>
             
         </div>
          <span class="progress-type">Porcentaje de aciertos en la categoria de Historia</span>
-        <div class="progress">
-            <div class="progress-H"aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                 <span class="progress-completed">80%</span>
+        <div  class="progress">
+            <div id="phistoria" class="progress-H"aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"  >
+                 <span id="historia" class="progress-completed"></span>
             </div>
            
         </div>
          <span class="progress-type">Porcentaje de aciertos en la categoria de Entretenimiento</span>
         <div class="progress">
-            <div class="progress-E" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                 <span class="progress-completed">80%</span>
+            <div id="pentretenimiento" class="progress-E" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" >
+                 <span id="entretenimiento"  class="progress-completed"></span>
             </div>
           </div>
 	</div>

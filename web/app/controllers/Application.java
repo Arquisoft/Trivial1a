@@ -275,47 +275,28 @@ public class Application extends Controller {
 		return ok(ayuda.render());
 	}
 
-	public static Result mostrarEstadisticas() {
-
-		return ok(estadisticas.render());
+	public static Result mostrarEstadisticas(String name) { 
+		return ok(estadisticas.render(name));
 	}
-
-	// public static Result mostrarTablero() {
-	//
-	// return ok(tablero.render(0,0));
-	// }
-	//
-	// public static Result mostrarTablero() {
-	//
-	// return ok(tablero.render());
-	// }
-
-	// public static Result index() {
-	// return ok(
-	// views.html.index.render(User.all(), userForm)
-	// );
-	// }
-
-	// public static Result tasks() {
-	// return ok(
-	// views.html.index.render(Task.all(), taskForm)
-	// );
-	// }
-	//
-	// public static Result newTask() {
-	// Form<Task> filledForm = taskForm.bindFromRequest();
-	// if(filledForm.hasErrors()) {
-	// return badRequest(
-	// views.html.index.render(Task.all(), filledForm)
-	// );
-	// } else {
-	// Task.create(filledForm.get());
-	// return redirect(routes.Application.tasks());
-	// }
-	// }
-	//
-	// public static Result deleteTask(String id) {
-	// Task.delete(id);
-	// return redirect(routes.Application.tasks());
-	// }
+	
+	public static Result cargarEstadisticas() {
+		DynamicForm form = Form.form().bindFromRequest();
+		String name=form.get("usuario");
+		if(User.existUserName(name)){
+		User user=User.findByName(name);
+		
+		int ciencia=user.aciertoCiencias;
+		int arte=user.aciertoArte;
+		int historia=user.aciertoHistoria;
+		int geografia=user.aciertoGeografia;
+		int entretenimiento=user.aciertoEntretenimiento;
+		int deporte=user.aciertoDeportes;
+		
+		int total=ciencia+arte+historia+geografia+entretenimiento+deporte;
+		if(total==0)total=1;
+		String response=ciencia+";"+arte+";"+historia+";"+geografia+";"+entretenimiento+";"+deporte+";"+total+";";
+		 
+		return ok(response);}
+		return ok("invalido");
+	}
 }
