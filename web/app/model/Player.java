@@ -13,6 +13,62 @@ public class Player {
 	private List<Color> wedges;
 	private Integer wins, fails;
 	private boolean pepe;
+
+	public int aciertoGeografia = 0;
+	public int aciertoCiencias = 0;
+	public int aciertoArte = 0;
+	public int aciertoDeportes = 0;
+	public int aciertoHistoria = 0;
+	public int aciertoEntretenimiento = 0;
+	
+
+	
+	@Override
+	public String toString() {
+		return "Player [name=" + name + ", actual=" + actual + ", piece="
+				+ piece + ", wedges=" + wedges + ", wins=" + wins + ", fails="
+				+ fails + ", pepe=" + pepe + ", aciertoGeografia="
+				+ aciertoGeografia + ", aciertoCiencias=" + aciertoCiencias
+				+ ", aciertoArte=" + aciertoArte + ", aciertoDeportes="
+				+ aciertoDeportes + ", aciertoHistoria=" + aciertoHistoria
+				+ ", aciertoEntretenimiento=" + aciertoEntretenimiento + "]";
+	}
+
+	public void setAcierto(Color color){
+		switch(color){
+		case BLUE:
+			aciertoGeografia+=1;
+			System.out.println(toString());
+			break;
+		case BROWN:
+				aciertoArte+=1;
+				System.out.println(toString());
+			break;
+		case CENTER:
+			break;
+		case GREEN:
+				aciertoCiencias+=1;
+				System.out.println(toString());
+			break;
+		case ORANGE:
+				aciertoDeportes+=1;
+				System.out.println(toString());
+			break;
+		case PINK:
+				aciertoEntretenimiento+=1;
+				System.out.println(toString());
+			break;
+		case YELLOW:
+				aciertoHistoria+=1;
+				System.out.println(toString());
+
+			break;
+		default:
+			System.out.println("caga pa mi");
+			break;
+
+		}
+	}
 	
 	public boolean isPepe() {
 		return pepe;

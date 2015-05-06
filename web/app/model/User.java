@@ -33,34 +33,7 @@ public class User {
 	public int aciertoHistoria = 0;
 	public int aciertoEntretenimiento = 0;
 	
-	
-	public void setAcierto(Color color){
-		switch(color){
-		case BLUE:
-				aciertoGeografia++;
-			break;
-		case BROWN:
-				aciertoArte++;
-			break;
-		case CENTER:
-			break;
-		case GREEN:
-				aciertoCiencias++;
-			break;
-		case ORANGE:
-				aciertoDeportes++;
-			break;
-		case PINK:
-				aciertoEntretenimiento++;
-			break;
-		case YELLOW:
-				aciertoHistoria++;
-			break;
-		default:
-			break;
 
-		}
-	}
 
 	public User(){
 		
@@ -83,6 +56,7 @@ public User(String userName){
 				+ ", AciertoEntretenimiento=" + aciertoEntretenimiento + "]";
 	}
 
+
 	public void saveUser(User user){
 
 		
@@ -98,6 +72,27 @@ public User(String userName){
 		System.out.println(updated.toMap());
 		
 		users.update(new BasicDBObject().append("userName", user.userName), updated);
+	}
+	
+	public void saveUser(Player player){
+
+		
+		BasicDBObject updated= new BasicDBObject();
+		updated.append("$inc",new BasicDBObject().append("aciertoCiencias", player.aciertoCiencias));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		updated.append("$inc",new BasicDBObject().append("aciertoGeografia", player.aciertoGeografia ));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		updated.append("$inc",new BasicDBObject().append("aciertoHistoria", player.aciertoHistoria));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		updated.append("$inc",new BasicDBObject().append("aciertoArte", player.aciertoArte));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		updated.append("$inc",new BasicDBObject().append("aciertoEntretenimiento", player.aciertoEntretenimiento));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		updated.append("$inc",new BasicDBObject().append("aciertoDeportes", player.aciertoDeportes));
+		users.update(new BasicDBObject().append("userName", player.getUser()), updated);
+		System.out.println(updated.toMap());
+		
+
 		
 	}
 	
@@ -115,6 +110,7 @@ public User(String userName){
 		aciertoHistoria = 0;
 		aciertoEntretenimiento = 0;
 	}
+
 	
 	public static User findByName(String name){ 
 		User user = null;
@@ -134,6 +130,7 @@ public User(String userName){
 		return user;
 		
 	 }
+
 	public static User register(String userName, String name,String surName,String password) {
 		User user = new User(userName,name,surName,password);
 		

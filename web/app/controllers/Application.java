@@ -155,13 +155,28 @@ public class Application extends Controller {
 			}
 		}
 		int aciertos = trivial.getActualPlayer().getWins();
+
 		trivial.getActualPlayer().setWins(aciertos + 1);
+
+		User usuario = User.findByName(trivial.getActualPlayer().getUser());
+		Box casillaActual=trivial.getGraph().getBox(actual); 
+		
+		trivial.getActualPlayer().setAcierto(casillaActual.getCategory());
+		
+		System.out.println("se le ha sumado un acierto al usuario "
+				+ usuario.name + " en la categoria "
+				+ casillaActual.getCategory());
+		
 		System.out.println("el jugador tiene "
 				+ trivial.getActualPlayer().getWins() + " aciertos y "
 				+ trivial.getActualPlayer().getFails() + " fallos");
 
-		if(actual==7 && trivial.getActualPlayer().gano()){
+		if (actual == 7 && trivial.getActualPlayer().gano()) {
 			System.out.println("HAS GANADO CAMPEON");
+			usuario.saveUser(trivial.getActualPlayer());
+			System.out.println(usuario.toString());
+			System.out.println(trivial.getActualPlayer().toString());
+			
 			return ok("win");
 		}
 		return ok("continue");
