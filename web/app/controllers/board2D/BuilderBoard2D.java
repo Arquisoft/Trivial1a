@@ -47,25 +47,31 @@ public class BuilderBoard2D {
 	////////////////
     private final int MITAD_FICHA = 13;
     private final int CASILLA_CENTRAL = 7;
-    private final int ZONA_BLANCA = 74;
+    private final int ZONA_BLANCA = 100;
     private final int TRANSPARENTE = 16777215;
     ///////////////
 	private TrivialBoard gb2d;
 	private List piezas = null;  
 	
 	  
-	  
-		public void pintarPosiblesMov(int[] pos){
-			
-			gb2d.drawBoard();
-//	        gb2d.pintarPieza(piezas.getItem(0), CASILLA_CENTRAL);
-			System.out.println("POS: ");
-			for (int i = 0; i < pos.length; i++) {
-				gb2d.pintarPieza("x",  pos[i] );
-				
-			}
-			
-		}
+	public void pintarPosiblesMov(int[] pos){
+		   
+	//   gb2d.drawBoard();
+//	         gb2d.pintarPieza(piezas.getItem(o), CASILLA_CENTRAL);
+	   System.out.println("POS: ");
+	   for (int i = 0; i < pos.length; i++) {
+	    gb2d.pintarPieza("x",  pos[i] );
+	    
+	   }
+	   
+	  }
+	public void repintarTablero(int id ){
+		   
+		   gb2d.drawBoard();
+		   gb2d.pintarPieza("Ficha_Amarillo", id); 
+		   
+		  }
+		 
 	
 		public BufferedImage getBufferedBoard(){
 			
@@ -124,6 +130,7 @@ public class BuilderBoard2D {
 			gb2d.addBox(i+1, new Color(colores[aux[i]], colores[aux[i]], colores[aux[i]]),new Point(coordenadas[aux[i]][0] - MITAD_FICHA, coordenadas[aux[i]][1] - MITAD_FICHA));
 			
 		}
+		gb2d.addBox(ZONA_BLANCA, new Color(255, 255, 255) , new Point(0, 0));
 
 	  }
 	  

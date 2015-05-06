@@ -40,6 +40,9 @@ public class Trivial {
 		this.players = new ArrayList<>();
 		players.add(new Player(playerName));
 		actualPlayer= players.get(0);
+		if(playerName.equals("pepe")){
+			actualPlayer.setPepe(true);
+		}
 		loadQuestions();
 	}
 

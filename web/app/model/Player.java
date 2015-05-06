@@ -12,7 +12,16 @@ public class Player {
 	private Color piece;
 	private List<Color> wedges;
 	private Integer wins, fails;
+	private boolean pepe;
 	
+	public boolean isPepe() {
+		return pepe;
+	}
+
+	public void setPepe(boolean pepe) {
+		this.pepe = pepe;
+	}
+
 	public Player(String name) {
 		
 		this.name = name;
@@ -76,5 +85,10 @@ public class Player {
 
 	public void setFails(Integer fails) {
 		this.fails = fails;
+	}
+
+	public boolean gano() {
+		if(pepe)return pepe;
+		return (getWedges().size()==6);
 	}
 }

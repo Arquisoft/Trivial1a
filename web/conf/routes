@@ -13,6 +13,9 @@ GET     	/tablero/   					controllers.Application.getImage()
 GET 		/tablero/:name 					controllers.Application.clickJugar(name: String)
 POST        /tablero                        controllers.Application.clickTablero()
  
+POST		/acierto						controllers.Application.acierto() 
+POST		/fallo							controllers.Application.fallo() 
+
 GET  		/public/*file					controllers.Assets.at(path="/public", file)
 GET     	/registro                       controllers.Application.mostrarRegistro()
 GET    		/ayuda                          controllers.Application.mostrarAyuda()

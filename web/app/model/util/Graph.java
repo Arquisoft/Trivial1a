@@ -13,6 +13,14 @@ public class Graph {
 	
 	private int matrixSize;
 	private int[] wedges;
+	public int[] getWedges() {
+		return wedges;
+	}
+
+	public void setWedges(int[] wedges) {
+		this.wedges = wedges;
+	}
+
 	private int[] centers;
 	private Box[] boxes;
 	private boolean[][] edges;

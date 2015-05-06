@@ -51,8 +51,47 @@
             </div>
             </div> 
         </div>
-    </div>
+    </div> 
+    
 </div>
+
+<div id="win" class="modal fade"  data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header">
+                 <h4 class="modal-title" id="pr">Enhorabuena</h4>
+            </div>
+            <div class="modal-body"> 
+                    <div class="panel panel-green">
+					<div class="panel-heading">
+                           Enhorabuena, has ganado 
+                        </div>
+                        <div class="panel-body">
+						<div class="table-responsive">
+                            <input id="res" type="hidden" name="respuesta">
+                                <table class="table"> 
+                                    <tbody> 
+                                        <tr>
+                                            <td>Usuario</td>
+                                            <td ><p id="ganador"/></td>
+                                        </tr> <tr>
+                                            <td>Aciertos</td>
+                                            <td ><p id="puntos"/></td>
+                                        </tr><tr>
+                                            <td>Fallos</td>
+                                            <td ><p id="fails"/></td>
+                                        </tr>  
+                                    </tbody>
+                                </table>                         
+                                <button id="inicio" type="button" class="btn btn-primary" data-dismiss="modal" href="/">Volver a inicio</button> 
+                            </div>
+                    	</div> 
+               		 </div>  
+            </div> 
+        </div>
+    </div>
+  </div>
+  
 <canvas id="lienzo" width="500" height="500">Su navegador no soporta canvas :( </canvas>
 <div class="col-sm-4">
 <div class="panel panel-yellow" style="text-align: center;"> 
@@ -115,17 +154,28 @@ function lanzar(){
   		$("#res3").prop('disabled', true);
   		$("#res4").prop('disabled', true);
   		
-  		if(correcta === respuesta){ 
-  		  	var aciertos=parseInt(sessionStorage.getItem("aciertos"));
-  			aciertos=aciertos+1;
-  			sessionStorage.setItem("aciertos", aciertos); 
+  		if(correcta === respuesta){   
+  		 var aciertos=parseInt(sessionStorage.getItem("aciertos"));
+     	aciertos=aciertos+1;
+     	sessionStorage.setItem("aciertos", aciertos); 
+  			$.post("/acierto", {},function(data) {
+  				if(data=="win"){
+  				document.getElementById("ganador").innerHTML=sessionStorage.getItem("usuario");
+  				document.getElementById("puntos").innerHTML=sessionStorage.getItem("aciertos");
+  				document.getElementById("fails").innerHTML=sessionStorage.getItem("fallos");
+  				
+  				$("#myModal").hide();
+  				$("#win").modal('show');
+  				}
+  			}); 
   		  	 $("#ok").show();
   			$("#acierto").show();
   			
   		}else
-  		{  var fallos=parseInt(sessionStorage.getItem("fallos"));
-  			fallos=fallos+1;
-  			sessionStorage.setItem("fallos", fallos); 
+  		{    var fallos=parseInt(sessionStorage.getItem("fallos"));
+     		fallos=fallos+1;
+     		sessionStorage.setItem("fallos", fallos); 
+  			$.post("/fallo", {},function(data) {}); 
   		  	 $("#ok").show(); 
   			$("#error").show();
   		}
@@ -138,7 +188,7 @@ function lanzar(){
 												
 												var ctx = canvas.getContext("2d");
 												
-												var usuario= localStorage.getItem("usuario");
+												var usuario= sessionStorage.getItem("usuario");
 												if(usuario==null){ 
 												sessionStorage.setItem("usuario", "@user");
 												sessionStorage.setItem("aciertos", "0");
@@ -176,6 +226,7 @@ function lanzar(){
 													    	document.getElementById("res4").value= split[6];
 															document.getElementById("res").value = split[7];
 															
+															if(split[7]!==undefined){
 															$("#lanzar").prop('disabled', false);
 															$("#res1").prop('disabled', false); 
   															$("#res2").prop('disabled', false);
@@ -183,8 +234,9 @@ function lanzar(){
   															$("#res4").prop('disabled', false);
 															$("#acierto").hide();
 															$("#error").hide();
-															$("#ok").hide();
-															$("#myModal").modal('show');
+															$("#ok").hide(); 
+															
+															$("#myModal").modal('show');}
 													    	   
 													      });		
 												
