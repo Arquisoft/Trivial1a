@@ -47,7 +47,7 @@
  				 <div class="alert alert-success collapse" id="acierto" >
     		<strong>¡Bien hecho!</strong> Has acertado.
   					</div>
-                <button id="ok" type="button" class="btn btn-primary collapse" data-dismiss="modal">Ok</button> 
+                <button id="ok" type="button" class="btn btn-primary collapse" onclick =recargarCanvas()  data-dismiss="modal">Ok</button> 
             </div>
             </div> 
         </div>
@@ -83,7 +83,7 @@
                                         </tr>  
                                     </tbody>
                                 </table>                         
-                                <button id="inicio" type="button" class="btn btn-primary" data-dismiss="modal" href="/">Volver a inicio</button> 
+                                <button id="inicio" type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:history.back()">Volver a inicio</button> 
                             </div>
                     	</div> 
                		 </div>  
@@ -96,7 +96,7 @@
 <div class="col-sm-4">
 <div class="panel panel-yellow" style="text-align: center;"> 
                         <div class="panel-body">
-                        	<img src="@routes.Assets.at("images/dados/Dado.gif")" align="middle"/>
+                        	<img id='dado' src="@routes.Assets.at("images/dados/Dado.gif")" align="middle"/>
                         	<p id="numero" >Número Obtenido</p>
                         </div>
                         <div class="panel-footer">
@@ -117,6 +117,38 @@
 
    		<script type="text/javascript">
 
+
+
+function recargarCanvas(){
+
+	var canvas = document.getElementById("lienzo");
+	var ctx = canvas.getContext("2d");
+	var img = new Image();
+	
+	$.ajax({
+		type : 'GET',
+		url : '@routes.Application.getImage()',
+		data : {   },
+		success : function(data) {
+		var img = new Image();
+		img.onload = function(){
+		ctx.drawImage(img, 0, 0);
+				 }
+		}
+	});
+	
+				
+			 
+	img.src=@{routes.Application.getImage()}
+ 	img.onload = function(){
+	    ctx.drawImage(img, 0, 0);
+	}	
+
+
+}
+
+
+
 function lanzar(){
 
 	var total = 0;
@@ -128,8 +160,41 @@ function lanzar(){
 	var img = new Image(); 
 	var canvas = document.getElementById("lienzo");
 	var ctx = canvas.getContext("2d");
+	//total = 6;
+	switch (total) {
+
+	    case 1:
+	        document.getElementById('dado').src = "@routes.Assets.at("images/dados/1.png")";
+	        break;
+	    case 2:
+			document.getElementById('dado').src = "@routes.Assets.at("images/dados/2.png")";
+			break;
+	    case 3:
+			document.getElementById('dado').src = "@routes.Assets.at("images/dados/3.png")";
+			break;
+	    case 4:
+			document.getElementById('dado').src = "@routes.Assets.at("images/dados/4.png")";
+	        break;
+	    case 5:
+ 			document.getElementById('dado').src = "@routes.Assets.at("images/dados/5.png")";	        
+ 			break;
+	    case 6:
+ 			document.getElementById('dado').src = "@routes.Assets.at("images/dados/6.png")";	        
+ 			break;
+	}
 	
 	
+	$.ajax({
+        type : 'GET',
+        url : '@routes.Application.getImage()',
+        data : {   },
+        success : function(data) {
+           var img = new Image();
+			img.onload = function(){
+	 ctx.drawImage(img, 0, 0);
+		 }
+        }
+    });
 	$.post("/dado", {total:total},function(data) {
 		var img = new Image(); 
 	 img.src=@{routes.Application.getImage()}; 
@@ -158,6 +223,7 @@ function lanzar(){
   		 var aciertos=parseInt(sessionStorage.getItem("aciertos"));
      	aciertos=aciertos+1;
      	sessionStorage.setItem("aciertos", aciertos); 
+     	
   			$.post("/acierto", {},function(data) {
   				if(data=="win"){
   				document.getElementById("ganador").innerHTML=sessionStorage.getItem("usuario");
@@ -167,7 +233,9 @@ function lanzar(){
   				$("#myModal").hide();
   				$("#win").modal('show');
   				}
+  					
   			}); 
+  			
   		  	 $("#ok").show();
   			$("#acierto").show();
   			
@@ -175,10 +243,15 @@ function lanzar(){
   		{    var fallos=parseInt(sessionStorage.getItem("fallos"));
      		fallos=fallos+1;
      		sessionStorage.setItem("fallos", fallos); 
-  			$.post("/fallo", {},function(data) {}); 
+     		
+  			$.post("/fallo", {},function(data) {
+
+  			}); 
+  			
   		  	 $("#ok").show(); 
   			$("#error").show();
   		}
+  			document.getElementById('dado').src = "@routes.Assets.at("images/dados/dado.gif")"; 
   		
   		}
   		
@@ -213,6 +286,20 @@ function lanzar(){
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
+														$.ajax({
+       												 	type : 'GET',
+       												 	url : '@routes.Application.getImage()',
+        												data : {   },
+      												  	success : function(data) {
+           												var img = new Image();
+														img.onload = function(){
+														ctx.drawImage(img, 0, 0);
+																 }
+       														}
+   														});
+   														
+  			  														
+   																 
 														img.src=@{routes.Application.getImage()}
 														 img.onload = function(){
 													        ctx.drawImage(img, 0, 0);

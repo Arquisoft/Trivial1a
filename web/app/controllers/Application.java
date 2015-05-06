@@ -144,12 +144,14 @@ public class Application extends Controller {
 
 		for (int i = 0; i < wedges.length; i++) {
 			if (wedges[i] == actual) {
-				trivial.getActualPlayer().addWedge(
-						trivial.getGraph().getBox(wedges[i]).getCategory());
-				System.out.println("Al jugador"
-						+ trivial.getActualPlayer().getUser()
-						+ " se le ha dado el quesito "
-						+ trivial.getGraph().getBox(wedges[i]).getCategory());
+				trivial.getActualPlayer().addWedge(trivial.getGraph().getBox(wedges[i]).getCategory());
+				
+				System.out.println("Al jugador"+trivial.getActualPlayer().getUser()+ " se le ha dado el quesito "+ trivial.getGraph().getBox(wedges[i]).getCategory());
+				
+				List<Color> quesitos = trivial.getActualPlayer().getWedges();
+				
+				builderBoard.pintarQuesitos(quesitos);
+				builderBoard.repintarTablero(actual);
 			}
 		}
 		int aciertos = trivial.getActualPlayer().getWins();
@@ -178,6 +180,13 @@ public class Application extends Controller {
 						+ trivial.getActualPlayer().getUser()
 						+ " se le ha quitado el quesito "
 						+ trivial.getGraph().getBox(wedges[i]).getCategory());
+				
+				List<Color> quesitos = trivial.getActualPlayer().getWedges();
+				System.out.println("Ques: "+quesitos);
+				
+				builderBoard.pintarQuesitos(quesitos);
+				builderBoard.repintarTablero(actual);
+				
 			}
 		}
 
@@ -203,22 +212,28 @@ public class Application extends Controller {
 
 			System.out.println(casilla);
 			boolean correcto = false;
-			for (int i = 0; i < posiblesMov.length; i++) {
-				System.out.println(posiblesMov[i]);
-
-				if (posiblesMov[i] == actual.getId()) {
-					correcto = true;
+			if(posiblesMov != null){
+				for (int i = 0; i < posiblesMov.length; i++) {
+					System.out.println(posiblesMov[i]);
+	
+					if (posiblesMov[i] == actual.getId()) {
+						correcto = true;
+					}
 				}
-			}
-
+			
 			if (correcto) {
 				trivial.getActualPlayer().setActual(actual);
 
 				builderBoard.repintarTablero(actual.getId());
 
 				Map<Color, List<Question>> questions = trivial.getQuestions();
-				List<Question> questions2 = questions.get(Color.YELLOW);
-
+				
+				Color casillaColor = trivial.getGraph().getBox(actual.getId()).getCategory();
+				
+//				List<Question> questions2 = questions.get(Color.YELLOW);
+				
+				List<Question> questions2 = questions.get(casillaColor);
+				
 				Random generator = new Random();
 				int i = generator.nextInt(questions2.size());
 
@@ -231,7 +246,9 @@ public class Application extends Controller {
 						+ question.getAnswers().get(2).answer + ";"
 						+ question.getAnswers().get(3).answer + ";"
 						+ question.getAnswers().get(4).answer;
+				posiblesMov = null;
 				return ok(response);
+			}
 			}
 			return ok();
 		}

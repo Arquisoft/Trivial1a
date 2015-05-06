@@ -57,7 +57,9 @@ public class TrivialBoard  {
         pieces.put(name, new Piece(file));
     }
     public void addPiece(String name, BufferedImage buferedImage) throws IOException {
-        pieces.put(name, new Piece(buferedImage) );
+
+    	pieces.put(name, new Piece(buferedImage) );
+        
     }
 
     /**

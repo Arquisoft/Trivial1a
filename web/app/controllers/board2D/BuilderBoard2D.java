@@ -6,6 +6,7 @@ import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
 
@@ -55,33 +56,72 @@ public class BuilderBoard2D {
 	
 	  
 	public void pintarPosiblesMov(int[] pos){
-		   
-	//   gb2d.drawBoard();
-//	         gb2d.pintarPieza(piezas.getItem(o), CASILLA_CENTRAL);
-	   System.out.println("POS: ");
-	   for (int i = 0; i < pos.length; i++) {
-	    gb2d.pintarPieza("x",  pos[i] );
-	    
-	   }
-	   
+		   for (int i = 0; i < pos.length; i++) {
+		    gb2d.pintarPieza("x",  pos[i] );
+		    
+		   }
 	  }
 	public void repintarTablero(int id ){
 		   
 		   gb2d.drawBoard();
 		   gb2d.pintarPieza("Ficha_Amarillo", id); 
 		   
-		  }
+  }
 		 
+	
+	public void pintarQuesitos(java.util.List<model.types.Color> quesitos){
+		
+		boolean cAmarillo = false;
+		boolean cAzul= false;
+		boolean cMarron= false; 
+		boolean cNaranja= false; 
+		boolean cRosa= false; 
+		boolean cVerde= false;
+		
+		
+		
+		
+		if(quesitos.contains(model.types.Color.YELLOW)){
+			cAmarillo = true;
+      	}
+      	if (quesitos.contains(model.types.Color.BLUE)) {
+      		cAzul= true;
+		}
+      	if (quesitos.contains(model.types.Color.BROWN)) {
+      		cMarron= true; 
+		}
+      	if (quesitos.contains(model.types.Color.ORANGE)) {
+      		cNaranja= true; 
+		}
+      	if (quesitos.contains(model.types.Color.PINK)) {
+      		 cRosa= true; 
+		}
+      	if (quesitos.contains(model.types.Color.GREEN)) {
+      		cVerde= true;
+		}
+		
+		try {
+			BufferedImage ficha = createPiece( "img/fichas/fAmarilla.png", cAmarillo, cAzul, cMarron, cNaranja, cRosa, cVerde);
+			gb2d.addPiece( "Ficha_Amarillo", ficha );
+			piezas.add("Ficha_Amarillo");
+			ImageIO.write(ficha, "png", new File("img/prueba1.png")); 
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+ 
+		
+		
+	}
 	
 		public BufferedImage getBufferedBoard(){
 			
-			 try {
-					ImageIO.write(gb2d.getImgBoard() , "png", new File("img/prueba1.png"));  
-				} catch (IOException e) {
-					e.printStackTrace();
-				} 
-			 
-			 System.out.println("YEAHHH");
+//			try {
+//				ImageIO.write(gb2d.getImgBoard() , "png", new File("img/prueba1.png"));  
+//			} catch (IOException e) {
+//				e.printStackTrace();
+//			} 
+
 			return gb2d.getImgBoard();
 		}
 		

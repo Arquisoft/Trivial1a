@@ -60,7 +60,8 @@ public class Player {
 	}
 
 	public void addWedge(Color wedge) {
-		this.wedges.add(wedge);
+		if(!this.wedges.contains(wedge))
+			this.wedges.add(wedge);
 	}
 
 	public void removeWedge(Color wedge) {
