@@ -292,10 +292,6 @@ public class Application extends Controller {
 	public static Result mostrarEstadisticas(String name) { 
 		return ok(estadisticas.render(name));
 	}
-<<<<<<< HEAD
-
-
-=======
 	
 	public static Result cargarEstadisticas() {
 		DynamicForm form = Form.form().bindFromRequest();
@@ -317,5 +313,5 @@ public class Application extends Controller {
 		return ok(response);}
 		return ok("invalido");
 	}
->>>>>>> branch 'multi' of https://github.com/Arquisoft/Trivial1a.git
+
 }
