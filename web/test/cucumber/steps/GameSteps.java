@@ -69,7 +69,7 @@ public class GameSteps {
 	/// Jugar una partida
 	@Dada("^una aplicacion iniciada$")
 	public void aplicacion_iniciada() throws Throwable {
-		trivial = new Trivial("pepe");
+		trivial = new Trivial();
 	}
 	
 	//añadir jugadores
@@ -130,7 +130,7 @@ public class GameSteps {
 	// creacion tablero
 	@Dada("^un nuevo juego de trivial$")
 	public void juego_nuevo() throws Throwable {
-		trivial = new Trivial("pepe");
+		trivial = new Trivial();
 	}
 	
 	@Entonces("^compruebo el numero de casillas y los colores de ellas$")
@@ -186,8 +186,9 @@ public class GameSteps {
 	// acertar casilla
 	@Dada("^un jugador sin quesitos que cae en la casilla 1$")
 	public void jugador_sin_quesitos_casilla_quesito() throws Throwable {
-		trivial = new Trivial("pepe");
-		Player player = new Player("pepe");
+		trivial = new Trivial();
+		Player player = new Player("Pepe");
+		trivial.addPlayer(player);
 		player.setActual(new Box(1));
 		trivial.addPlayer(player);
 	}
@@ -196,8 +197,7 @@ public class GameSteps {
 	public void asignar_pregunta_casilla_1() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(1).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
@@ -205,8 +205,9 @@ public class GameSteps {
 	
 	@Dada("^un jugador con el quesito de la casilla 1 que cae en una casilla 1$")
 	public void jugador_con_quesitos_casilla_1() throws Throwable {
-		trivial = new Trivial("pepe");
-		Player player = new Player("pepe");
+		trivial = new Trivial();
+		Player player = new Player("Pepe");
+		trivial.addPlayer(player);
 		player.setActual(new Box(1));
 		player.addWedge(new Graph().getBox(1).getCategory());
 		trivial.addPlayer(player);
@@ -216,8 +217,7 @@ public class GameSteps {
 	public void no_asignar_pregunta_casilla_1() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 //error		
 		player.addWedge(new Graph().getBox(1).getCategory()); // no se deberia poder añadir; deberia ser 
@@ -227,8 +227,9 @@ public class GameSteps {
 	
 	@Dada("^un jugador con el quesito de la casilla 1 que cae en la casilla 14$")
 	public void jugador_con_quesitos_casilla_14() throws Throwable {
-		trivial = new Trivial("pepe");
+		trivial = new Trivial();
 		Player player = new Player("Pepe");
+		trivial.addPlayer(player);
 		player.setActual(new Box(1));
 		player.addWedge(new Graph().getBox(1).getCategory());
 		trivial.addPlayer(player);
@@ -238,8 +239,7 @@ public class GameSteps {
 	public void asignar_pregunta_casilla_14() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(14).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
