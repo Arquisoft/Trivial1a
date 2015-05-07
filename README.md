@@ -21,4 +21,5 @@ Autores
 * [Jenifer Ramos Martínez - UO229825](https://github.com/yenniRamos)
  
 <a href="http://arquisoft.github.io/Trivial1a/">Pagina Web del proyecto</a>
+<a href="https://prezi.com/zuja76wlm6ex/copy-of-trivial-1a/">Presentación Prezi</a>
 
