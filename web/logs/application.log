@@ -786,3 +786,569 @@ Application started (Dev)
 2015-05-07 00:10:59,131 - [INFO] - from play in play-internal-execution-context-18 
 Application started (Dev)
 
+2015-05-07 00:33:24,842 - [ERROR] - from application in New I/O worker #3 
+
+
+! @6m44df0m5 - Internal server error, for (POST) [/] ->
+
+play.PlayExceptions$CompilationException: Compilation error[not found: value mdo]
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:297) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:292) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.play$PlayReloader$$anon$$taskFailureHandler(PlayReloader.scala:292) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at scala.util.Either$LeftProjection.map(Either.scala:377) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:325) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:107) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+
+2015-05-07 00:33:44,059 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:33:59,556 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:34:31,752 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:34:49,087 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:35:44,904 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:38:15,257 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:38:34,436 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:39:06,081 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:43:10,814 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:48:27,274 - [INFO] - from play in play-internal-execution-context-18 
+Application started (Dev)
+
+2015-05-07 00:54:10,545 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 00:55:44,085 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 00:56:14,739 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 00:58:32,481 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 00:58:37,874 - [ERROR] - from play in play-akka.actor.default-dispatcher-438 
+Cannot invoke the action, eventually got an error: java.lang.NullPointerException
+
+2015-05-07 00:58:37,877 - [ERROR] - from application in play-akka.actor.default-dispatcher-438 
+
+
+! @6m44gn31n - Internal server error, for (GET) [/estadisticas/?usuario=gavilan] ->
+
+play.api.Application$$anon$1: Execution exception[[NullPointerException: null]]
+	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) [scala-library-2.11.6.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.6.jar:na]
+	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:23) [scala-library-2.11.6.jar:na]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:41) [akka-actor_2.11-2.3.3.jar:na]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393) [akka-actor_2.11-2.3.3.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library-2.11.6.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at controllers.Application.cargarEstadisticas(Application.java:287) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$13$$anonfun$apply$13.apply(routes_routing.scala:239) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$13$$anonfun$apply$13.apply(routes_routing.scala:239) ~[classes/:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$4.resultCall(Router.scala:264) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.Router$HandlerInvokerFactory$JavaActionInvokerFactory$$anon$15$$anon$1.invocation(Router.scala:255) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:55) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anonfun$11.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anonfun$11.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:40) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:32) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$.apply(Future.scala:31) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.Future$.apply(Future.scala:492) ~[scala-library-2.11.6.jar:na]
+	at play.core.j.JavaAction$class.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.Router$HandlerInvokerFactory$JavaActionInvokerFactory$$anon$15$$anon$1.apply(Router.scala:252) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:129) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:128) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) [scala-library-2.11.6.jar:na]
+	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:128) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:121) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) [scala-library-2.11.6.jar:na]
+	... 6 common frames omitted
+
+2015-05-07 00:59:58,400 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:00:10,897 - [ERROR] - from play in play-akka.actor.default-dispatcher-449 
+Cannot invoke the action, eventually got an error: java.lang.NullPointerException
+
+2015-05-07 01:00:10,901 - [ERROR] - from application in play-akka.actor.default-dispatcher-449 
+
+
+! @6m44h2ahi - Internal server error, for (GET) [/estadisticas/?usuario=admin] ->
+
+play.api.Application$$anon$1: Execution exception[[NullPointerException: null]]
+	at play.api.Application$class.handleError(Application.scala:296) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.DefaultApplication.handleError(Application.scala:402) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3$$anonfun$applyOrElse$4.apply(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) [scala-library-2.11.6.jar:na]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:320) [play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.netty.PlayDefaultUpstreamHandler$$anonfun$3.applyOrElse(PlayDefaultUpstreamHandler.scala:316) [play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:344) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.Future$$anonfun$recoverWith$1.apply(Future.scala:343) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.CallbackRunnable.run(Promise.scala:32) [scala-library-2.11.6.jar:na]
+	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.CallbackRunnable.executeWithValue(Promise.scala:40) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.tryComplete(Promise.scala:248) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.Promise$class.complete(Promise.scala:55) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Promise$DefaultPromise.complete(Promise.scala:153) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:23) [scala-library-2.11.6.jar:na]
+	at akka.dispatch.TaskInvocation.run(AbstractDispatcher.scala:41) [akka-actor_2.11-2.3.3.jar:na]
+	at akka.dispatch.ForkJoinExecutorConfigurator$AkkaForkJoinTask.exec(AbstractDispatcher.scala:393) [akka-actor_2.11-2.3.3.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) [scala-library-2.11.6.jar:na]
+Caused by: java.lang.NullPointerException: null
+	at controllers.Application.cargarEstadisticas(Application.java:288) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$13$$anonfun$apply$13.apply(routes_routing.scala:239) ~[classes/:na]
+	at Routes$$anonfun$routes$1$$anonfun$applyOrElse$13$$anonfun$apply$13.apply(routes_routing.scala:239) ~[classes/:na]
+	at play.core.Router$HandlerInvokerFactory$$anon$4.resultCall(Router.scala:264) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.Router$HandlerInvokerFactory$JavaActionInvokerFactory$$anon$15$$anon$1.invocation(Router.scala:255) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anon$1.call(JavaAction.scala:55) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anonfun$11.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.JavaAction$$anonfun$11.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at play.core.j.HttpExecutionContext$$anon$2.run(HttpExecutionContext.scala:40) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Execution$trampoline$.execute(Execution.scala:46) [play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.core.j.HttpExecutionContext.execute(HttpExecutionContext.scala:32) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$.apply(Future.scala:31) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.Future$.apply(Future.scala:492) ~[scala-library-2.11.6.jar:na]
+	at play.core.j.JavaAction$class.apply(JavaAction.scala:82) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.Router$HandlerInvokerFactory$JavaActionInvokerFactory$$anon$15$$anon$1.apply(Router.scala:252) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4$$anonfun$apply$5.apply(Action.scala:130) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:129) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1$$anonfun$apply$4.apply(Action.scala:128) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) [scala-library-2.11.6.jar:na]
+	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:128) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.mvc.Action$$anonfun$apply$1.apply(Action.scala:121) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$mapM$1.apply(Iteratee.scala:483) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMapM$1.apply(Iteratee.scala:519) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at play.api.libs.iteratee.Iteratee$$anonfun$flatMap$1$$anonfun$apply$14.apply(Iteratee.scala:496) ~[play-iteratees_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) [scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) [scala-library-2.11.6.jar:na]
+	... 6 common frames omitted
+
+2015-05-07 01:00:39,895 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:18:33,300 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:19:20,592 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:20:19,863 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:22:05,830 - [INFO] - from play in play-internal-execution-context-24 
+Application started (Dev)
+
+2015-05-07 01:27:35,198 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:28:55,841 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:32:04,976 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:34:18,733 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:35:10,571 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:35:56,547 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:36:39,923 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:38:19,566 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:38:42,258 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:39:24,354 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:39:42,314 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:40:47,786 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:42:11,483 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:43:41,440 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:45:03,070 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:46:38,599 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:47:41,270 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:48:43,069 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:49:41,593 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:50:45,811 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:51:12,432 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:52:11,038 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:53:40,206 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:54:15,329 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:54:34,135 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:54:50,376 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:55:55,712 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:56:35,244 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 01:57:52,012 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:01:33,856 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:03:12,177 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:03:26,814 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:04:43,953 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:06:09,598 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:11:32,447 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:22:00,366 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:24:26,022 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:24:42,501 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:24:55,865 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:28:11,230 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:29:00,624 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:30:29,037 - [ERROR] - from application in New I/O worker #6 
+
+
+! @6m452ohhe - Internal server error, for (POST) [/] ->
+
+play.PlayExceptions$CompilationException: Compilation error[Not parsed?]
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:297) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:292) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.play$PlayReloader$$anon$$taskFailureHandler(PlayReloader.scala:292) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at scala.util.Either$LeftProjection.map(Either.scala:377) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:325) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:107) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+
+2015-05-07 02:30:41,650 - [ERROR] - from application in New I/O worker #6 
+
+
+! @6m452pa8h - Internal server error, for (POST) [/] ->
+
+play.PlayExceptions$CompilationException: Compilation error[Expected ending '}']
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at play.PlayExceptions$CompilationException$.apply(PlayExceptions.scala:27) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:297) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$play$PlayReloader$$anon$$taskFailureHandler$1.apply(PlayReloader.scala:292) ~[na:na]
+	at scala.Option.map(Option.scala:145) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.play$PlayReloader$$anon$$taskFailureHandler(PlayReloader.scala:292) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at play.PlayReloader$$anon$1$$anonfun$reload$2.apply(PlayReloader.scala:325) ~[na:na]
+	at scala.util.Either$LeftProjection.map(Either.scala:377) ~[scala-library-2.11.6.jar:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:325) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:107) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+
+2015-05-07 02:31:00,949 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:31:28,769 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:32:29,795 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:34:52,094 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:37:49,297 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:38:05,532 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:39:04,632 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:39:23,031 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:40:50,877 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:41:18,370 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:41:36,169 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:42:33,102 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:43:39,786 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:44:21,340 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:45:24,524 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:46:56,212 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:47:37,606 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:47:53,020 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:49:42,045 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:50:41,593 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:52:25,583 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:55:47,865 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:56:08,752 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:57:07,992 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:57:45,029 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 02:59:28,119 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:01:43,450 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:02:29,352 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:03:34,007 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:04:03,584 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:05:23,636 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:06:05,006 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:17:17,963 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:25:30,706 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:28:26,839 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:29:18,626 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:30:38,674 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:31:26,594 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:34:54,203 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:35:52,615 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:37:20,227 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:39:36,488 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:40:40,429 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:47:19,358 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:48:04,493 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:49:18,142 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:50:35,311 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:52:55,168 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 03:55:32,512 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:00:03,199 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:02:25,766 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:03:10,194 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:05:45,182 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:06:25,620 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:07:18,979 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+
+2015-05-07 04:08:01,390 - [INFO] - from play in play-internal-execution-context-28 
+Application started (Dev)
+

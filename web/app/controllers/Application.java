@@ -17,6 +17,7 @@ import model.Register;
 import model.Trivial;
 import model.User;
 import model.types.Color;
+import model.types.Role;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
@@ -285,6 +286,30 @@ public class Application extends Controller {
 		if(User.existUserName(name)){
 		User user=User.findByName(name);
 		
+		if(user.role==Role.ADMIN){
+			
+			List<User> users=User.findAll();
+			String response="admin;";
+			for(User u  :users){
+				System.out.println(u.userName);
+				if(!u.userName.equals("admin")){
+
+					int ciencia=u.aciertoCiencias;
+					int arte=u.aciertoArte;
+					int historia=u.aciertoHistoria;
+					int geografia=u.aciertoGeografia;
+					int entretenimiento=u.aciertoEntretenimiento;
+					int deporte=u.aciertoDeportes;
+					
+					int total=ciencia+arte+historia+geografia+entretenimiento+deporte;
+					if(total==0)total=1;
+					response=response+u.userName;
+					response=response+";"+ciencia+";"+arte+";"+historia+";"+geografia+";"+entretenimiento+";"+deporte+";"+total+";";
+					}
+			}
+			return ok(response); 
+		}
+		
 		int ciencia=user.aciertoCiencias;
 		int arte=user.aciertoArte;
 		int historia=user.aciertoHistoria;
@@ -294,7 +319,7 @@ public class Application extends Controller {
 		
 		int total=ciencia+arte+historia+geografia+entretenimiento+deporte;
 		if(total==0)total=1;
-		String response=ciencia+";"+arte+";"+historia+";"+geografia+";"+entretenimiento+";"+deporte+";"+total+";";
+		String response=ciencia+";"+arte+";"+historia+";"+geografia+";"+entretenimiento+";"+deporte+";"+total;
 		 
 		return ok(response);}
 		return ok("invalido");

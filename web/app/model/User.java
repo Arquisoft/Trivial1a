@@ -1,8 +1,8 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import model.types.Color;
 import model.types.Role;
 import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.Id;
@@ -42,8 +42,18 @@ public User(String userName){
 		this.userName=userName;
 	}
 	
-	public List<User> findAll() {
-		return users.find().toArray();
+	public static List<User> findAll() {
+	DBCursor<User> cursor = users.find();
+	List<User> usuarios=new ArrayList<User>();
+	try {
+		while (cursor.hasNext()) {
+			usuarios.add(cursor.next());
+		}
+	} finally {
+		cursor.close();
+	}
+
+	return usuarios;
 	}
 	
 	@Override
