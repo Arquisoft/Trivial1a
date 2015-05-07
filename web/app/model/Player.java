@@ -38,33 +38,33 @@ public class Player {
 		switch(color){
 		case BLUE:
 			aciertoGeografia+=1;
-			System.out.println(toString());
+//			System.out.println(toString());
 			break;
 		case BROWN:
 				aciertoArte+=1;
-				System.out.println(toString());
+//				System.out.println(toString());
 			break;
 		case CENTER:
 			break;
 		case GREEN:
 				aciertoCiencias+=1;
-				System.out.println(toString());
+//				System.out.println(toString());
 			break;
 		case ORANGE:
 				aciertoDeportes+=1;
-				System.out.println(toString());
+//				System.out.println(toString());
 			break;
 		case PINK:
 				aciertoEntretenimiento+=1;
-				System.out.println(toString());
+//				System.out.println(toString());
 			break;
 		case YELLOW:
 				aciertoHistoria+=1;
-				System.out.println(toString());
+//				System.out.println(toString());
 
 			break;
 		default:
-			System.out.println("caga pa mi");
+//			System.out.println("caga pa mi");
 			break;
 
 		}

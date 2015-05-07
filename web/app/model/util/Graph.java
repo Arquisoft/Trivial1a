@@ -96,8 +96,8 @@ public class Graph {
 		for (int i=2; i<SIZE; i++)
 			wedges[i] = wedges[i-1] + SIZE*2;
 		
-		System.out.print("Wedges: ");
-		print(wedges);
+//		System.out.print("Wedges: ");
+//		print(wedges);
 	}
 
 	private void initializeCenterBoxes() {
@@ -110,8 +110,8 @@ public class Graph {
 		for (int i=2; i<SIZE; i++)
 			centers[i] = centers[i-1]+SIZE*2;
 		
-		System.out.print("Centers: ");
-		print(centers);
+//		System.out.print("Centers: ");
+//		print(centers);
 	}
 
 	private void initializeBoxes() {
@@ -134,7 +134,12 @@ public class Graph {
 		int[] b = {4,13,15,20,28,34,43,50,66,71};
 		int[] g = {5,11,17,25,27,32,40,46,55,62};
 		int[] y = {6,14,30,35,41,49,51,56,64,70};
-		
+		int[] grey={9,12,21,24,33,36,45,48,57,60,69,72};
+				
+		for (int i = 0; i < grey.length; i++) {
+			boxes[grey[i]].setCategory(Color.GREY);
+		}
+
 		for (int i=0; i<p.length; i++) {
 			
 			boxes[p[i]].setCategory(Color.PINK);

@@ -185,6 +185,6 @@ public class Trivial {
 		this.questions = new HashMap<>();
 		
 		for (Color c : Color.values())
-			this.questions.put(c, Question.findAll());
+			this.questions.put(c, Question.findByCategory(c));
 	}
 }

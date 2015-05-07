@@ -1,4 +1,4 @@
-@(title: String, scripts: Html )(content: Html)
+@(title: String, scripts: Html, user:String )(content: Html)
 
 <!DOCTYPE html>
 
@@ -27,7 +27,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">NombreUsuario</a>
+                        <a href="#">@user</a>
                     </li>
                     <li>
                         <a href="#">Acerca de</a>

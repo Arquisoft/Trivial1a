@@ -2,7 +2,7 @@
 
 @import helper._
 
-@main("Juego",scripts) {
+@main("Juego",scripts, user) {
 <link rel="stylesheet" type="text/css" href=@routes.Assets.at("stylesheets/index.scala.css") media="screen" />	
 <div id="container" >  
 <div id="myModal" class="modal fade"  data-keyboard="false" data-backdrop="static">
@@ -97,7 +97,7 @@
 <div class="panel panel-yellow" style="text-align: center;"> 
                         <div class="panel-body">
                         	<img id='dado' src="@routes.Assets.at("images/dados/Dado.gif")" align="middle"/>
-                        	<p id="numero" >Número Obtenido</p>
+                        	<p id="numero" ></p>
                         </div>
                         <div class="panel-footer">
                 <button id="lanzar" type="button" class="btn btn-primary" onclick="lanzar()" >Lanzar</button> 
@@ -232,6 +232,7 @@ function lanzar(){
   				
   				$("#myModal").hide();
   				$("#win").modal('show');
+  				
   				}
   					
   			}); 
@@ -245,14 +246,14 @@ function lanzar(){
      		sessionStorage.setItem("fallos", fallos); 
      		
   			$.post("/fallo", {},function(data) {
-
+					
   			}); 
   			
   		  	 $("#ok").show(); 
   			$("#error").show();
   		}
   			document.getElementById('dado').src = "@routes.Assets.at("images/dados/dado.gif")"; 
-  		
+			$("#lanzar").prop('disabled', false);
   		}
   		
   		window.onload = function() {
@@ -285,48 +286,53 @@ function lanzar(){
 															    {x:mousePos.x, y:mousePos.y},
 															    function(data, textStatus, jqXHR)
 														{
-														var img = new Image();
-														$.ajax({
-       												 	type : 'GET',
-       												 	url : '@routes.Application.getImage()',
-        												data : {   },
-      												  	success : function(data) {
-           												var img = new Image();
-														img.onload = function(){
-														ctx.drawImage(img, 0, 0);
-																 }
-       														}
-   														});
+																var img = new Image();
+																$.ajax({
+																type : 'GET',
+																url : '@routes.Application.getImage()',
+																data : {   },
+																success : function(data) {
+																var img = new Image();
+																img.onload = function(){
+																	ctx.drawImage(img, 0, 0);
+																		 }
+																	}
+																});
 
-   																 
-														img.src=@{routes.Application.getImage()}
-														 img.onload = function(){
-													        ctx.drawImage(img, 0, 0);
-													     }	 
-															var split=data.split(";")
-															 
-															document.getElementById("pr").innerHTML = split[2];
-													    	document.getElementById("res1").value = split[3];
-													    	document.getElementById("res2").value= split[4];
-													    	document.getElementById("res3").value= split[5];
-													    	document.getElementById("res4").value= split[6];
-															document.getElementById("res").value = split[7];
-															
-															if(split[7]!==undefined){
-															$("#lanzar").prop('disabled', false);
-															$("#res1").prop('disabled', false); 
-  															$("#res2").prop('disabled', false);
-  															$("#res3").prop('disabled', false);
-  															$("#res4").prop('disabled', false);
-															$("#acierto").hide();
-															$("#error").hide();
-															$("#ok").hide(); 
-															
-															$("#myModal").modal('show');}
-													    	   
+																		 
+																img.src=@{routes.Application.getImage()}
+																 img.onload = function(){
+																	ctx.drawImage(img, 0, 0);
+																 }	 
+																 
+																	var split=data.split(";")
+																if(split[0]!="GRIS"){ 
+																	document.getElementById("pr").innerHTML = split[2];
+																	document.getElementById("res1").value = split[3];
+																	document.getElementById("res2").value= split[4];
+																	document.getElementById("res3").value= split[5];
+																	document.getElementById("res4").value= split[6];
+																	document.getElementById("res").value = split[7];
+																	
+																	if(split[7]!==undefined){
+																		$("#lanzar").prop('disabled', false);
+																		$("#res1").prop('disabled', false); 
+																		$("#res2").prop('disabled', false);
+																		$("#res3").prop('disabled', false);
+																		$("#res4").prop('disabled', false);
+																		$("#acierto").hide();
+																		$("#error").hide();
+																		$("#ok").hide(); 
+																		
+																		$("#myModal").modal('show');
+																	}
+													    	  }else{
+																$("#lanzar").prop('disabled', false);
+																document.getElementById('dado').src = "@routes.Assets.at("images/dados/dado.gif")"; 
+															  }
 													      });		
 												
-												
+														
 														}, false); 
 													
 													    

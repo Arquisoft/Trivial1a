@@ -88,7 +88,7 @@ public class Application extends Controller {
 	}
 
 	public static Result clickJugar(String name) {
-		System.out.println(name);
+//		System.out.println(name);
 		trivial = new Trivial(name);
 		builderBoard = new BuilderBoard2D(true, false, false, false, false,
 				false);
@@ -109,7 +109,7 @@ public class Application extends Controller {
 			input = new ByteArrayInputStream(byteArray);
 		} catch (Exception e) {
 		}
-		System.out.println("LLEGA AQUI");
+//		System.out.println("LLEGA AQUI");
 		return ok(input).as("image/png");
 	}
 
@@ -133,7 +133,7 @@ public class Application extends Controller {
 			input = new ByteArrayInputStream(byteArray);
 		} catch (Exception e) {
 		}
-		System.out.println("LLEGA CLICKDADO");
+//		System.out.println("LLEGA CLICKDADO");
 
 		return ok(input).as("image/png");
 	}
@@ -147,7 +147,7 @@ public class Application extends Controller {
 			if (wedges[i] == actual) {
 				trivial.getActualPlayer().addWedge(trivial.getGraph().getBox(wedges[i]).getCategory());
 				
-				System.out.println("Al jugador"+trivial.getActualPlayer().getUser()+ " se le ha dado el quesito "+ trivial.getGraph().getBox(wedges[i]).getCategory());
+//				System.out.println("Al jugador"+trivial.getActualPlayer().getUser()+ " se le ha dado el quesito "+ trivial.getGraph().getBox(wedges[i]).getCategory());
 				
 				List<Color> quesitos = trivial.getActualPlayer().getWedges();
 				
@@ -164,19 +164,15 @@ public class Application extends Controller {
 		
 		trivial.getActualPlayer().setAcierto(casillaActual.getCategory());
 		
-		System.out.println("se le ha sumado un acierto al usuario "
-				+ usuario.name + " en la categoria "
-				+ casillaActual.getCategory());
+//		System.out.println("se le ha sumado un acierto al usuario "+ usuario.name + " en la categoria "+ casillaActual.getCategory());
 		
-		System.out.println("el jugador tiene "
-				+ trivial.getActualPlayer().getWins() + " aciertos y "
-				+ trivial.getActualPlayer().getFails() + " fallos");
+//		System.out.println("el jugador tiene "+ trivial.getActualPlayer().getWins() + " aciertos y "+ trivial.getActualPlayer().getFails() + " fallos");
 
 		if (actual == 7 && trivial.getActualPlayer().gano()) {
-			System.out.println("HAS GANADO CAMPEON");
+//			System.out.println("HAS GANADO CAMPEON");
 			usuario.saveUser(trivial.getActualPlayer());
-			System.out.println(usuario.toString());
-			System.out.println(trivial.getActualPlayer().toString());
+//			System.out.println(usuario.toString());
+//			System.out.println(trivial.getActualPlayer().toString());
 			
 			return ok("win");
 		}
@@ -192,13 +188,9 @@ public class Application extends Controller {
 			if (wedges[i] == actual) {
 				trivial.getActualPlayer().removeWedge(
 						trivial.getGraph().getBox(wedges[i]).getCategory());
-				System.out.println("Al jugador"
-						+ trivial.getActualPlayer().getUser()
-						+ " se le ha quitado el quesito "
-						+ trivial.getGraph().getBox(wedges[i]).getCategory());
+//				System.out.println("Al jugador"+ trivial.getActualPlayer().getUser()+ " se le ha quitado el quesito "+ trivial.getGraph().getBox(wedges[i]).getCategory());
 				
 				List<Color> quesitos = trivial.getActualPlayer().getWedges();
-				System.out.println("Ques: "+quesitos);
 				
 				builderBoard.pintarQuesitos(quesitos);
 				builderBoard.repintarTablero(actual);
@@ -208,9 +200,7 @@ public class Application extends Controller {
 
 		int fallos = trivial.getActualPlayer().getFails();
 		trivial.getActualPlayer().setFails(fallos + 1);
-		System.out.println("el jugador tiene "
-				+ trivial.getActualPlayer().getWins() + " aciertos y "
-				+ trivial.getActualPlayer().getFails() + " fallos");
+//		System.out.println("el jugador tiene "+ trivial.getActualPlayer().getWins() + " aciertos y "+ trivial.getActualPlayer().getFails() + " fallos");
 		return ok();
 	}
 
@@ -226,49 +216,56 @@ public class Application extends Controller {
 					.parseInt(form.get("x")), Integer.parseInt(form.get("y"))));
 			Box actual = new Box(casilla);
 
-			System.out.println(casilla);
+//			System.out.println(casilla);
 			boolean correcto = false;
-			if(posiblesMov != null){
+			if (posiblesMov != null) {
 				for (int i = 0; i < posiblesMov.length; i++) {
-					System.out.println(posiblesMov[i]);
-	
+//					System.out.println(posiblesMov[i]);
+
 					if (posiblesMov[i] == actual.getId()) {
 						correcto = true;
 					}
 				}
+				
+				if (correcto) {
+					trivial.getActualPlayer().setActual(actual);
+
+					builderBoard.repintarTablero(actual.getId());
+
+					Map<Color, List<Question>> questions = trivial
+							.getQuestions();
+
+					Color casillaColor = trivial.getGraph()
+							.getBox(actual.getId()).getCategory();
+
+					if (!casillaColor.equals(Color.GREY)) {
+
+						List<Question> questions2 = questions.get(casillaColor);
+
+						Random generator = new Random();
+						int i = generator.nextInt(questions2.size());
+
+						Question question = questions2.get(i);
+						response = Integer.parseInt(form.get("x")) + ";"
+								+ Integer.parseInt(form.get("y")) + ";"
+								+ question.getQuestion() + ";"
+								+ question.getAnswers().get(0).answer + ";"
+								+ question.getAnswers().get(1).answer + ";"
+								+ question.getAnswers().get(2).answer + ";"
+								+ question.getAnswers().get(3).answer + ";"
+								+ question.getAnswers().get(4).answer;
+						posiblesMov = null;
+						return ok(response);
+					}else{
+						posiblesMov = null;
+						String ret = "GRIS;";
+						return ok(ret);
+					}
+				}
+			}
 			
-			if (correcto) {
-				trivial.getActualPlayer().setActual(actual);
-
-				builderBoard.repintarTablero(actual.getId());
-
-				Map<Color, List<Question>> questions = trivial.getQuestions();
-				
-				Color casillaColor = trivial.getGraph().getBox(actual.getId()).getCategory();
-				
-//				List<Question> questions2 = questions.get(Color.YELLOW);
-				
-				List<Question> questions2 = questions.get(casillaColor);
-				
-				Random generator = new Random();
-				int i = generator.nextInt(questions2.size());
-
-				Question question = questions2.get(i);
-				response = Integer.parseInt(form.get("x")) + ";"
-						+ Integer.parseInt(form.get("y")) + ";"
-						+ question.getQuestion() + ";"
-						+ question.getAnswers().get(0).answer + ";"
-						+ question.getAnswers().get(1).answer + ";"
-						+ question.getAnswers().get(2).answer + ";"
-						+ question.getAnswers().get(3).answer + ";"
-						+ question.getAnswers().get(4).answer;
-				posiblesMov = null;
-				return ok(response);
-			}
-			}
-			return ok();
 		}
-
+		return ok();
 	}
 
 	public static Result mostrarAyuda() {
@@ -291,7 +288,7 @@ public class Application extends Controller {
 			List<User> users=User.findAll();
 			String response="admin;";
 			for(User u  :users){
-				System.out.println(u.userName);
+//				System.out.println(u.userName);
 				if(!u.userName.equals("admin")){
 
 					int ciencia=u.aciertoCiencias;
