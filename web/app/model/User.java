@@ -66,23 +66,6 @@ public User(String userName){
 				+ ", AciertoEntretenimiento=" + aciertoEntretenimiento + "]";
 	}
 
-
-	public void saveUser(User user){
-
-		
-		
-		BasicDBObject updated= new BasicDBObject();
-		updated.append("$inc",new BasicDBObject().append("aciertoCiencias", aciertoCiencias));
-		updated.append("$inc",new BasicDBObject().append("aciertoGeografia", aciertoGeografia ));
-		updated.append("$inc",new BasicDBObject().append("aciertoHistoria", aciertoHistoria));
-		updated.append("$inc",new BasicDBObject().append("aciertoArte", aciertoArte));
-		updated.append("$inc",new BasicDBObject().append("aciertoEntretenimiento", aciertoEntretenimiento));
-		updated.append("$inc",new BasicDBObject().append("aciertoDeportes", aciertoDeportes)); 
-		
-		System.out.println(updated.toMap());
-		
-		users.update(new BasicDBObject().append("userName", user.userName), updated);
-	}
 	
 	public void saveUser(Player player){
 
