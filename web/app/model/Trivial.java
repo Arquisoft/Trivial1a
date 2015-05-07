@@ -45,6 +45,12 @@ public class Trivial {
 		}
 		loadQuestions();
 	}
+	
+	// constructor test
+	public Trivial() {		
+		this.graph = new Graph();
+		this.players = new ArrayList<>();
+	}
 
 	public Graph getGraph() {
 		return graph;
