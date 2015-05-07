@@ -16,8 +16,17 @@ public class Trivial {
 	private Map<Color,List<Question>> questions;
 	private List<Player> players;
 	private Player actualPlayer;
-
+	private String playerName ;
+	private int[] posiblesMov = {};
 	
+	public int[] getPosiblesMov() {
+		return posiblesMov;
+	}
+
+	public void setPosiblesMov(int[] posiblesMov) {
+		this.posiblesMov = posiblesMov;
+	}
+
 	public Player getActualPlayer() {
 		return actualPlayer;
 	}
@@ -36,6 +45,7 @@ public class Trivial {
 
 	public Trivial(String playerName) {
 		
+		this.playerName = playerName;
 		this.graph = new Graph();
 		this.players = new ArrayList<>();
 		players.add(new Player(playerName));
@@ -59,7 +69,7 @@ public class Trivial {
 	}
 	
 	public Question getQuestion(Color color) {
-		
+
 		List<Question> questions = this.questions.get(color);
 		Integer n = Random.randomQuestion(questions.size()-1);
 		
@@ -88,6 +98,8 @@ public class Trivial {
 		  for(int i = 0;i < ret.length;i++)
 			    ret[i] = positions.get(i).getId();
 
+		posiblesMov = ret;
+		  
 		return ret;
 	}
 	
@@ -179,6 +191,6 @@ public class Trivial {
 		this.questions = new HashMap<>();
 		
 		for (Color c : Color.values())
-			this.questions.put(c, Question.findAll());
+			this.questions.put(c, Question.findByCategory(c));
 	}
 }

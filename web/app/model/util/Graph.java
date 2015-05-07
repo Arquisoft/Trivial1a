@@ -134,6 +134,11 @@ public class Graph {
 		int[] b = {4,13,15,20,28,34,43,50,66,71};
 		int[] g = {5,11,17,25,27,32,40,46,55,62};
 		int[] y = {6,14,30,35,41,49,51,56,64,70};
+		int[] grey={9,12,21,24,33,36,45,48,57,60,69,72};
+		
+		for (int i = 0; i < grey.length; i++) {
+			boxes[grey[i]].setCategory(Color.GREY);
+		}
 		
 		for (int i=0; i<p.length; i++) {
 			

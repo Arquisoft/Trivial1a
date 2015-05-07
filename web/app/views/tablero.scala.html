@@ -128,7 +128,7 @@ function recargarCanvas(){
 	$.ajax({
 		type : 'GET',
 		url : '@routes.Application.getImage()',
-		data : {   },
+		data : {  usuario:"@user" },
 		success : function(data) {
 		var img = new Image();
 		img.onload = function(){
@@ -138,7 +138,7 @@ function recargarCanvas(){
 	});
 	
 				
-			 
+	 
 	img.src=@{routes.Application.getImage()}
  	img.onload = function(){
 	    ctx.drawImage(img, 0, 0);
@@ -187,7 +187,7 @@ function lanzar(){
 	$.ajax({
         type : 'GET',
         url : '@routes.Application.getImage()',
-        data : {   },
+        data : { usuario:"@user"  },
         success : function(data) {
            var img = new Image();
 			img.onload = function(){
@@ -195,7 +195,7 @@ function lanzar(){
 		 }
         }
     });
-	$.post("/dado", {total:total},function(data) {
+	$.post("/dado", {total:total, usuario:"@user"},function(data) {
 		var img = new Image(); 
 	 img.src=@{routes.Application.getImage()}; 
 	 img.onload = function(){
@@ -224,7 +224,7 @@ function lanzar(){
      	aciertos=aciertos+1;
      	sessionStorage.setItem("aciertos", aciertos); 
      	
-  			$.post("/acierto", {},function(data) {
+  			$.post("/acierto", {usuario:"@user"},function(data) {
   				if(data=="win"){
   				document.getElementById("ganador").innerHTML=sessionStorage.getItem("usuario");
   				document.getElementById("puntos").innerHTML=sessionStorage.getItem("aciertos");
@@ -244,7 +244,7 @@ function lanzar(){
      		fallos=fallos+1;
      		sessionStorage.setItem("fallos", fallos); 
      		
-  			$.post("/fallo", {},function(data) {
+  			$.post("/fallo", {usuario:"@user"},function(data) {
 
   			}); 
   			
@@ -282,14 +282,14 @@ function lanzar(){
 													
 														var mousePos = oMousePos(canvas, evt);
 														$.post("/tablero",
-															    {x:mousePos.x, y:mousePos.y},
+															    {x:mousePos.x, y:mousePos.y, usuario:"@user"},
 															    function(data, textStatus, jqXHR)
 														{
 														var img = new Image();
 														$.ajax({
        												 	type : 'GET',
        												 	url : '@routes.Application.getImage()',
-        												data : {   },
+        												data : { usuario:"@user"  },
       												  	success : function(data) {
            												var img = new Image();
 														img.onload = function(){
@@ -299,11 +299,11 @@ function lanzar(){
    														});
 
    																 
-														img.src=@{routes.Application.getImage()}
+													/*	img.src=@{routes.Application.getImage()}
 														 img.onload = function(){
 													        ctx.drawImage(img, 0, 0);
 													     }	 
-															var split=data.split(";")
+													*/		var split=data.split(";")
 															 
 															document.getElementById("pr").innerHTML = split[2];
 													    	document.getElementById("res1").value = split[3];
@@ -320,12 +320,12 @@ function lanzar(){
   															$("#res4").prop('disabled', false);
 															$("#acierto").hide();
 															$("#error").hide();
-															$("#ok").hide(); 
 															
 															$("#myModal").modal('show');}
 													    	   
 													      });		
-												
+													      
+														$("#lanzar").prop('disabled', false);
 												
 														}, false); 
 													

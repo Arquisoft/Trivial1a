@@ -3,6 +3,10 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mongodb.BasicDBObject;
+
+import model.types.Color;
+import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.Id;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import net.vz.mongodb.jackson.ObjectId;
@@ -32,6 +36,48 @@ public class Question {
 		this.failures = 0;
 	}
 
+	public static List<Question> findByCategory(Color color) {
+		
+		List<Question> list = new ArrayList<Question>();
+		BasicDBObject query = new BasicDBObject();
+
+		switch (color) {
+		case PINK:
+			query.append("category","espectaculos");
+			break;
+		case YELLOW:
+			query.append("category","arte y literatura");
+			break;
+		case ORANGE:
+			query.append("category","deportes");
+			break;
+		case BLUE:
+			query.append("category","geografia");
+			break;
+		case BROWN:
+			query.append("category","historia");
+			break;
+		case GREEN:
+			query.append("category","ciencias");
+			break;
+		default:
+			break;
+		}
+
+		
+		DBCursor<Question> cursor = questions.find(query);
+		
+		try {
+			   while(cursor.hasNext()) {
+				   list.add(cursor.next()) ;
+			   }
+			} finally {
+			   cursor.close();
+			}
+
+		return list;
+	}
+	
 	public static List<Question> findAll() {
 		return questions.find().toArray();
 	}
@@ -169,4 +215,8 @@ public class Question {
 	{
 		failures++;
 	}
+
+
+
+	
 }

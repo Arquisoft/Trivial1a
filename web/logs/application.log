@@ -1,0 +1,117 @@
+2015-05-07 02:05:46,665 - [INFO] - from play in pool-117-thread-5 
+Listening for HTTP on /0:0:0:0:0:0:0:0:9000
+
+2015-05-07 02:06:05,175 - [ERROR] - from application in New I/O worker #1 
+
+
+! Internal server error, for (POST) [/tablero] ->
+
+java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Metaspace
+	at java.util.concurrent.FutureTask.report(Unknown Source) ~[na:1.8.0_45]
+	at java.util.concurrent.FutureTask.get(Unknown Source) ~[na:1.8.0_45]
+	at sbt.ConcurrentRestrictions$$anon$4.take(ConcurrentRestrictions.scala:196) ~[na:na]
+	at sbt.Execute.next$1(Execute.scala:88) ~[na:na]
+	at sbt.Execute.processAll(Execute.scala:91) ~[na:na]
+	at sbt.Execute.runKeep(Execute.scala:69) ~[na:na]
+	at sbt.EvaluateTask$.liftedTree1$1(EvaluateTask.scala:344) ~[na:na]
+	at sbt.EvaluateTask$.run$1(EvaluateTask.scala:343) ~[na:na]
+	at sbt.EvaluateTask$.runTask(EvaluateTask.scala:363) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1$$anonfun$apply$3.apply(EvaluateTask.scala:257) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1$$anonfun$apply$3.apply(EvaluateTask.scala:256) ~[na:na]
+	at scala.Option$WithFilter.map(Option.scala:206) ~[scala-library-2.11.6.jar:na]
+	at sbt.EvaluateTask$$anonfun$apply$1.apply(EvaluateTask.scala:256) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1.apply(EvaluateTask.scala:255) ~[na:na]
+	at sbt.EvaluateTask$.withStreams(EvaluateTask.scala:294) ~[na:na]
+	at sbt.EvaluateTask$.apply(EvaluateTask.scala:255) ~[na:na]
+	at sbt.Project$.runTask(Project.scala:524) ~[na:na]
+	at sbt.Project$.runTask(Project.scala:514) ~[na:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:324) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:107) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+Caused by: java.lang.OutOfMemoryError: Metaspace
+
+2015-05-07 02:06:05,371 - [WARN] - from play in New I/O worker #1 
+No application found at invoker init
+
+2015-05-07 02:06:06,887 - [ERROR] - from application in New I/O worker #2 
+
+
+! Internal server error, for (GET) [/tablero/cofi] ->
+
+java.util.concurrent.ExecutionException: java.lang.OutOfMemoryError: Metaspace
+	at java.util.concurrent.FutureTask.report(Unknown Source) ~[na:1.8.0_45]
+	at java.util.concurrent.FutureTask.get(Unknown Source) ~[na:1.8.0_45]
+	at sbt.ConcurrentRestrictions$$anon$4.take(ConcurrentRestrictions.scala:196) ~[na:na]
+	at sbt.Execute.next$1(Execute.scala:88) ~[na:na]
+	at sbt.Execute.processAll(Execute.scala:91) ~[na:na]
+	at sbt.Execute.runKeep(Execute.scala:69) ~[na:na]
+	at sbt.EvaluateTask$.liftedTree1$1(EvaluateTask.scala:344) ~[na:na]
+	at sbt.EvaluateTask$.run$1(EvaluateTask.scala:343) ~[na:na]
+	at sbt.EvaluateTask$.runTask(EvaluateTask.scala:363) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1$$anonfun$apply$3.apply(EvaluateTask.scala:257) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1$$anonfun$apply$3.apply(EvaluateTask.scala:256) ~[na:na]
+	at scala.Option$WithFilter.map(Option.scala:206) ~[scala-library-2.11.6.jar:na]
+	at sbt.EvaluateTask$$anonfun$apply$1.apply(EvaluateTask.scala:256) ~[na:na]
+	at sbt.EvaluateTask$$anonfun$apply$1.apply(EvaluateTask.scala:255) ~[na:na]
+	at sbt.EvaluateTask$.withStreams(EvaluateTask.scala:294) ~[na:na]
+	at sbt.EvaluateTask$.apply(EvaluateTask.scala:255) ~[na:na]
+	at sbt.Project$.runTask(Project.scala:524) ~[na:na]
+	at sbt.Project$.runTask(Project.scala:514) ~[na:na]
+	at play.PlayReloader$$anon$1.reload(PlayReloader.scala:324) ~[na:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:107) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+Caused by: java.lang.OutOfMemoryError: Metaspace
+
+2015-05-07 02:06:36,578 - [ERROR] - from application in New I/O worker #3 
+
+
+! @6m44pi8d2 - Internal server error, for (GET) [/tablero/cofi] ->
+
+play.api.PlayException: Not initialized[?]
+	at play.core.ReloadableApplication.<init>(ApplicationProvider.scala:93) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.NettyServer$$anonfun$mainDev$1.apply(NettyServer.scala:273) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.NettyServer$$anonfun$mainDev$1.apply(NettyServer.scala:272) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.NettyServer$.mainDev(NettyServer.scala:271) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.NettyServer$.mainDevHttpMode(NettyServer.scala:267) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.server.NettyServer.mainDevHttpMode(NettyServer.scala) ~[play_2.11-2.3.1.jar:2.3.1]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_45]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_45]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source) ~[na:1.8.0_45]
+	at java.lang.reflect.Method.invoke(Unknown Source) ~[na:1.8.0_45]
+	at play.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$1.apply(PlayRun.scala:198) ~[na:na]
+	at play.PlayRun$$anonfun$playRunTask$1$$anonfun$apply$1.apply(PlayRun.scala:98) ~[na:na]
+	at scala.Function9$$anonfun$tupled$1.apply(Function9.scala:35) ~[scala-library-2.11.6.jar:na]
+	at scala.Function9$$anonfun$tupled$1.apply(Function9.scala:34) ~[scala-library-2.11.6.jar:na]
+	at scala.Function1$$anonfun$compose$1.apply(Function1.scala:47) ~[scala-library-2.11.6.jar:na]
+	at sbt.$tilde$greater$$anonfun$$u2219$1.apply(TypeFunctions.scala:42) ~[na:na]
+	at sbt.std.Transform$$anon$4.work(System.scala:64) ~[na:na]
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:237) ~[na:na]
+	at sbt.Execute$$anonfun$submit$1$$anonfun$apply$1.apply(Execute.scala:237) ~[na:na]
+	at sbt.ErrorHandling$.wideConvert(ErrorHandling.scala:18) ~[na:na]
+	at sbt.Execute.work(Execute.scala:244) ~[na:na]
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:237) ~[na:na]
+	at sbt.Execute$$anonfun$submit$1.apply(Execute.scala:237) ~[na:na]
+	at sbt.ConcurrentRestrictions$$anon$4$$anonfun$1.apply(ConcurrentRestrictions.scala:160) ~[na:na]
+	at sbt.CompletionService$$anon$2.call(CompletionService.scala:30) ~[na:na]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[na:1.8.0_45]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Unknown Source) ~[na:1.8.0_45]
+	at java.util.concurrent.FutureTask.run(Unknown Source) ~[na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(Unknown Source) [na:1.8.0_45]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(Unknown Source) [na:1.8.0_45]
+	at java.lang.Thread.run(Unknown Source) [na:1.8.0_45]
+
