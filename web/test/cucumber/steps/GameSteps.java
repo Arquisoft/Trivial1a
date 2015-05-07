@@ -196,8 +196,7 @@ public class GameSteps {
 	public void asignar_pregunta_casilla_1() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.user.equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(1).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
@@ -216,8 +215,7 @@ public class GameSteps {
 	public void no_asignar_pregunta_casilla_1() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.user.equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 //error		
 		player.addWedge(new Graph().getBox(1).getCategory()); // no se deberia poder añadir; deberia ser 
@@ -238,8 +236,7 @@ public class GameSteps {
 	public void asignar_pregunta_casilla_14() throws Throwable {
 	//	Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
 	//			userName.equals("Pepe")).collect(Collectors.toList()).get(0);
-		Player player = trivial.getPlayers().stream().filter(x -> x.getUser().
-				getLogin().equals("Pepe")).collect(Collectors.toList()).get(0);
+		Player player = trivial.getPlayers().stream().filter(x -> x.user.equals("Pepe")).collect(Collectors.toList()).get(0);
 		int n = player.getWedges().size();
 		player.addWedge(new Graph().getBox(14).getCategory());
 		Assert.assertTrue((n + 1) == player.getWedges().size());
