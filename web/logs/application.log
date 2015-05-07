@@ -1,6 +1,112 @@
-2015-05-07 20:27:49,402 - [INFO] - from play in pool-119-thread-3 
+2015-05-07 18:56:17,781 - [INFO] - from play in pool-4-thread-3 
 Listening for HTTP on /0:0:0:0:0:0:0:0:9000
 
-2015-05-07 20:27:55,727 - [INFO] - from play in play-internal-execution-context-1 
-Application started (Dev)
+2015-05-07 18:57:32,643 - [ERROR] - from application in New I/O worker #1 
 
+
+! @6m4a2e6a9 - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[Network: can't call something : ds029541.mongolab.com/108.59.81.41:29541/trivial1a]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:151) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:115) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) ~[scala-library-2.11.6.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:115) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:113) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.util.Success.flatMap(Try.scala:230) ~[scala-library-2.11.6.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:113) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+Caused by: com.mongodb.MongoException$Network: can't call something : ds029541.mongolab.com/108.59.81.41:29541/trivial1a
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:227) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:305) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:160) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:183) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:144) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB._doauth(DB.java:541) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.authenticate(DB.java:478) ~[mongo-java-driver-2.7.2.jar:na]
+	at play.modules.mongodb.jackson.MongoDBPlugin$$anonfun$12.apply(MongoDB.scala:238) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin$$anonfun$12.apply(MongoDB.scala:236) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at scala.Option.foreach(Option.scala:257) ~[scala-library-2.11.6.jar:na]
+	at play.modules.mongodb.jackson.MongoDBPlugin.x$9$lzycompute(MongoDB.scala:235) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.x$9(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.mongo$lzycompute(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.mongo(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.onStart(MongoDB.scala:269) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.collection.immutable.List.foreach(List.scala:381) ~[scala-library-2.11.6.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$.start(Play.scala:90) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:142) ~[play_2.11-2.3.1.jar:2.3.1]
+	... 14 common frames omitted
+Caused by: java.io.IOException: couldn't connect to [ds029541.mongolab.com/108.59.81.41:29541] bc:java.net.ConnectException: Connection timed out: connect
+	at com.mongodb.DBPort._open(DBPort.java:228) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBPort.go(DBPort.java:112) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBPort.call(DBPort.java:79) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:218) ~[mongo-java-driver-2.7.2.jar:na]
+	... 37 common frames omitted
+
+2015-05-07 18:57:32,643 - [ERROR] - from application in New I/O worker #3 
+
+
+! @6m4a2e6a9 - Internal server error, for (GET) [/] ->
+
+play.api.UnexpectedException: Unexpected exception[Network: can't call something : ds029541.mongolab.com/108.59.81.41:29541/trivial1a]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:151) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:115) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.Option.map(Option.scala:146) ~[scala-library-2.11.6.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:115) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1.apply(ApplicationProvider.scala:113) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.util.Success.flatMap(Try.scala:230) ~[scala-library-2.11.6.jar:na]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:113) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1.apply(ApplicationProvider.scala:105) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.liftedTree1$1(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.impl.Future$PromiseCompletingRunnable.run(Future.scala:24) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask$AdaptedRunnableAction.exec(ForkJoinTask.java:1361) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinTask.doExec(ForkJoinTask.java:260) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool$WorkQueue.runTask(ForkJoinPool.java:1339) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinPool.runWorker(ForkJoinPool.java:1979) ~[scala-library-2.11.6.jar:na]
+	at scala.concurrent.forkjoin.ForkJoinWorkerThread.run(ForkJoinWorkerThread.java:107) ~[scala-library-2.11.6.jar:na]
+Caused by: com.mongodb.MongoException$Network: can't call something : ds029541.mongolab.com/108.59.81.41:29541/trivial1a
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:227) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBApiLayer$MyCollection.__find(DBApiLayer.java:305) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:160) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:183) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.command(DB.java:144) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB._doauth(DB.java:541) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DB.authenticate(DB.java:478) ~[mongo-java-driver-2.7.2.jar:na]
+	at play.modules.mongodb.jackson.MongoDBPlugin$$anonfun$12.apply(MongoDB.scala:238) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin$$anonfun$12.apply(MongoDB.scala:236) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at scala.Option.foreach(Option.scala:257) ~[scala-library-2.11.6.jar:na]
+	at play.modules.mongodb.jackson.MongoDBPlugin.x$9$lzycompute(MongoDB.scala:235) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.x$9(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.mongo$lzycompute(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.mongo(MongoDB.scala:167) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.modules.mongodb.jackson.MongoDBPlugin.onStart(MongoDB.scala:269) ~[play-mongo-jackson-mapper_2.10-1.1.0.jar:1.1.0]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1$$anonfun$apply$mcV$sp$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at scala.collection.immutable.List.foreach(List.scala:381) ~[scala-library-2.11.6.jar:na]
+	at play.api.Play$$anonfun$start$1.apply$mcV$sp(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$$anonfun$start$1.apply(Play.scala:91) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.utils.Threads$.withContextClassLoader(Threads.scala:21) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.api.Play$.start(Play.scala:90) ~[play_2.11-2.3.1.jar:2.3.1]
+	at play.core.ReloadableApplication$$anonfun$get$1$$anonfun$apply$1$$anonfun$1.apply(ApplicationProvider.scala:142) ~[play_2.11-2.3.1.jar:2.3.1]
+	... 14 common frames omitted
+Caused by: java.io.IOException: couldn't connect to [ds029541.mongolab.com/108.59.81.41:29541] bc:java.net.ConnectException: Connection timed out: connect
+	at com.mongodb.DBPort._open(DBPort.java:228) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBPort.go(DBPort.java:112) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBPort.call(DBPort.java:79) ~[mongo-java-driver-2.7.2.jar:na]
+	at com.mongodb.DBTCPConnector.call(DBTCPConnector.java:218) ~[mongo-java-driver-2.7.2.jar:na]
+	... 37 common frames omitted
+
+>>>>>>> branch 'master' of https://github.com/Arquisoft/Trivial1a.git
